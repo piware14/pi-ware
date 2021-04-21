@@ -1,1 +1,5 @@
-# Install Pi-Ware
+# Pi-Ware
+Pi-Ware is an app store for the Raspberry Pi that allows you to install apps that you can't get using `sudo apt-get install` in Terminal.
+
+## Install Pi-Ware
+## `git clone https://github.com/zachthecoder14/pi-ware`
