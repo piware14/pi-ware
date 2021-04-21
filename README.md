@@ -6,5 +6,5 @@ Pi-Ware is an app store for the Raspberry Pi that allows you to install apps tha
 
 ## Update Pi-Ware
 When you open the Pi-Ware app the app should automatically update. If you want to manually update Pi-Ware, run the following lines in the terminal:
-`cd pi-ware`
-`git pull`
+``cd pi-ware
+git pull``
