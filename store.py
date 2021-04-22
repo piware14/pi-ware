@@ -1,5 +1,4 @@
 # Pi-Ware main UI by ZachTheCoder
-#test
 
 import tkinter as tk
 import os
