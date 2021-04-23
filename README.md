@@ -23,7 +23,7 @@ git pull
 chmod +x ~/pi-ware/uninstall
 ~/pi-ware/uninstall
 ```
-Only use the `chmod` line if this is your first time installing Pi-Ware since cloning it from GitHub.
+Only use the `chmod` line if this is your first time uninstalling Pi-Ware since cloning it from GitHub.
 
 ### ATTENTION
 **PI-WARE IS NOT YET READY FOR USE. WE ARE HOPING TO RELEASE BY SATURDAY BUT WE ARE ONLY A GROUP OF THREE PEOPLE AS OF NOW. THE MAIN APP IS CURRENTLY BEING REWRITTEN AND WE ARE TRYING TO RELEASE THE APP AND OUR FIRST APP AVAILABLE ON PI-WARE BY THE END OF SATURDAY.**
