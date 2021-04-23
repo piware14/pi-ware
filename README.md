@@ -5,7 +5,7 @@ Pi-Ware is an app store for the Raspberry Pi that allows you to install apps tha
 
 ## Install Pi-Ware
 ```
-wget -qO- https://github.com/zachthecoder14/pi-ware-website/assets/install | bash
+wget -qO- https://raw.githubusercontent.com/zachthecoder14/pi-ware-website/assets/install | bash
 ```
 
 ## Update Pi-Ware
