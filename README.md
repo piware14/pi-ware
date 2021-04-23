@@ -5,11 +5,8 @@ Pi-Ware is an app store for the Raspberry Pi that allows you to install apps tha
 
 ## Install Pi-Ware
 ```
-git clone https://github.com/zachthecoder14/pi-ware
-chmod +x ~/pi-ware/install
-~/pi-ware/install
+wget -qO- https://github.com/zachthecoder14/pi-ware-website/assets/install | bash
 ```
-Only use the `chmod` line if this is your first time installing Pi-Ware since cloning it from GitHub.
 
 ## Update Pi-Ware
 When you open the Pi-Ware app the app should automatically update. If you want to manually update Pi-Ware, run the following lines in the terminal:
@@ -20,10 +17,8 @@ git pull
 
 ## Uninstall Pi-Ware
 ```
-chmod +x ~/pi-ware/uninstall
 ~/pi-ware/uninstall
 ```
-Only use the `chmod` line if this is your first time uninstalling Pi-Ware since cloning it from GitHub.
 
 ### ATTENTION
 **PI-WARE IS NOT YET READY FOR USE. WE WILL RELEASE TOMORROW. IF YOU JOIN OUR DISCORD SERVER TODAY YOU MAY TEST THE APP. THE ONLY APP WE ARE ALLOWING PEOPLE TO TEST ARE DISCORD, BUT FIREFOX WILL ALSO BE RELEASED IN TOMORROW'S RELEASE.**
