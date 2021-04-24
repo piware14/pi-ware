@@ -2,7 +2,6 @@
 
 echo "Creating a desktop entry for Pi-Ware..."
 sleep 2s
-
 mkdir -p /home/pi/.local/share/applications
 echo "[Desktop Entry]
 Name=Pi-Ware
@@ -13,7 +12,6 @@ Categories=Utility;
 Type=Application
 Terminal=false" > /home/pi/.local/share/applications/pi-ware.desktop
 sleep 1s
-
-clear
 echo "Done!"
-sleep 5s
+echo "You can find Pi-Ware in Menu > Accessories > Pi-Ware"
+sleeps 2s
