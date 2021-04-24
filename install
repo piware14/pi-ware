@@ -1,0 +1,19 @@
+#!/bin/bash
+
+echo "Installing Pi-Ware..."
+sleep 2s
+
+mkdir -p /home/pi/.local/share/applications
+echo "[Desktop Entry]
+Name=Pi-Ware
+Comment="Raspberry Pi app store"
+Exec=sudo python3 /home/pi/pi-ware/store.py
+Icon=/home/pi/pi-ware/icon.png
+Categories=Utility;
+Type=Application
+Terminal=false" > /home/pi/.local/share/applications/pi-ware.desktop
+sleep 1s
+
+clear
+echo "Successfully installed Pi-Ware"
+sleep 5s

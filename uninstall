@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo "Uninstalling Pi-Ware..."
+sleep 2s
+
+sudo rm /home/pi/.local/share/applications/pi-ware.desktop
+
+clear
+echo "Successfully uninstalled Pi-Ware. Come back soon!"
+sleep 5s
