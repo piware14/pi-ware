@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd /home/pi/pi-ware
+git pull
