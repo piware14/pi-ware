@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Installing Pi-Ware..."
+echo "Creating a desktop entry for Pi-Ware..."
 sleep 2s
 
 mkdir -p /home/pi/.local/share/applications
@@ -15,5 +15,5 @@ Terminal=false" > /home/pi/.local/share/applications/pi-ware.desktop
 sleep 1s
 
 clear
-echo "Successfully installed Pi-Ware"
+echo "Done!"
 sleep 5s
