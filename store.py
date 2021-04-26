@@ -3,8 +3,6 @@
 import tkinter as tk
 import os
 
-os.system("/home/pi/pi-ware/update")
-
 window = tk.Tk()
 window.resizable(0, 0)
 window.geometry("320x500")
