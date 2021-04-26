@@ -1,4 +1,6 @@
 #!/bin/bash
 
+echo "Checking for Pi-Ware updates..."
+sleep 2s
 cd /home/pi/pi-ware
 git pull
