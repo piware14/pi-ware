@@ -6,7 +6,7 @@ mkdir -p /home/pi/.local/share/applications
 echo "[Desktop Entry]
 Name=Pi-Ware
 Comment="Raspberry Pi app store"
-Exec=cd /home/pi/pi-ware && git pull && sudo python3 /home/pi/pi-ware/store.py
+Exec=cd /home/pi/pi-ware && git pull && sleep 2s && sudo python3 /home/pi/pi-ware/store.py
 Icon=/home/pi/pi-ware/icon.png
 Categories=Utility;
 Type=Application
