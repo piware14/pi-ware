@@ -21,10 +21,10 @@ def uninstall_discord_app():
     os.system("lxterminal -e 'wget -qO- https://raw.githubusercontent.com/zachthecoder14/pi-ware-scripts/main/discord-uninstall | bash'")
 
 def install_firefox_app():
-    os.system("lxterminal -e 'wget -qO- https://git.io/JIVdW | bash'")
+    os.system("lxterminal -e 'wget -qO- https://raw.githubusercontent.com/zachthecoder14/pi-ware-scripts/main/firefox-install | bash'")
 
 def uninstall_firefox_app():
-    os.system("lxterminal -e 'wget -qO- https://git.io/Jtke0 | bash'")
+    os.system("lxterminal -e 'wget -qO- https://raw.githubusercontent.com/zachthecoder14/pi-ware-scripts/main/firefox-uninstall | bash'")
 
 
 # App windows
