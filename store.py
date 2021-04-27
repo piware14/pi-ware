@@ -15,10 +15,10 @@ blank_line.pack()
 # Install/uninstall apps
 
 def install_discord_app():
-    os.system("lxterminal -e 'wget -qO- https://raw.githubusercontent.com/Botspot/pi-apps/master/apps/Discord/install-32 | bash'")
+    os.system("lxterminal -e 'wget -qO- https://raw.githubusercontent.com/zachthecoder14/pi-ware-scripts/main/discord-install-32 | bash'")
 
 def uninstall_discord_app():
-    os.system("lxterminal -e 'wget -qO- https://raw.githubusercontent.com/Botspot/pi-apps/master/apps/Discord/uninstall | bash'")
+    os.system("lxterminal -e 'wget -qO- https://raw.githubusercontent.com/zachthecoder14/pi-ware-scripts/main/discord-uninstall | bash'")
 
 def install_firefox_app():
     os.system("lxterminal -e 'wget -qO- https://git.io/JIVdW | bash'")
