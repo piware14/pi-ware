@@ -10,7 +10,7 @@ Exec=cd /home/pi/pi-ware && git pull && sleep 2s && sudo python3 /home/pi/pi-war
 Icon=/home/pi/pi-ware/icon.png
 Categories=Utility;
 Type=Application
-Terminal=False" > /home/pi/.local/share/applications/pi-ware.desktop
+Terminal=true" > /home/pi/.local/share/applications/pi-ware.desktop
 sleep 1s
 echo "Done!"
 echo "You can find Pi-Ware in Menu > Accessories > Pi-Ware."
