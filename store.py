@@ -29,7 +29,6 @@ def uninstall_firefox_app():
 
 def atlauncher_app_window():
     atlauncher_app_button.pack_forget()
-    discord_app_button.pack_forget()
     firefox_app_button.pack_forget()
     description_file = open("/home/pi/pi-ware/apps/ATLauncher/description.txt")
     description = description_file.read()
@@ -62,7 +61,7 @@ def atlauncher_app_window():
 
 def firefox_app_window():
     
-    discord_app_button.pack_forget()
+    atlauncher_app_button.pack_forget()
     firefox_app_button.pack_forget()
     description_file = open("/home/pi/pi-ware/apps/Firefox/description.txt")
     description = description_file.read()
