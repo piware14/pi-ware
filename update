@@ -1,6 +1,7 @@
 #!/bin/bash
 
-sleep 2m
 sudo rm -r $HOME/pi-ware
 cd $HOME
 git clone pi-ware
+clear
+echo "Update complete"
