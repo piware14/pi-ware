@@ -9,11 +9,7 @@ wget -qO- https://rb.gy/sj8bi9 | bash
 ```
 
 ## Update Pi-Ware
-When you open Pi-Ware the app should automatically update. If you want to manually update Pi-Ware, run the following lines in the terminal:
-```
-cd pi-ware
-git pull
-```
+As of now, you can only update using `~/pi-ware/update`, but we are working on automatic updates.
 
 ## Uninstall Pi-Ware
 ```
