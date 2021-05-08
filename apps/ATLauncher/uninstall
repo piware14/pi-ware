@@ -1,0 +1,23 @@
+#!/bin/bash
+
+DIRECTORY="$(dirname "$(dirname "$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )")")"
+
+function error {
+  echo -e "\\e[91m$1\\e[39m"
+  exit 1
+}
+
+echo "Uninstalling ATLauncher..."
+
+rm -f ~/.local/share/applications/ATlauncher.desktop
+sudo rm -rf ~/Minecraft
+sudo rm -rf ~/lwjgl2arm32
+sudo rm -rf ~/lwjgl3arm32
+sudo rm -rf ~/lwjgl3arm64
+sudo rm -rf ~/lwjgl2arm64
+sudo rm -rf /usr/share/Atlauncher/
+rm -rf ~/.local/share/ATlauncher
+
+echo """Successfully uninstalled ATLauncher.
+Closing in 5 seconds."""
+sleep 5s
