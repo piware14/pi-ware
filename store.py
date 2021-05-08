@@ -1,118 +1,82 @@
+# Pi-Ware main UI
+
 import tkinter as tk
 import os
+from functools import partial
 
 window = tk.Tk()
 window.resizable(0, 0)
 window.geometry("320x500")
 window.title("Pi-Ware")
 
-blank_line = tk.Label(text="")
-
-blank_line.pack()
-
-# Install/uninstall apps
-
-def install_atlauncher_app():
-    os.system("lxterminal -e 'wget -qO- https://raw.githubusercontent.com/zachthecoder14/pi-ware-scripts/main/atlauncher-install | bash'")
-
-def uninstall_atlauncher_app():
-    os.system("lxterminal -e 'wget -qO- https://raw.githubusercontent.com/zachthecoder14/pi-ware-scripts/main/atlauncher-uninstall | bash'")
-
-def install_firefox_app():
-    os.system("lxterminal -e 'wget -qO- https://raw.githubusercontent.com/zachthecoder14/pi-ware-scripts/main/firefox-install | bash'")
-
-def uninstall_firefox_app():
-    os.system("lxterminal -e 'wget -qO- https://raw.githubusercontent.com/zachthecoder14/pi-ware-scripts/main/firefox-uninstall | bash'")
-
-
-# App windows
-
-def atlauncher_app_window():
-    atlauncher_app_button.pack_forget()
-    firefox_app_button.pack_forget()
-    description_file = open("/home/pi/pi-ware/apps/ATLauncher/description.txt")
-    description = description_file.read()
-
-    description_contents = tk.Label(
-        text=description,
-        font="Arial 10")
-    
-    description_contents.pack()
-
-    atlauncher_install_button = tk.Button(
-        text="INSTALL",
-        font="Arial 11 bold",
-        width=150,
-        bg="green",
-        fg="white",
-        command=install_atlauncher_app)
-
-    atlauncher_install_button.pack()
-
-    atlauncher_uninstall_button = tk.Button(
-        text="UNINSTALL",
-        font="Arial 11 bold",
-        width=150,
-        bg="red",
-        fg="white",
-        command=uninstall_atlauncher_app)
-
-    atlauncher_uninstall_button.pack()
-
-def firefox_app_window():
-    
-    atlauncher_app_button.pack_forget()
-    firefox_app_button.pack_forget()
-    description_file = open("/home/pi/pi-ware/apps/Firefox/description.txt")
-    description = description_file.read()
-
-    description_contents = tk.Label(
-        text=description,
+def show_desc(app):
+    global install_script,uninstall_script,desc_win
+    desc_win = tk.Toplevel(window)
+    desc_win.title("Pi-Ware")
+    desc_win.geometry("320x500")
+    window.withdraw()
+    desc = open(f"/home/pi/pi-ware/apps/{app}/description.txt", "r")
+    desc_contents = desc.read()
+    app_desc = tk.Label(desc_win,
+        text=desc_contents,
         font="Arial 9")
-    
-    description_contents.pack()
-
-    firefox_install_button = tk.Button(
+    app_desc.pack()
+    install = tk.Button(desc_win,
         text="INSTALL",
         font="Arial 11 bold",
-        width=150,
-        bg="green",
+        width=200,
+        bg="darkblue",
         fg="white",
-        command=install_firefox_app)
-
-    firefox_install_button.pack()
-
-    firefox_uninstall_button = tk.Button(
+        command=install_app)
+    install.pack()
+    uninstall = tk.Button(desc_win,
         text="UNINSTALL",
         font="Arial 11 bold",
-        width=150,
+        width=200,
         bg="red",
         fg="white",
-        command=uninstall_firefox_app)
-
-    firefox_uninstall_button.pack()
-
-# App buttons
-
-atlauncher_app_button = tk.Button(
-    text="ATLauncher",
-    font="Arial 11",
-    width=320,
-    bg="gray",
+        command=uninstall_app)
+    uninstall.pack()
+    back_to_menu_button = tk.Button(desc_win,
+    text="BACK",
+    font="Arial 11 bold",
+    width=200,
+    height=2,
+    bg="green",
     fg="white",
-    command=atlauncher_app_window)
+    command=back_to_menu)
+    back_to_menu_button.pack(side = "bottom")
+    ucommand = "sudo bash /home/pi/pi-ware/apps/%s/uninstall" % app
+    command = "sudo bash /home/pi/pi-ware/apps/%s/install" % app
+    install_script = "lxterminal -e '%s'" % command
+    uninstall_script = "lxterminal -e '%s'" % ucommand
 
-atlauncher_app_button.pack()
+applist = next(os.walk("/home/pi/pi-ware/apps"))[1]
+print("Current apps:\n")
+for app in applist:
+    print(app)
+    exec(app + """_button =  tk.Button(window,
+            text=app,
+            font="Arial 11 bold",
+            width=200,
+            bg="gray",
+            fg="white",
+            command=partial(show_desc,app))""")
+    exec(app + "_button.pack()")
 
-firefox_app_button = tk.Button(
-    text="Firefox",
-    font="Arial 11",
-    width=320,
-    bg="gray",
-    fg="white",
-    command=firefox_app_window)
-
-firefox_app_button.pack()
-
-
+def install_app():
+    global install_script
+    os.system(install_script)
+    
+def uninstall_app():
+    global uninstall_script
+    os.system(uninstall_script)
+    
+def back_to_menu():
+    window.deiconify()
+    desc_win.destroy()
+    window.title("Pi-Ware")
+    
+blank_line = tk.Label(text="")
+blank_line.pack()
 window.mainloop()
