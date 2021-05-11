@@ -1,14 +1,23 @@
 #!/bin/bash
 
-export ACTION="$1"
+export PW_ACTION="$1"
 export PW_PREFIX="$HOME/.local"
 
 install_echo()
 {
-	if [[ "$ACTION" != "update" ]]; then
+	if [[ "$PW_ACTION" != "update" ]]; then
 		echo -e "$1"
 	fi
 }
+
+# If executed directly from outside the repo
+if [[ ! -d ".git" ]]; then
+	git clone https://github.com/zachthecoder14/pi-ware.git
+	cd pi-ware
+fi
+
+install_echo "Installing dependencies..."
+sudo apt install -qq -y git python3 python3-tk
 
 install_echo "Installing Pi-Ware..."
 mkdir -p "$PW_PREFIX/share/applications"
