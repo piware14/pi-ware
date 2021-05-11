@@ -46,8 +46,8 @@ def show_desc(app):
     fg="white",
     command=back_to_menu)
     back_to_menu_button.pack(side = "bottom")
-    ucommand = "sudo bash -x /home/pi/pi-ware/apps/%s/uninstall" % app
-    command = "sudo bash -x /home/pi/pi-ware/apps/%s/install" % app
+    ucommand = "sudo bash /home/pi/pi-ware/apps/%s/uninstall" % app
+    command = "sudo bash /home/pi/pi-ware/apps/%s/install" % app
     install_script = "lxterminal -e '%s'" % command
     uninstall_script = "lxterminal -e '%s'" % ucommand
 
