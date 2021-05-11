@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 # Pi-Ware main UI
 
-import tkinter as tk
+import sys
 import os
+import json
+import webbrowser
+import tkinter as tk
 from os.path import dirname, realpath
 from functools import partial
 
@@ -10,8 +13,25 @@ pw_prefix = dirname(dirname(realpath(__file__)));
 apps_dir = f"{pw_prefix}/share/pi-ware/apps/";
 
 class WrapLabel(tk.Label):
-    def __init__(self, parent, *args, **kwargs):
-        super().__init__(parent, wraplength=315, justify="center", *args, **kwargs)
+    def __init__(self, parent, justify=None, font=None, *args, **kwargs):
+        super().__init__(parent,
+            wraplength=315,
+            font=(font or "Arial 9"),
+            justify=(justify or "center"),
+        *args, **kwargs)
+
+class HyperLink(tk.Label):
+	def __init__(self, parent, url, text=None, fg=None, cursor=None, *args, **kwargs):
+		self.url = url;
+		super().__init__(parent, text=(text or url),
+            fg=(fg or "blue"),
+            cursor=(cursor or "hand2"),
+            font="Arial 9",
+        *args, **kwargs)
+		self.bind("<Button-1>", self.web_open);
+
+	def web_open(self, event):
+		return webbrowser.open(self.url);
 
 class AppButton(tk.Button):
     def __init__(self, parent, app, fg=None, command=None, *args, **kwargs):
@@ -25,16 +45,22 @@ class AppButton(tk.Button):
 def show_desc(window, app):
     desc_win = tk.Toplevel(window)
     desc_win.title(f"{app} on Pi-Ware")
-    set_geometry(window, 320, 500)
+    set_geometry(desc_win, 320, 500)
     desc_win.wm_protocol("WM_DELETE_WINDOW", partial(back_to_menu, window, desc_win))
     window.withdraw()
 
-    with open(f"{apps_dir}/{app}/description.txt", "r") as desc:
-        desc_contents = desc.read()
-        app_desc = WrapLabel(desc_win,
-            text=desc_contents,
-            font="Arial 9")
+    app_website = None
+    with open(f"{apps_dir}/{app}/meta.json", "r") as fd:
+        tmp = fd.read().replace("\\\n", "").replace("\n", "").replace("\t", "")
+        meta = json.loads(tmp)
+        app_desc = WrapLabel(desc_win, text=f"""\n{meta["description"]}""")
         app_desc.pack()
+        if "attr" in meta:
+            app_attr = WrapLabel(desc_win, text=f"""\nSubmitted by: {meta["attr"]}""")
+            app_attr.pack()
+        if "website" in meta:
+            app_website = HyperLink(desc_win, f"""{meta["website"]}""");
+            app_website.pack()
 
     install = AppButton(desc_win, app,
         text="INSTALL",
@@ -50,9 +76,9 @@ def show_desc(window, app):
         bg="green",
         command=partial(back_to_menu, window))
 
-    install.pack()
-    uninstall.pack()
-    back.pack(side = "bottom")
+    back.pack(side="bottom")
+    uninstall.pack(side="bottom")
+    install.pack(side="bottom")
 
 def install_app(parent, app):
     command = f"sudo bash {apps_dir}/{app}/install"
@@ -69,7 +95,7 @@ def back_to_menu(window, parent, app=None):
     window.deiconify()
 
 def set_geometry(window, width, height):
-    window.resizable(0, 0)
+    window.resizable(False, False)
     screen_width = window.winfo_screenwidth()
     screen_height = window.winfo_screenheight()
     x = screen_width / 2 - width / 2
@@ -98,7 +124,7 @@ def main():
     set_geometry(window, 320, 500)
     window.title("Pi-Ware")
 
-    blank_line = tk.Label(text="")
+    blank_line = WrapLabel(window, text="\nPlease select an app to install\n")
     blank_line.pack()
 
     applist = next(os.walk(apps_dir))[1]
@@ -117,4 +143,4 @@ def main():
 if __name__ == "__main__":
     if os.system(f"{pw_prefix}/share/pi-ware/update"):
         check_updates()
-    main()
+    sys.exit(main())

@@ -1,5 +1,0 @@
-Minecraft: Java Edition launcher for the Raspberry Pi.
-Website of this app: atlauncher.com
-
-A big thanks to chunky-milk for providing this app!
-chunky-milk: https://github.com/chunky-milk

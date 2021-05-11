@@ -1,6 +1,0 @@
-Make games on your Raspberry Pi.
-Thanks to PiKATchu for providing install instructions!
-
-WARNING: This is made for the Raspberry Pi 4. 
-Running this app on models 3B+ 
-and below may have issues.
