@@ -9,7 +9,7 @@ wget -qO- https://rb.gy/sj8bi9 | bash
 ```
 
 ## Update Pi-Ware
-As of now, you can only update using `~/pi-ware/update`, but we are working on automatic updates.
+As of now, you can only update using `~/pi-ware/updater`, but we are working on automatic updates.
 
 ## Uninstall Pi-Ware
 ```
