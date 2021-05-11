@@ -4,19 +4,15 @@ export PW_PREFIX="$HOME/.local"
 export PW_REPO="https://github.com/zachthecoder14/pi-ware.git"
 export LAST_COMMIT="$(git ls-remote "$PW_REPO" | grep refs/heads/main | cut -f 1)"
 
-if [[ "$1" ]]; then
-	export PW_PREFIX="$1"
-fi
-
 if [[ "$(cat "$PW_PREFIX/share/pi-ware/version")" != "$LAST_COMMIT" ]]; then
 	echo "Updating Pi-Ware..."
 	cd "$PW_PREFIX/share/pi-ware"
 	mkdir -p ./updater_files
+	git clone "$PW_REPO" ./updater_files
 	cd ./updater_files
-	git clone "$PW_REPO"
 	chmod a+x ./install
-	./install "$PW_PREFIX"
-	cd ../../
+	./install update
+	cd ../
 	sudo rm -rf ./updater_files
 	echo "Update complete."
 else

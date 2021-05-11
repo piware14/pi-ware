@@ -2,10 +2,6 @@
 
 export PW_PREFIX="$HOME/.local"
 
-if [[ "$1" ]]; then
-	export PW_PREFIX="$1"
-fi
-
 echo "Uninstalling Pi-Ware..."
 rm -rf "$PW_PREFIX/share/pi-ware"
 rm "$PW_PREFIX/bin/pi-ware"

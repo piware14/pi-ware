@@ -1,12 +1,16 @@
 #!/bin/bash
 
+export ACTION="$1"
 export PW_PREFIX="$HOME/.local"
 
-if [[ "$1" ]]; then
-	export PW_PREFIX="$1"
-fi
+install_echo()
+{
+	if [[ "$ACTION" != "update" ]]; then
+		echo -e "$1"
+	fi
+}
 
-echo "Installing Pi-Ware..."
+install_echo "Installing Pi-Ware..."
 mkdir -p "$PW_PREFIX/share/applications"
 mkdir -p "$PW_PREFIX/share/pi-ware"
 mkdir -p "$PW_PREFIX/bin"
@@ -19,8 +23,8 @@ if [[ "$PW_PREFIX" == "$HOME/.local" ]]; then
 	echo "export PATH=$PW_PREFIX/bin:$PATH" >> $HOME/.bashrc
 fi
 
-echo "Creating a desktop entry for Pi-Ware..."
-echo "[Desktop Entry]
+install_echo "Creating a desktop entry for Pi-Ware..."
+install_echo "[Desktop Entry]
 Name=Pi-Ware
 Comment=\"Raspberry Pi app store\"
 Exec=sudo python3 $PW_PREFIX/bin/pi-ware
@@ -28,4 +32,4 @@ Icon=$PW_PREFIX/share/pixmaps/pi-ware.png
 Categories=Utility;
 Type=Application
 Terminal=false" > "$PW_PREFIX/share/applications/pi-ware.desktop"
-echo -e "Done!\nYou can find Pi-Ware in Menu > Accessories > Pi-Ware."
+install_echo "Done! You can find Pi-Ware in Menu > Accessories > Pi-Ware."
