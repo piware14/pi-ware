@@ -3,7 +3,7 @@
 export PW_PREFIX="$HOME/.local"
 export PW_REPO="https://github.com/zachthecoder14/pi-ware.git"
 export LAST_COMMIT="$(git ls-remote "$PW_REPO" | grep refs/heads/main | cut -f 1)"
-exit 0
+
 if [[ "$(cat "$PW_PREFIX/share/pi-ware/version")" != "$LAST_COMMIT" ]]; then
 	echo "Updating Pi-Ware..."
 	cd "$PW_PREFIX/share/pi-ware"
