@@ -25,7 +25,7 @@ class AppButton(tk.Button):
 def show_desc(window, app):
     desc_win = tk.Toplevel(window)
     desc_win.title(f"{app} on Pi-Ware")
-    desc_win.geometry("320x500")
+    set_geometry(window, 320, 500)
     desc_win.wm_protocol("WM_DELETE_WINDOW", partial(back_to_menu, window, desc_win))
     window.withdraw()
 
@@ -68,10 +68,34 @@ def back_to_menu(window, parent, app=None):
     parent.destroy()
     window.deiconify()
 
+def set_geometry(window, width, height):
+    window.resizable(0, 0)
+    screen_width = window.winfo_screenwidth()
+    screen_height = window.winfo_screenheight()
+    x = screen_width / 2 - width / 2
+    y = screen_height / 2 - height / 2
+    window.geometry(f"{width}x{height}+{int(x)}+{int(y)}")
+
+def check_updates():
+    window = tk.Tk()
+    set_geometry(window, 320, 128)
+    window.title("Pi-Ware update")
+
+    blank_line = WrapLabel(window, text="\nThere is a Pi-Ware update available, please restart it to apply the changes.")
+    blank_line.pack()
+
+    ok_button = tk.Button(text="Ok", command=window.destroy)
+    ok_button.pack(side="right", anchor="s");
+
+    window.wm_protocol("WM_DELETE_WINDOW", window.destroy)
+    try:
+        window.mainloop()
+    except KeyboardInterrupt:
+        window.destroy()
+
 def main():
     window = tk.Tk()
-    window.resizable(0, 0)
-    window.geometry("320x500")
+    set_geometry(window, 320, 500)
     window.title("Pi-Ware")
 
     blank_line = tk.Label(text="")
@@ -91,4 +115,6 @@ def main():
         window.destroy()
 
 if __name__ == "__main__":
+    if os.system(f"{pw_prefix}/share/pi-ware/update"):
+        check_updates()
     main()

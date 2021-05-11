@@ -15,6 +15,8 @@ if [[ "$(cat "$PW_PREFIX/share/pi-ware/version")" != "$LAST_COMMIT" ]]; then
 	cd ../
 	sudo rm -rf ./updater_files
 	echo "Update complete."
+	exit 0
 else
 	echo "Pi-Ware is currently up-to-date."
+	exit 1
 fi
