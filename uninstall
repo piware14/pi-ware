@@ -1,7 +1,13 @@
 #!/bin/bash
 
+export PW_PREFIX="$HOME/.local"
+
+if [[ "$1" ]]; then
+	export PW_PREFIX="$1"
+fi
+
 echo "Uninstalling Pi-Ware..."
-sudo rm $HOME/.local/share/applications/pi-ware.desktop
-clear
+rm -rf "$PW_PREFIX/share/pi-ware"
+rm "$PW_PREFIX/bin/pi-ware"
+rm "$PW_PREFIX/share/applications/pi-ware.desktop"
 echo "Successfully uninstalled Pi-Ware. Come back soon!"
-sleep 2s

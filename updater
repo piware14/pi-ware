@@ -1,13 +1,24 @@
 #!/bin/bash
-cd /home/pi/pi-ware
-mkdir updater_files
-cd updater_files/
-git clone https://github.com/zachthecoder14/pi-ware.git
-cd pi-ware/
-rsync * ../../
-rsync -r * ../../
-cd ../../
-sudo rm -r updater_files/
-clear
-echo "Update complete."
-sleep 2s
+
+export PW_PREFIX="$HOME/.local"
+export PW_REPO="https://github.com/zachthecoder14/pi-ware.git"
+export LAST_COMMIT="$(git ls-remote "$PW_REPO" | grep refs/heads/main | cut -f 1)"
+
+if [[ "$1" ]]; then
+	export PW_PREFIX="$1"
+fi
+
+if [[ "$(cat "$PW_PREFIX/share/pi-ware/version")" != "$LAST_COMMIT" ]]; then
+	echo "Updating Pi-Ware..."
+	cd "$PW_PREFIX/share/pi-ware"
+	mkdir -p ./updater_files
+	cd ./updater_files
+	git clone "$PW_REPO"
+	chmod a+x ./install
+	./install "$PW_PREFIX"
+	cd ../../
+	sudo rm -rf ./updater_files
+	echo "Update complete."
+else
+	echo "Pi-Ware is currently up-to-date."
+fi
