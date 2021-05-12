@@ -360,6 +360,6 @@ fi
 sudo rm -rf ~/ATlauncher
 
 clear
-echo '''Successfully installed ATLauncher. Find it in Menu > Games > ATLauncher.
-Closing in 5 seconds.'''
+echo 'Successfully installed ATLauncher. Find it in Menu > Games > ATLauncher.'
+echo 'Closing in 5 seconds.'
 sleep 5s
