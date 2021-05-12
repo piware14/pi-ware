@@ -1,7 +1,8 @@
 # Pi-Ware
 Pi-Ware is an app store for the Raspberry Pi that allows you to install apps that you **can't get** using `sudo apt-get install` in Terminal.
 
-**Join our Discord server**: [![Pi-Ware Discord server](https://img.shields.io/discord/840124418528378881?color=7289da&label=Discord%20Server&logo=discord&style=flat-square)](https://discord.gg/BU8F6D8X6s)
+**Join our Discord server**: 
+[![Pi-Ware Discord server](https://img.shields.io/discord/840124418528378881?color=7289da&label=Discord%20Server&logo=discord&style=flat-square)](https://discord.gg/BU8F6D8X6s)
 
 ## Install Pi-Ware
 ```
