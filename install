@@ -42,4 +42,4 @@ Categories=Utility;
 Type=Application
 Terminal=false" > "$PW_PREFIX/share/applications/pi-ware.desktop"
 install_echo "Done! You can find Pi-Ware in Menu > Accessories > Pi-Ware."
-install_echo "Note: you may need to restart you shell/terminal to be able to run Pi-Ware from them."
+install_echo "Note: you may need to restart your shell/terminal to be able to run Pi-Ware."
