@@ -1,82 +1,146 @@
+#!/usr/bin/env python3
 # Pi-Ware main UI
 
-import tkinter as tk
+import sys
 import os
+import json
+import webbrowser
+import tkinter as tk
+from os.path import dirname, realpath
 from functools import partial
 
-window = tk.Tk()
-window.resizable(0, 0)
-window.geometry("320x500")
-window.title("Pi-Ware")
+pw_prefix = dirname(dirname(realpath(__file__)));
+apps_dir = f"{pw_prefix}/share/pi-ware/apps/";
 
-def show_desc(app):
-    global install_script,uninstall_script,desc_win
-    desc_win = tk.Toplevel(window)
-    desc_win.title("Pi-Ware")
-    desc_win.geometry("320x500")
-    window.withdraw()
-    desc = open(f"/home/pi/pi-ware/apps/{app}/description.txt", "r")
-    desc_contents = desc.read()
-    app_desc = tk.Label(desc_win,
-        text=desc_contents,
-        font="Arial 9")
-    app_desc.pack()
-    install = tk.Button(desc_win,
-        text="INSTALL",
-        font="Arial 11 bold",
-        width=200,
-        bg="darkblue",
-        fg="white",
-        command=install_app)
-    install.pack()
-    uninstall = tk.Button(desc_win,
-        text="UNINSTALL",
-        font="Arial 11 bold",
-        width=200,
-        bg="red",
-        fg="white",
-        command=uninstall_app)
-    uninstall.pack()
-    back_to_menu_button = tk.Button(desc_win,
-    text="BACK",
-    font="Arial 11 bold",
-    width=200,
-    height=2,
-    bg="green",
-    fg="white",
-    command=back_to_menu)
-    back_to_menu_button.pack(side = "bottom")
-    ucommand = "sudo bash /home/pi/pi-ware/apps/%s/uninstall" % app
-    command = "sudo bash /home/pi/pi-ware/apps/%s/install" % app
-    install_script = "lxterminal -e '%s'" % command
-    uninstall_script = "lxterminal -e '%s'" % ucommand
+class WrapLabel(tk.Label):
+    def __init__(self, parent, justify=None, font=None, *args, **kwargs):
+        super().__init__(parent,
+            wraplength=315,
+            font=(font or "Arial 9"),
+            justify=(justify or "center"),
+        *args, **kwargs)
 
-applist = next(os.walk("/home/pi/pi-ware/apps"))[1]
-print("Current apps:\n")
-for app in applist:
-    print(app)
-    exec(app + """_button =  tk.Button(window,
-            text=app,
+class HyperLink(tk.Label):
+	def __init__(self, parent, url, text=None, fg=None, cursor=None, *args, **kwargs):
+		self.url = url;
+		super().__init__(parent, text=(text or url),
+            fg=(fg or "blue"),
+            cursor=(cursor or "hand2"),
+            font="Arial 9",
+        *args, **kwargs)
+		self.bind("<Button-1>", self.web_open);
+
+	def web_open(self, event):
+		return webbrowser.open(self.url);
+
+class AppButton(tk.Button):
+    def __init__(self, parent, app, fg=None, command=None, *args, **kwargs):
+        super().__init__(parent,
             font="Arial 11 bold",
             width=200,
-            bg="gray",
-            fg="white",
-            command=partial(show_desc,app))""")
-    exec(app + "_button.pack()")
+            fg=(fg or "white"),
+            command=partial(command, parent, app),
+        *args, **kwargs)
 
-def install_app():
-    global install_script
+def show_desc(window, app):
+    desc_win = tk.Toplevel(window)
+    desc_win.title(f"{app} on Pi-Ware")
+    set_geometry(desc_win, 320, 500)
+    desc_win.wm_protocol("WM_DELETE_WINDOW", partial(back_to_menu, window, desc_win))
+    window.withdraw()
+
+    app_website = None
+    with open(f"{apps_dir}/{app}/meta.json", "r") as fd:
+        tmp = fd.read().replace("\\\n", "").replace("\n", "").replace("\t", "")
+        meta = json.loads(tmp)
+        app_desc = WrapLabel(desc_win, text=f"""\n{meta["description"]}""")
+        app_desc.pack()
+        if "attr" in meta:
+            app_attr = WrapLabel(desc_win, text=f"""\nSubmitted by: {meta["attr"]}""")
+            app_attr.pack()
+        if "website" in meta:
+            app_website = HyperLink(desc_win, f"""{meta["website"]}""");
+            app_website.pack()
+
+    install = AppButton(desc_win, app,
+        text="INSTALL",
+        bg="darkblue",
+        command=install_app)
+    uninstall = AppButton(desc_win, app,
+        text="UNINSTALL",
+        bg="red",
+        command=uninstall_app)
+    back = AppButton(desc_win, app,
+        text="BACK",
+        height=2,
+        bg="green",
+        command=partial(back_to_menu, window))
+
+    back.pack(side="bottom")
+    uninstall.pack(side="bottom")
+    install.pack(side="bottom")
+
+def install_app(parent, app):
+    command = f"sudo bash {apps_dir}/{app}/install"
+    install_script = f"x-terminal-emulator -e '{command}'"
     os.system(install_script)
     
-def uninstall_app():
-    global uninstall_script
+def uninstall_app(parent, app):
+    ucommand = f"sudo bash {apps_dir}/{app}/uninstall"
+    uninstall_script = f"x-terminal-emulator -e '{ucommand}'"
     os.system(uninstall_script)
     
-def back_to_menu():
+def back_to_menu(window, parent, app=None):
+    parent.destroy()
     window.deiconify()
-    desc_win.destroy()
+
+def set_geometry(window, width, height):
+    window.resizable(False, False)
+    screen_width = window.winfo_screenwidth()
+    screen_height = window.winfo_screenheight()
+    x = screen_width / 2 - width / 2
+    y = screen_height / 2 - height / 2
+    window.geometry(f"{width}x{height}+{int(x)}+{int(y)}")
+
+def check_updates():
+    window = tk.Tk()
+    set_geometry(window, 320, 128)
+    window.title("Pi-Ware update")
+
+    blank_line = WrapLabel(window, text="\nThere is a Pi-Ware update available, please restart it to apply the changes.")
+    blank_line.pack()
+
+    ok_button = tk.Button(text="Ok", command=window.destroy)
+    ok_button.pack(side="right", anchor="s");
+
+    window.wm_protocol("WM_DELETE_WINDOW", window.destroy)
+    try:
+        window.mainloop()
+    except KeyboardInterrupt:
+        window.destroy()
+
+def main():
+    window = tk.Tk()
+    set_geometry(window, 320, 500)
     window.title("Pi-Ware")
-    
-blank_line = tk.Label(text="")
-blank_line.pack()
-window.mainloop()
+
+    blank_line = WrapLabel(window, text="\nPlease select an app to install\n")
+    blank_line.pack()
+
+    applist = next(os.walk(apps_dir))[1]
+    print("Current apps:\n")
+    for app in applist:
+        print(app)
+        button = AppButton(window, app, text=app, bg="gray", command=show_desc)
+        button.pack()
+
+    window.wm_protocol("WM_DELETE_WINDOW", window.destroy)
+    try:
+        window.mainloop()
+    except KeyboardInterrupt:
+        window.destroy()
+
+if __name__ == "__main__":
+    if os.system(f"{pw_prefix}/share/pi-ware/update"):
+        check_updates()
+    sys.exit(main())

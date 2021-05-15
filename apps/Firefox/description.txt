@@ -1,6 +1,0 @@
-Firefox search engine for the Raspberry Pi.
-
-This app was provided by chunky-milk.
-
-chunky-milk:     https://github.com/chunky-milk
- 
