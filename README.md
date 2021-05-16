@@ -5,6 +5,10 @@ Pi-Ware is an app store for the Raspberry Pi that allows you to install apps tha
 
 [![Pi-Ware Discord server](https://img.shields.io/discord/840124418528378881?color=7289da&label=Discord%20Server&logo=discord&style=flat-square)](https://discord.gg/BU8F6D8X6s)
 
+**Look at our website**:
+
+<a href="https://oxmc.github.io/pi-ware/" alt="Pi-Ware website">The Pi-Ware website</a>
+
 ## Install Pi-Ware
 ```sh
 wget -qO- https://bit.ly/2R6Qdgp | bash
