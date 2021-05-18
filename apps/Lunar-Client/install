@@ -35,6 +35,17 @@ if ! command -v modprobe >/dev/null;then
   fi
 fi
 
+#install java if not already installed
+if ! command -v java –version >/dev/null;then
+  
+  if [ -f /usr/bin/apt ];then
+    sudo apt update
+    sudo apt install -y openjdk-8-jdk || echo "Failed to install java."
+  else
+    error "Failed to find any package manager to install java."
+  fi
+fi
+
 #Run modprobe fuse
 sudo modprobe fuse
 
