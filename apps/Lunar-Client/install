@@ -39,7 +39,7 @@ fi
 sudo modprobe fuse
 
 #Download client
-wget https://github.com/gl91306/lunar/blob/master/lunarclient-2.7.0-armv7l.AppImage?raw=true
+wget https://github.com/gl91306/lunar/raw/master/lunarclient-2.7.0-armv7l.AppImage
 
 #Change perms of Launcher
 sudo chmod +x ~/lunarclient-2.7.0-armv7l.AppImage
