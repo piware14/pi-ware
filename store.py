@@ -10,7 +10,7 @@ from os.path import dirname, realpath
 from functools import partial
 
 pw_dir = dirname(dirname(realpath(__file__)))
-apps_dir = f"{pw_dir}/.pi-ware/apps/"
+apps_dir = f"{pw_dir}/.local/share/"
 icon: tk.PhotoImage
 
 class WrapLabel(tk.Label):
