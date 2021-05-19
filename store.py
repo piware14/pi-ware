@@ -124,7 +124,7 @@ def check_updates():
 def main():
     global icon
     window = tk.Tk()
-    icon = tk.PhotoImage(file=f"{pw_dir}/icons/pi-ware.png")
+    icon = tk.PhotoImage(file=f"{pw_dir}/.local/share/icons/pi-ware.png")
     set_geometry(window, 320, 500)
     window.title("Pi-Ware")
 
