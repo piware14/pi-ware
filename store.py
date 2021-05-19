@@ -10,7 +10,7 @@ from os.path import dirname, realpath
 from functools import partial
 
 pw_dir = dirname(dirname(realpath(__file__)))
-apps_dir = f"{pw_dir}/.local/share/pi-ware"
+apps_dir = "/home/pi/pi-ware/apps"
 icon: tk.PhotoImage
 
 class WrapLabel(tk.Label):
@@ -96,6 +96,7 @@ def back_to_menu(window, parent, app=None):
     window.deiconify()
 
 def set_geometry(window, width, height):
+    icon = tk.PhotoImage(file=f"{pw_dir}/.local/share/icons/pi-ware.png")
     window.resizable(False, False)
     screen_width = window.winfo_screenwidth()
     screen_height = window.winfo_screenheight()
@@ -145,6 +146,7 @@ def main():
         window.destroy()
 
 if __name__ == "__main__":
-    if not os.system(f"{pw_dir}/scripts/update"):
+    if not os.system("/home/pi/.local/share/pi-ware/scripts/install update"):
         check_updates()
     sys.exit(main())
+
