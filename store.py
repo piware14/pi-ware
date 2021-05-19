@@ -9,8 +9,9 @@ import tkinter as tk
 from os.path import dirname, realpath
 from functools import partial
 
-pw_prefix = dirname(dirname(realpath(__file__)));
-apps_dir = f"{pw_prefix}/share/pi-ware/apps/";
+pw_prefix = dirname(dirname(realpath(__file__)))
+apps_dir = f"{pw_prefix}/share/pi-ware/apps/"
+icon: tk.PhotoImage
 
 class WrapLabel(tk.Label):
     def __init__(self, parent, justify=None, font=None, *args, **kwargs):
@@ -101,6 +102,7 @@ def set_geometry(window, width, height):
     x = screen_width / 2 - width / 2
     y = screen_height / 2 - height / 2
     window.geometry(f"{width}x{height}+{int(x)}+{int(y)}")
+    window.iconphoto(False, icon)
 
 def check_updates():
     window = tk.Tk()
@@ -120,7 +122,9 @@ def check_updates():
         window.destroy()
 
 def main():
+    global icon
     window = tk.Tk()
+    icon = tk.PhotoImage(file=f"{pw_prefix}/share/pixmaps/pi-ware.png")
     set_geometry(window, 320, 500)
     window.title("Pi-Ware")
 
@@ -141,6 +145,6 @@ def main():
         window.destroy()
 
 if __name__ == "__main__":
-    if os.system(f"{pw_prefix}/share/pi-ware/update"):
+    if not os.system(f"{pw_prefix}/share/pi-ware/update"):
         check_updates()
     sys.exit(main())

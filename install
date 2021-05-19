@@ -22,9 +22,12 @@ sudo apt install -qq -y git python3 python3-tk
 install_echo "Installing Pi-Ware..."
 mkdir -p "$PW_PREFIX/share/applications"
 mkdir -p "$PW_PREFIX/share/pi-ware"
+mkdir -p "$PW_PREFIX/share/pixmaps"
 mkdir -p "$PW_PREFIX/bin"
-rsync -r ./{apps,uninstall,install,update} "$PW_PREFIX/share/pi-ware"
+rsync -r ./apps/ "$PW_PREFIX/share/pi-ware" --delete
+rsync ./{uninstall,install,update} "$PW_PREFIX/share/pi-ware"
 rsync ./store.py "$PW_PREFIX/bin/pi-ware"
+rsync ./dist_icon.png "$PW_PREFIX/share/pixmaps/pi-ware.png"
 chmod a+x "$PW_PREFIX/bin/pi-ware"
 echo $(git rev-parse main) > "$PW_PREFIX/share/pi-ware/version"
 
@@ -35,7 +38,7 @@ fi
 install_echo "Creating a desktop entry for Pi-Ware..."
 install_echo "[Desktop Entry]
 Name=Pi-Ware
-Comment=\"Raspberry Pi app store\"
+Comment=Raspberry Pi app store
 Exec=sudo python3 $PW_PREFIX/bin/pi-ware
 Icon=$PW_PREFIX/share/pixmaps/pi-ware.png
 Categories=Utility;
