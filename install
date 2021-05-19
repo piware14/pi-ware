@@ -41,7 +41,7 @@ install echo "[Desktop Entry]
 Name=Pi-Ware
 Comment=Raspberry Pi app store
 Exec=sudo python3 $HOME/.local/bin/pi-ware
-Icon=$HOME/.local/share/pixmaps/pi-ware.png
+Icon=$HOME/.local/share/icons/pi-ware.png
 Categories=Utility;
 Type=Application
 Terminal=false" > "$HOME/.local/share/applications/pi-ware.desktop"
