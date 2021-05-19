@@ -9,8 +9,8 @@ import tkinter as tk
 from os.path import dirname, realpath
 from functools import partial
 
-pw_prefix = dirname(dirname(realpath(__file__)))
-apps_dir = f"{pw_prefix}/share/pi-ware/apps/"
+pw_dir = dirname(dirname(realpath(__file__)))
+apps_dir = f"{pw_dir}/.pi-ware/apps/"
 icon: tk.PhotoImage
 
 class WrapLabel(tk.Label):
@@ -82,12 +82,12 @@ def show_desc(window, app):
     install.pack(side="bottom")
 
 def install_app(parent, app):
-    command = f"sudo bash {apps_dir}/{app}/install"
+    command = f"bash {apps_dir}/{app}/install"
     install_script = f"x-terminal-emulator -e '{command}'"
     os.system(install_script)
     
 def uninstall_app(parent, app):
-    ucommand = f"sudo bash {apps_dir}/{app}/uninstall"
+    ucommand = f"bash {apps_dir}/{app}/uninstall"
     uninstall_script = f"x-terminal-emulator -e '{ucommand}'"
     os.system(uninstall_script)
     
@@ -109,7 +109,7 @@ def check_updates():
     set_geometry(window, 320, 128)
     window.title("Pi-Ware update")
 
-    blank_line = WrapLabel(window, text="\nThere is a Pi-Ware update available, please restart it to apply the changes.")
+    blank_line = WrapLabel(window, text="\nThere is a Pi-Ware update available, please close all open pi-ware windows to apply the update.")
     blank_line.pack()
 
     ok_button = tk.Button(text="Ok", command=window.destroy)
@@ -124,7 +124,7 @@ def check_updates():
 def main():
     global icon
     window = tk.Tk()
-    icon = tk.PhotoImage(file=f"{pw_prefix}/share/pixmaps/pi-ware.png")
+    icon = tk.PhotoImage(file=f"{pw_dir}/icons/pi-ware.png")
     set_geometry(window, 320, 500)
     window.title("Pi-Ware")
 
@@ -145,6 +145,6 @@ def main():
         window.destroy()
 
 if __name__ == "__main__":
-    if not os.system(f"{pw_prefix}/share/pi-ware/update"):
+    if not os.system(f"{pw_dir}/scripts/update"):
         check_updates()
     sys.exit(main())
