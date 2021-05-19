@@ -6,10 +6,10 @@ export PW_ACTION="$1"
 #Functions
 install()
 {
-  if [[ "$PW_ACTION" != "update" ]]; then
+  if [ "$PW_ACTION" != "update" ]; then
     if [ "$PW_ACTION" == "apt" ]; then
       $2
-    else if [ "$PW_ACTION" == "echo" ]; then
+    elif [ "$PW_ACTION" == "echo" ]; then
       echo -e "$2"
     fi
   fi
