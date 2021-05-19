@@ -63,9 +63,9 @@ sudo chmod +x ~/lunarclient-2.7.0-armv7l.AppImage
 sudo cp -r /opt/jdk/jdk1.8.0_251/jre ~/.lunarclient/jre/zulu8.52.0.23-ca-fx-jre8.0.282-linux_x64
 
 #Then make menu button
-echo "Creating a desktop entry for Lunar-Client..."
+echo "Creating a desktop entry for Lunar Client..."
 echo "[Desktop Entry]
-Name=\"Lunar-Client for Rpi\"
+Name=\"Lunar Client\"
 Comment=\"Lunar-Client for Rpi made by PiKATchu on Discord.\"
 Exec=~/lunarclient-2.7.0-armv7l.AppImage
 Icon=~/.lunarclient/icon.png
@@ -79,6 +79,8 @@ if [ "${fwe}" == "1" ]; then
   echo "This script finished with errors, Here are the errors: ${ers}"
   exit 1
 elif [ "${fwe}" == "0" ]; then
-  echo "Finished!"
+  echo "Successfully installed Lunar Client. You can find it in Menu > Games > Lunar Client."
+  echo "Closing in 5 seconds."
+  sleep 5s
   exit 0
 fi
