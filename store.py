@@ -10,7 +10,7 @@ from os.path import dirname, realpath
 from functools import partial
 
 pw_prefix = dirname(dirname(realpath(__file__)))
-apps_dir = f"{pw_prefix}/share/pi-ware/apps/"
+apps_dir = f"{pw_prefix}/.local/share/pi-ware/apps/"
 icon: tk.PhotoImage
 
 class WrapLabel(tk.Label):
@@ -145,6 +145,6 @@ def main():
         window.destroy()
 
 if __name__ == "__main__":
-    if not os.system(f"{pw_prefix}/share/pi-ware/update"):
+    if not os.system("/home/pi/pi-ware/update"):
         check_updates()
     sys.exit(main())
