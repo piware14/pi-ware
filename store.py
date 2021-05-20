@@ -9,8 +9,8 @@ import tkinter as tk
 from os.path import dirname, realpath
 from functools import partial
 
-pw_prefix = dirname(dirname(realpath(__file__)))
-apps_dir = f"{pw_prefix}/.local/share/pi-ware/apps/"
+pw_prefix = dirname(dirname(realpath(__file__))) + "/.local"
+apps_dir = "/home/pi/pi-ware/apps/"
 icon: tk.PhotoImage
 
 class WrapLabel(tk.Label):
