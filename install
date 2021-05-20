@@ -1,14 +1,13 @@
 #!/bin/bash
 
-#Variables
 export PW_ACTION="$1"
+export PW_PREFIX="$HOME/.local"
 
-#Functions
 install_echo()
 {
-  if [ "$PW_ACTION" != "update" ]; then
-    echo -e "$1"
-  fi
+	if [[ "$PW_ACTION" != "update" ]]; then
+		echo -e "$1"
+	fi
 }
 
 # If executed directly from outside the repo
@@ -21,25 +20,29 @@ install_echo "Installing dependencies..."
 sudo apt install -qq -y git python3 python3-tk
 
 install_echo "Installing Pi-Ware..."
-mkdir -p "$HOME/.local/share/applications"
-mkdir -p "$HOME/.local/share/pi-ware"
-mkdir -p "$HOME/.local/share/icons"
-mkdir -p "$HOME/.local/bin"
-rsync -r ./apps/ "$HOME/.local/share/pi-ware" --delete
-rsync ./{uninstall,install,update} "$HOME/.local/share/pi-ware/scripts"
-rsync ./term "$HOME/.local/bin/pi-ware"
-rsync ./dist_icon.png "$HOME/.local/share/icons/pi-ware.png"
-chmod a+x "$HOME/.local/bin/pi-ware"
-echo $(git rev-parse main) > "$HOME/.local/share/pi-ware/version"
+mkdir -p "$PW_PREFIX/share/applications"
+mkdir -p "$PW_PREFIX/share/pi-ware"
+mkdir -p "$PW_PREFIX/share/pixmaps"
+mkdir -p "$PW_PREFIX/bin"
+rsync -r ./apps/ "$PW_PREFIX/share/pi-ware" --delete
+rsync ./{uninstall,install,update} "$PW_PREFIX/share/pi-ware"
+rsync ./store.py "$PW_PREFIX/bin/pi-ware"
+rsync ./dist_icon.png "$PW_PREFIX/share/pixmaps/pi-ware.png"
+chmod a+x "$PW_PREFIX/bin/pi-ware"
+echo $(git rev-parse main) > "$PW_PREFIX/share/pi-ware/version"
+
+if [[ "$PW_PREFIX" == "$HOME/.local" ]]; then
+	echo "export PATH=$PW_PREFIX/bin:$PATH" >> $HOME/.bashrc
+fi
 
 install_echo "Creating a desktop entry for Pi-Ware..."
 install_echo "[Desktop Entry]
 Name=Pi-Ware
 Comment=Raspberry Pi app store
-Exec=sudo python3 $HOME/.local/bin/pi-ware
-Icon=$HOME/.local/share/icons/pi-ware.png
+Exec=sudo python3 $PW_PREFIX/bin/pi-ware
+Icon=$PW_PREFIX/share/pixmaps/pi-ware.png
 Categories=Utility;
 Type=Application
-Terminal=false" > "$HOME/.local/share/applications/pi-ware.desktop"
+Terminal=false" > "$PW_PREFIX/share/applications/pi-ware.desktop"
 install_echo "Done! You can find Pi-Ware in Menu > Accessories > Pi-Ware."
 install_echo "Note: you may need to restart your shell/terminal to be able to run Pi-Ware."
