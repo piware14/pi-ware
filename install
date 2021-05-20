@@ -4,14 +4,10 @@
 export PW_ACTION="$1"
 
 #Functions
-install()
+install_echo()
 {
   if [[ "$PW_ACTION" != "update" ]]; then
-    if [ "$PW_ACTION" == "apt" ]; then
-      $2
-    else if [ "$PW_ACTION" == "echo" ]; then
-      echo -e "$2"
-    fi
+    echo -e "$1"
   fi
 }
 
@@ -21,10 +17,10 @@ if [[ ! -d ".git" ]]; then
 	cd pi-ware
 fi
 
-install echo "Installing dependencies..."
-install apt "sudo apt install -qq -y git python3 python3-tk"
+install_echo "Installing dependencies..."
+install_echo "sudo apt install -qq -y git python3 python3-tk"
 
-install echo "Installing Pi-Ware..."
+install_echo "Installing Pi-Ware..."
 mkdir -p "$HOME/.local/share/applications"
 mkdir -p "$HOME/.local/share/pi-ware"
 mkdir -p "$HOME/.local/share/icons"
@@ -36,8 +32,8 @@ rsync ./dist_icon.png "$HOME/.local/share/icons/pi-ware.png"
 chmod a+x "$HOME/.local/bin/pi-ware"
 echo $(git rev-parse main) > "$HOME/.local/share/pi-ware/version"
 
-install echo "Creating a desktop entry for Pi-Ware..."
-install echo "[Desktop Entry]
+install_echo "Creating a desktop entry for Pi-Ware..."
+install_echo "[Desktop Entry]
 Name=Pi-Ware
 Comment=Raspberry Pi app store
 Exec=sudo python3 $HOME/.local/bin/pi-ware
@@ -45,5 +41,5 @@ Icon=$HOME/.local/share/pixmaps/pi-ware.png
 Categories=Utility;
 Type=Application
 Terminal=false" > "$HOME/.local/share/applications/pi-ware.desktop"
-install echo "Done! You can find Pi-Ware in Menu > Accessories > Pi-Ware."
-install echo "Note: you may need to restart your shell/terminal to be able to run Pi-Ware."
+install_echo "Done! You can find Pi-Ware in Menu > Accessories > Pi-Ware."
+install_echo "Note: you may need to restart your shell/terminal to be able to run Pi-Ware."
