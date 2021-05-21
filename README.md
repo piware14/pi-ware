@@ -19,7 +19,7 @@ Pi-Ware will automatically fetch and install updates, and tell you to restart it
 
 ## Uninstall Pi-Ware
 ```sh
-$HOME/.local/share/pi-ware/uninstall
+$HOME/pi-ware/uninstall
 ```
 
 Thanks to https://www.logodesign.net/ for providing our logo!
