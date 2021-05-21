@@ -11,7 +11,8 @@ from functools import partial
 
 pw_prefix = dirname(dirname(realpath(__file__))) + "/.local"
 apps_dir = "/home/pi/pi-ware/apps/"
-icon: tk.PhotoImage
+#icon: tk.PhotoImage
+icon = tk.PhotoImage(file=f"{pw_prefix}/share/icons/pi-ware.png")
 
 class WrapLabel(tk.Label):
     def __init__(self, parent, justify=None, font=None, *args, **kwargs):
