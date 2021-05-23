@@ -3,19 +3,22 @@
 import tkinter as tk
 import os
 from functools import partial
+import getpass
 
 window = tk.Tk()
 window.resizable(0, 0)
 window.geometry("320x500")
 window.title("Pi-Ware")
 
+computer_username = getpass.getuser()
+
 def show_desc(app):
-    global install_script,uninstall_script,desc_win
+    global install_script, uninstall_script, desc_win
     desc_win = tk.Toplevel(window)
     desc_win.title("Pi-Ware")
     desc_win.geometry("320x500")
     window.withdraw()
-    desc = open(f"/home/pi/pi-ware/apps/{app}/description.txt", "r")
+    desc = open(f"/home/{computer_username}/pi-ware/apps/{app}/description.txt", "r")
     desc_contents = desc.read()
     app_desc = tk.Label(desc_win,
         text=desc_contents,
@@ -46,12 +49,12 @@ def show_desc(app):
     fg="white",
     command=back_to_menu)
     back_to_menu_button.pack(side = "bottom")
-    ucommand = "sudo bash /home/pi/pi-ware/apps/%s/uninstall" % app
-    command = "sudo bash /home/pi/pi-ware/apps/%s/install" % app
+    ucommand = "sudo bash /home/{computer_username}/pi-ware/apps/%s/uninstall" % app
+    command = "sudo bash /home/{computer_username}/pi-ware/apps/%s/install" % app
     install_script = "lxterminal -e '%s'" % command
     uninstall_script = "lxterminal -e '%s'" % ucommand
 
-applist = next(os.walk("/home/pi/pi-ware/apps"))[1]
+applist = next(os.walk(f"/home/{computer_username}/pi-ware/apps"))[1]
 print("Current apps:\n")
 for app in applist:
     print(app)
