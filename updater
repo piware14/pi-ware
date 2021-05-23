@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /home/pi/pi-ware
+cd $HOME/pi-ware
 mkdir updater_files
 cd updater_files/
 git clone https://github.com/zachthecoder14/pi-ware.git
@@ -8,6 +8,3 @@ rsync * ../../
 rsync -r * ../../
 cd ../../
 sudo rm -r updater_files/
-clear
-echo "Update complete."
-sleep 2s
