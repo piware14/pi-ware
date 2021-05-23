@@ -11,11 +11,14 @@ Pi-Ware is an app store for the Raspberry Pi that allows you to install apps tha
 
 ## Install Pi-Ware
 ```sh
-wget -qO- https://bit.ly/2R6Qdgp | bash
+git clone https://github.com/zachthecoder14/pi-ware.git
+$HOME/pi-ware/install
 ```
 
 ## Update Pi-Ware
-Pi-Ware will automatically fetch and install updates, and tell you to restart it to apply these.
+```sh
+$HOME/pi-ware/update
+```
 
 ## Uninstall Pi-Ware
 ```sh
