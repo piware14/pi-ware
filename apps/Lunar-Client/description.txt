@@ -1,0 +1,8 @@
+
+Lunar client for the Raspberry Pi
+
+Website: https://www.lunarclient.com/
+
+Thanks to @gl91306 and @oxmc for porting this app to the Raspberry Pi!
+https://github.com/gl91306
+https://github.com/oxmc
