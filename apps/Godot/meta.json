@@ -1,6 +1,0 @@
-{
-	"description": "Make games on your Raspberry Pi.\n\n\
-		WARNING: This is made for the Raspberry Pi 4. Running this app on models 3B+  and below may have issues.",
-	"attr": "PiKATchu",
-	"website": "https://godotengine.org/"
-}
