@@ -16,6 +16,6 @@ sudo mv 99bionic-updates /etc/apt/preferences.d/99bionic-updates
 sudo apt update && sudo apt install firefox -y
 
 clear
-echo """Successfully installed Firefox. Find it in Menu > Internet > Firefox.
-Closing in 5 seconds."""
+echo "Successfully installed Firefox. Find it in Menu > Internet > Firefox.
+Closing in 5 seconds."
 sleep 5s
