@@ -17,7 +17,7 @@ $HOME/pi-ware/install
 
 ## Update Pi-Ware
 ```sh
-$HOME/pi-ware/update
+$HOME/pi-ware/updater
 ```
 
 ## Uninstall Pi-Ware
