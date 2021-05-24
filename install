@@ -4,7 +4,7 @@ echo "Creating a desktop entry for Pi-Ware..."
 mkdir -p $HOME/.local/share/applications
 echo "[Desktop Entry]
 Name=Pi-Ware
-Comment="Raspberry Pi app store"
+Comment=Raspberry Pi app store
 Exec=sudo python3 $HOME/pi-ware/store.py
 Icon=$HOME/pi-ware/icon.png
 Categories=Utility;
