@@ -10,8 +10,8 @@ Icon=$HOME/pi-ware/icon.png
 Categories=Utility;
 Type=Application
 Terminal=false" > $HOME/.local/share/applications/pi-ware.desktop
-echo "Installing LXTerminal"
-sudo apt install lxterminal 
+echo "Installing LXTerminal..."
+sudo apt install lxterminal -y
 echo "Done!"
 echo "You can find Pi-Ware in Menu > Accessories > Pi-Ware."
 sleep 2s
