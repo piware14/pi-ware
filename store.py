@@ -4,35 +4,6 @@ import tkinter as tk
 import os
 from functools import partial
 import getpass
-
-window = tk.Tk()
-window.resizable(0, 0)
-window.geometry("320x500")
-window.title("Pi-Ware")
-
-username = getpass.getuser()
-
-def show_desc(app):
-    global install_script, uninstall_script, desc_win
-    desc_win = tk.Toplevel(window)
-    desc_win.title("Pi-Ware")
-    desc_win.geometry("320x500")
-    window.withdraw()
-    desc = open(f"/home/{username}/pi-ware/apps/{app}/description.txt", "r")
-    desc_contents = desc.read()
-    app_desc = tk.Label(desc_win,
-        text=desc_contents,
-        font="Arial 9")
-    app_desc.pack()
-    install = tk.Button(desc_win,
-        text="INSTALL",
-        font="Arial 11 bold",
-# Pi-Ware main UI
-
-import tkinter as tk
-import os
-from functools import partial
-import getpass
 class ScrolledFrame(tk.Frame):
     def __init__(self, parent, vertical=True, horizontal=False):
         super().__init__(parent)
