@@ -4,6 +4,6 @@ WARNING: This is made for the Raspberry Pi 4. Running this app on models 3B+ and
 	
 Website: https://godotengine.org/
 
-Thanks to @gl91306 fir providing install/uninstall instructions!
+Thanks to @gl91306 for providing install/uninstall instructions!
 https://github.com/gl91306
 
