@@ -1,5 +1,5 @@
 
-An updated FireFox browser for the Raspberry Pi."
+An updated FireFox browser for the Raspberry Pi.
 
 Website: https://mozilla.org/firefox
 
