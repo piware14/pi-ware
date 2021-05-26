@@ -1,7 +1,10 @@
 blank_issues_enabled: false
 contact_links:
-  - name: App request2
+  - name: App request
     about: Suggest/submit an app to be added to Pi-Ware
-  - name: GitHub Security Bug Bounty
-    url: https://bounty.github.com/
-    about: Please report security vulnerabilities here.
+    title: ''
+    labels: App Request
+    assignees: ''
+    Is this app installable with `sudo apt install`?
+
+    If you've created a zip file for this app, upload it here.
