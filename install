@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Installing pi-ware..."
+
 #Make required directory for updater
 mkdir -p "$PW_PREFIX/share/pi-ware"
 mkdir -p "$PW_PREFIX/bin"
@@ -8,6 +10,7 @@ rsync ./store.py "$PW_PREFIX/bin/pi-ware"
 chmod a+x "$PW_PREFIX/bin/pi-ware"
 echo $(git rev-parse main) > "$PW_PREFIX/share/pi-ware/version"
 
+#Main
 echo "Creating a desktop entry for Pi-Ware..."
 mkdir -p $HOME/.local/share/applications
 echo "[Desktop Entry]
