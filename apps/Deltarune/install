@@ -1,0 +1,15 @@
+echo "Installing Deltarune..."
+git clone https://github.com/gl91306/deltarune.git
+cd deltarune
+cd Deltarune
+chmod +x runner
+./runner
+touch $HOME/.local/share/applications/Deltarune.desktop
+echo "[Desktop Entry]
+Name=Deltarune
+Comment="The sequel to Toby Fox's Undertale"
+Exec=$HOME/deltarune/Deltarune/runner
+Icon=$HOME/deltarune/Deltarune/deltarune.png
+Categories=Game;
+Type=Application
+Terminal=false" > $HOME/.local/share/applications/Deltarune.desktop
