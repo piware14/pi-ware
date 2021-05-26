@@ -5,5 +5,7 @@ sudo rm -rf $HOME/pi-ware
 git clone https://github.com/zachthecoder14/pi-ware.git
 cd $HOME/pi-ware
 bash install
+cd $HOME
+cd $HOME/pi-ware
 clear
 echo "Updates complete."
