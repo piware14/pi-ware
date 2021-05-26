@@ -6,6 +6,6 @@ git clone https://github.com/zachthecoder14/pi-ware.git
 cd $HOME/pi-ware
 bash install
 cd $HOME
-clear
-echo "Updates complete."
+sleep 2
 cd $HOME/pi-ware
+echo "Updates complete."
