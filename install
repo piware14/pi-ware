@@ -10,7 +10,7 @@ Icon=$HOME/pi-ware/icon.png
 Categories=Utility;
 Type=Application
 Terminal=false" > $HOME/.local/share/applications/pi-ware.desktop
-chmod +x €HOME/pi-ware=store.py
+chmod +x $HOME/pi-ware/store.py
 echo "Installing LXTerminal..."
 sudo apt install lxterminal -y
 echo "Done!"
