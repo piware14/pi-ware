@@ -2,7 +2,7 @@ blank_issues_enabled: false
 contact_links:
   - name: App request
     about: Suggest/submit an app to be added to Pi-Ware
-    title: ''
+    title: 'Please add this app to pi-ware.'
     labels: App Request
     assignees: ''
     Is this app installable with `sudo apt install`?
