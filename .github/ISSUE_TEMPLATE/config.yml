@@ -1,7 +1,5 @@
 blank_issues_enabled: false
 contact_links:
-  - name: App request2
-    about: Suggest/submit an app to be added to Pi-Ware
-    title: 'Please add this app to pi-ware.'
-    labels: App Request
-    assignees: ''
+  - name: Pi-ware website
+    about: Suggest/submit a change to the website.
+
