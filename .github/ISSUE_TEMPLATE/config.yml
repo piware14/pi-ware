@@ -1,0 +1,7 @@
+blank_issues_enabled: false
+contact_links:
+  - name: App request2
+    about: Suggest/submit an app to be added to Pi-Ware
+  - name: GitHub Security Bug Bounty
+    url: https://bounty.github.com/
+    about: Please report security vulnerabilities here.
