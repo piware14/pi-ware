@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Installing FireFox..."
+echo "Installing Firefox..."
 
 # Add repository source to apt sources.list
 echo "deb http://ports.ubuntu.com/ubuntu-ports bionic-updates main" | sudo tee /etc/apt/sources.list.d/ubuntu.list
@@ -16,6 +16,6 @@ sudo mv 99bionic-updates /etc/apt/preferences.d/99bionic-updates
 sudo apt update && sudo apt install firefox -y
 
 clear
-echo "Successfully installed FireFox. Find it in Menu > Internet > FireFox.
+echo "Successfully installed Firefox. Find it in Menu > Internet > Firefox.
 Closing in 5 seconds."
 sleep 5s

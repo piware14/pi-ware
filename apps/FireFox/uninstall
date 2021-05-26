@@ -4,7 +4,7 @@
 # script by Itai-Nelken - https://github.com/Itai-Nelken #
 ##########################################################
 
-echo "Uninstalling FireFox..."
+echo "Uninstalling Firefox..."
 
 sudo apt purge firefox -y
 sudo rm /etc/apt/preferences.d/99bionic-updates
@@ -12,6 +12,6 @@ sudo rm /etc/apt/sources.list.d/ubuntu.list
 sudo apt-key del 3B4FE6ACC0B21F32
 
 clear
-echo "Successfully uninstalled FireFox.
-Closing in 5 seconds."
+echo """Successfully uninstalled Firefox.
+Closing in 5 seconds."""
 sleep 5s
