@@ -1,6 +1,25 @@
 #!/bin/bash
 
+#Variables
 export PW_PREFIX="$HOME/.local"
+fwe=""
+ers=""
+
+#Functions
+function error {
+  echo -e "\e[91m$1\e[39m"
+  if [ "$2" == "exit" ]; then
+    exit 1
+  else
+    fwe="1"
+    ers+="$1"
+  fi
+}
+
+function warning {
+  echo -e "\e[91m$2\e[39m"
+  sleep "$1"
+}
 
 echo "Installing pi-ware..."
 
