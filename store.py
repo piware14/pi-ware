@@ -50,7 +50,7 @@ window.title("Pi-Ware")
 frame = ScrolledFrame(window)
 frame.pack(expand=True, fill="both")
 
-computer_username = getpass.getuser()
+username = getpass.getuser()
 
 def show_desc(app):
     global install_script, uninstall_script, desc_win
@@ -58,7 +58,7 @@ def show_desc(app):
     desc_win.title("Pi-Ware")
     desc_win.geometry("320x500")
     window.withdraw()
-    desc = open(f"/home/{computer_username}/pi-ware/apps/{app}/description.txt", "r")
+    desc = open(f"/home/{username}/pi-ware/apps/{app}/description.txt", "r")
     desc_contents = desc.read()
     app_desc = tk.Label(desc_win,
         text=desc_contents,
@@ -89,14 +89,14 @@ def show_desc(app):
     fg="white",
     command=back_to_menu)
     back_to_menu_button.pack(side = "bottom")
-    ucommand = "sudo bash /home/{computer_username}/pi-ware/apps/%s/uninstall" % app
-    command = "sudo bash /home/{computer_username}/pi-ware/apps/%s/install" % app
+    ucommand = f"sudo bash /home/{username}/pi-ware/apps/%s/uninstall" % app
+    command = f"sudo bash /home/{username}/pi-ware/apps/%s/install" % app
     install_script = "lxterminal -e '%s'" % command
     uninstall_script = "lxterminal -e '%s'" % ucommand
 def back_to_menu(window, parent, app=None):
     parent.destroy()
     window.deiconify()
-ap = next(os.walk(f"/home/{computer_username}/pi-ware/apps"))[1]
+ap = next(os.walk(f"/home/{username}/pi-ware/apps"))[1]
 applist = sorted(ap)
 print("Current apps:\n")
 for app in applist:

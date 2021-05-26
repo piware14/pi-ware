@@ -1,0 +1,42 @@
+#!/bin/bash
+
+#Script created by oxmc
+#Made for Lunar-Client by gl91306
+
+#Functions
+function error {
+  echo -e "\e[91m$1\e[39m"
+  if [ "$2" == "exit" ]; then
+    exit 1
+  else
+    fwe="1"
+    ers+="$1"
+  fi
+}
+
+function warning {
+  echo -e "\e[91m$2\e[39m"
+  sleep "$1"
+}
+
+
+#Variables
+fwe=""
+ers=""
+
+#Main
+#Remove Lunar-Client folder
+Sudo rm -rf ~/.lunarclient || error "unable to remove dir!"
+
+#Remove AppImage
+Sudo rm -rf ~/lunarclient-2.7.0-armv7l.AppImage || error "Unable to remove Lunar-Client AppImage!"
+
+#Inform user that the install has finished
+#Check if finished with errors
+if [ "${fwe}" == "1" ]; then
+  echo "This script finished with errors, Here are the errors: ${ers}"
+  exit 1
+elif [ "${fwe}" == "0" ]; then
+  echo "Finished!"
+  exit 0
+fi
