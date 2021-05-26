@@ -1,3 +1,6 @@
+# Important: we are adding support for pacman, we currently only support apt.
+
+
 # Pi-Ware
 Pi-Ware is an app store for the Raspberry Pi that allows you to install apps that you generally can't get from the official repos and/or without an extra amount of work.
 
