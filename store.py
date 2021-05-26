@@ -50,6 +50,8 @@ window.title("Pi-Ware")
 frame = ScrolledFrame(window)
 frame.pack(expand=True, fill="both")
 
+global username
+
 username = getpass.getuser()
 
 def show_desc(app):
@@ -89,10 +91,10 @@ def show_desc(app):
     fg="white",
     command=back_to_menu)
     back_to_menu_button.pack(side = "bottom")
-    ucommand = f"sudo bash /home/{username}/pi-ware/apps/%s/uninstall" % app
-    command = f"sudo bash /home/{username}/pi-ware/apps/%s/install" % app
-    install_script = "lxterminal -e '%s'" % command
-    uninstall_script = "lxterminal -e '%s'" % ucommand
+    ucommand = f"bash /home/{username}/pi-ware/func/uninst %s" % app
+    command = f"bash /home/{username}/pi-ware/func/inst %s" % app
+    install_script = "'%s'" % command
+    uninstall_script = "'%s'" % ucommand
 def back_to_menu(window, parent, app=None):
     parent.destroy()
     window.deiconify()
@@ -118,11 +120,13 @@ for app in applist:
 
 def install_app():
     global install_script
-    os.system(install_script)
+    print("lxterminal -e " + install_script)
+    os.system("lxterminal -e " + install_script)
     
 def uninstall_app():
     global uninstall_script
-    os.system(uninstall_script)
+    print("lxterminal -e " + uninstall_script)
+    os.system("lxterminal -e " + uninstall_script)
     
 def back_to_menu():
     window.deiconify()

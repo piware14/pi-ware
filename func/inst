@@ -1,0 +1,16 @@
+#!/bin/bash
+
+export PW_PREFIX="$HOME/.local/share/pi-ware"
+PACMANG="Unkown"
+
+if [ -f "$PW_PREFIX/inst-pref" ]; then
+  PACMANG="$(cat $PW_PREFIX/inst-pref)"
+  echo "Your package manager is: $PACMANG"
+  echo "Installing $1"
+  bash $HOME/pi-ware/apps/$1/install
+  sleep 2
+else
+  echo "Your package manager is: $PACMANG"
+  echo "Unable to locate '$PW_PREFIX/inst-pref', please contact staff at pi-ware discord"
+  sleep 4
+fi
