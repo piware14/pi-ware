@@ -11,8 +11,20 @@ Categories=Utility;
 Type=Application
 Terminal=false" > $HOME/.local/share/applications/pi-ware.desktop
 chmod +x $HOME/pi-ware/store.py
-echo "Installing LXTerminal..."
-sudo apt install lxterminal -y
+#install lxterminal if it is not alreadt installed
+if ! command -v lxterminal >/dev/null;then
+  echo "Installing LXTerminal..."
+  if [ -f /usr/bin/apt ];then
+    echo "Package manager is: apt"
+    sudo apt update
+    sudo apt install lxterminal -y || error "Failed to install lxterminal."
+  elif [ -f /usr/bin/pacman ];then
+    echo "Package manager is: pacman"
+    sudo pacman -S lxterminal || error "Failed to install lxterminal;."
+  else
+    error "Failed to find any package manager to install lxterminal."
+  fi
+fi
 echo "Done!"
 echo "You can find Pi-Ware in Menu > Accessories > Pi-Ware."
 sleep 2s
