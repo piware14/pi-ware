@@ -1,10 +1,8 @@
 #!/bin/bash
-cd $HOME/pi-ware
-mkdir updater_files
-cd updater_files/
+
+sudo rm -r $HOME/pi-ware
 git clone https://github.com/zachthecoder14/pi-ware.git
-cd pi-ware/
-rsync * ../../
-rsync -r * ../../
-cd ../../
-sudo rm -r updater_files/
+$HOME/pi-ware/install
+
+clear -x
+echo "Updates complete."
