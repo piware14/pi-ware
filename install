@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export PW_PREFIX="$HOME/.local"
+
 echo "Installing pi-ware..."
 
 #Make required directory for updater
