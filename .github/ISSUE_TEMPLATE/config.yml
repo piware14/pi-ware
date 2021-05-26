@@ -1,10 +1,7 @@
 blank_issues_enabled: false
 contact_links:
-  - name: App request
+  - name: App request2
     about: Suggest/submit an app to be added to Pi-Ware
     title: 'Please add this app to pi-ware.'
     labels: App Request
     assignees: ''
-    Is this app installable with `sudo apt install`?
-
-    If you've created a zip file for this app, upload it here.
