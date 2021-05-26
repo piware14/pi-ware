@@ -2,6 +2,7 @@
 
 echo "Uninstalling Pi-Ware..."
 sudo rm $HOME/.local/share/applications/pi-ware.desktop
+sudo rm -r $HOME/pi-ware
 clear -x 
 echo "Successfully uninstalled Pi-Ware. Come back soon!"
 sleep 2s
