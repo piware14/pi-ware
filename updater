@@ -11,8 +11,10 @@ if [[ "$(cat "$PW_PREFIX/share/pi-ware/version")" != "$LAST_COMMIT" ]]; then
 	mkdir -p ./updater_files
 	git clone "$PW_REPO" ./updater_files
 	cd ./updater_files
-	chmod a+x ./install
-	bash install update
+	rm -rf $HOME/pi-ware/apps
+        cp "$PW_PREFIX/share/pi-ware/updater_files/*" $HOME/pi-ware
+        cp $HOME/pi-ware/store.py "$PW_PREFIX/bin/pi-ware"
+        chmod a+x "$PW_PREFIX/bin/pi-ware"
 	cd ..
 	echo "Update complete."
 	exit 0
