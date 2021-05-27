@@ -9,6 +9,8 @@ Pi-Ware is an app store for the Raspberry Pi that allows you to install apps tha
 
 ## We have added pacman support to pi-ware!
 
+To learn more vist our wiki!
+
 ***
 
 **Join our Discord server**:
@@ -23,7 +25,7 @@ Pi-Ware is an app store for the Raspberry Pi that allows you to install apps tha
 
 <a href="https://oxmc.github.io/pi-ware/apps/current/" alt="App list">App list</a>
 
-## Install Pi-Ware
+# Install Pi-Ware
 ```sh
 git clone https://github.com/zachthecoder14/pi-ware.git
 $HOME/pi-ware/install
