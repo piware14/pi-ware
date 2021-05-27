@@ -3,9 +3,13 @@ Pi-Ware is an app store for the Raspberry Pi that allows you to install apps tha
 
 # NEW:
 
-We now have a wiki!
+## We now have a wiki!
 
 <a href="https://github.com/zachthecoder14/pi-ware/wiki/" alt="Pi-Ware wiki">The Pi-Ware wiki</a>
+
+## We have added pacman support to pi-ware!
+
+***
 
 **Join our Discord server**:
 
