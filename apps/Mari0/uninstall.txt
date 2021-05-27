@@ -1,0 +1,49 @@
+#!/bin/bash
+
+#Variables
+AppName="Mari0"
+export PW_PREFIX="$HOME/.local/share/pi-ware"
+PACMANG="$(cat $PW_PREFIX/inst-pref)"
+fwe=""
+ers=""
+
+#Functions
+function error {
+  echo -e "\e[91m$1\e[39m"
+  if [ "$2" == "exit" ]; then
+    exit 1
+  else
+    fwe="1"
+    ers+="$1"
+  fi
+}
+
+function warning {
+  echo -e "\e[91m$2\e[39m"
+  sleep "$1"
+}
+
+#Main
+echo "Uninstalling $AppName"
+#uninstall dependencies based on package manager
+if [ -f /usr/bin/apt ];then
+  dependencies="libc6 libfreetype6 libgcc1 libluajit-5.1-2 libmodplug1 libmpg123-0 libogg0 libopenal1 libsdl2-2.0-0 libstdc++6 libtheora0 libvorbisfile3 zlib1g"
+elif [ -f /usr/bin/pacman ];then
+  dependencies="--needed desktop-file-utils freetype2 hicolor-icon-theme libmodplug libtheora libvorbis luajit mpg123 openal sdl2 shared-mime-info
+"
+else
+  error "Failed to find any package manager."
+fi
+sudo $PACKMANG 'uninstall' '$dependencies'
+
+#Inform user that the uninstall has finished
+#Check if finished with errors
+if [ "${fwe}" == "1" ]; then
+  echo "This script finished with errors, Here are the errors: ${ers}"
+  exit 1
+elif [ "${fwe}" == "0" ]; then
+  echo "Successfully uninstalled $AppName."
+  echo "Closing in 5 seconds."
+  sleep 5s
+  exit 0
+fi
