@@ -7,13 +7,13 @@ export LAST_COMMIT="$(git ls-remote "$PW_REPO" | grep refs/heads/main | cut -f 1
 if [[ "$(cat "$PW_PREFIX/share/pi-ware/version")" != "$LAST_COMMIT" ]]; then
 	echo "Updating Pi-Ware..."
 	cd "$PW_PREFIX/share/pi-ware"
+	sudo rm -rf ./updater_files
 	mkdir -p ./updater_files
 	git clone "$PW_REPO" ./updater_files
 	cd ./updater_files
 	chmod a+x ./install
 	bash install update
 	cd ..
-	sudo rm -rf ./updater_files
 	echo "Update complete."
 	exit 0
 else
