@@ -28,7 +28,7 @@ echo $(git rev-parse main) > "$PW_PREFIX/share/pi-ware/version"
 
 if [ "$1" == "update" ];then
   rm -rf $HOME/pi-ware/apps
-  cp "$PW_PREFIX/share/pi-ware/updater_files/*" $HOME/pi-ware
+  cp "$PW_PREFIX/share/pi-ware/updater_files" $HOME/pi-ware
   cp $HOME/pi-ware/store.py "$PW_PREFIX/bin/pi-ware"
   chmod a+x "$PW_PREFIX/bin/pi-ware"
 else
@@ -64,10 +64,10 @@ fi
 #Set package manager
 if [ -f /usr/bin/apt ];then
   echo "Package manager is: apt"
-  echo "apt" > "$PW_PREFIX/share/pi-ware/inst-pref"
+  echo "apt-get" > "$PW_PREFIX/share/pi-ware/inst-pref"
 elif [ -f /usr/bin/pacman ];then
   echo "Package manager is: pacman"
-  echo "pacman" > "$PW_PREFIX/share/pi-ware/inst-pref"
+  echo "pacman -S" > "$PW_PREFIX/share/pi-ware/inst-pref"
 else
   error "Failed to find any package manager to install lxterminal."
 fi
