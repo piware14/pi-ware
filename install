@@ -21,15 +21,19 @@ function warning {
   sleep "$1"
 }
 
-echo "Installing pi-ware..."
-
 #Make required directory for updater
 mkdir -p "$PW_PREFIX/share/pi-ware"
 mkdir -p "$PW_PREFIX/bin"
-rsync -r ~/pi-ware/apps "$PW_PREFIX/share/pi-ware"
-rsync ./store.py "$PW_PREFIX/bin/pi-ware"
-chmod a+x "$PW_PREFIX/bin/pi-ware"
 echo $(git rev-parse main) > "$PW_PREFIX/share/pi-ware/version"
+
+if [ "$1" == "update" ];then
+  rm -rf $HOME/pi-ware/apps
+  cp "$PW_PREFIX/share/pi-ware/updater_files/*" $HOME/pi-ware
+  cp $HOME/pi-ware/store.py "$PW_PREFIX/bin/pi-ware"
+  chmod a+x "$PW_PREFIX/bin/pi-ware"
+else
+  echo "Installing pi-ware..."
+fi
 
 #Main
 echo "Creating a desktop entry for Pi-Ware..."
