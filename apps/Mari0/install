@@ -48,9 +48,9 @@ mkdir -p $HOME/.local/share/applications
 echo "[Desktop Entry]
 Name=$AppName
 Comment=Mario's classic game but with coop multiplayer and portals!
-Exec=bash $HOME/Mari0_rpi/launch.sh
+Exec=bash cd $HOME/Mari0_rpi && launch.sh
 Icon=$HOME/Mari0_rpi/mari0.png
-Categories=Games;
+Categories=Game;
 Type=Application
 Terminal=false" > $HOME/.local/share/applications/$AppName.desktop
 
