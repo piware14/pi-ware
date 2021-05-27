@@ -25,7 +25,9 @@ To learn more vist our wiki!
 
 <a href="https://oxmc.github.io/pi-ware/apps/current/" alt="App list">App list</a>
 
-# Install Pi-Ware
+# How to install and use Pi-Ware
+
+## Install Pi-Ware
 ```sh
 git clone https://github.com/zachthecoder14/pi-ware.git
 $HOME/pi-ware/install
