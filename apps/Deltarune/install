@@ -3,7 +3,7 @@ git clone https://github.com/gl91306/deltarune.git
 cd deltarune
 cd Deltarune
 chmod +x runner
-touch $HOME/.local/share/applications/Deltarune.desktop
+sudo touch $HOME/.local/share/applications/Deltarune.desktop
 echo "[Desktop Entry]
 Name=Deltarune
 Comment="The sequel to Toby Fox's Undertale"
