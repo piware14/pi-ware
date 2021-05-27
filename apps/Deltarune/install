@@ -3,7 +3,6 @@ git clone https://github.com/gl91306/deltarune.git
 cd deltarune
 cd Deltarune
 chmod +x runner
-./runner
 touch $HOME/.local/share/applications/Deltarune.desktop
 echo "[Desktop Entry]
 Name=Deltarune
