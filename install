@@ -48,12 +48,10 @@ if ! command -v lxterminal >/dev/null;then
   echo "Installing LXTerminal..."
   if [ -f /usr/bin/apt ];then
     echo "Package manager is: apt"
-    echo "apt" > "$PW_PREFIX/share/pi-ware/inst-pref"
     sudo apt update
     sudo apt install lxterminal -y || error "Failed to install lxterminal."
   elif [ -f /usr/bin/pacman ];then
     echo "Package manager is: pacman"
-    echo "pacman" > "$PW_PREFIX/share/pi-ware/inst-pref"
     sudo pacman -S lxterminal || error "Failed to install lxterminal;."
   else
     error "Failed to find any package manager to install lxterminal."
