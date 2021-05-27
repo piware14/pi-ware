@@ -42,13 +42,16 @@ else
   error "Failed to find any package manager."
 fi
 sudo $PACKMANG 'install' '$dependencies'
+
+chmod +x $HOME/Mari0_rpi/launch.sh
+
 #Make menu button
 echo "Creating a desktop entry for ${Appame}..."
 mkdir -p $HOME/.local/share/applications
 echo "[Desktop Entry]
 Name=$AppName
 Comment=Mario's classic game but with coop multiplayer and portals!
-Exec=bash cd $HOME/Mari0_rpi && launch.sh
+Exec=$HOME/Mari0_rpi/launch.sh
 Icon=$HOME/Mari0_rpi/mari0.png
 Categories=Game;
 Type=Application
