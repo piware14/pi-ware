@@ -74,4 +74,3 @@ else
 fi
 echo "Done!"
 echo "You can find Pi-Ware in Menu > Accessories > Pi-Ware."
-sleep 2s
