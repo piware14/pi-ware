@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Variables
-export PW_PREFIX="$HOME/.local"
+PW_PREFIX="$HOME/.local"
 fwe=""
 ers=""
 
@@ -27,10 +27,10 @@ mkdir -p "$PW_PREFIX/bin"
 echo $(git rev-parse main) > "$PW_PREFIX/share/pi-ware/version"
 
 if [ "$1" == "update" ];then
-  rm -rf $HOME/pi-ware/apps
-  cp "$PW_PREFIX/share/pi-ware/updater_files" $HOME/pi-ware
-  cp $HOME/pi-ware/store.py "$PW_PREFIX/bin/pi-ware"
-  chmod a+x "$PW_PREFIX/bin/pi-ware"
+  rm -rf $HOME/pi-ware
+  cp -r "$PW_PREFIX/share/pi-ware/updater_files" $HOME/pi-ware
+  cp -r $HOME/pi-ware/store.py "$PW_PREFIX/bin/pi-ware"
+  chmod +x "$PW_PREFIX/bin/pi-ware"
 else
   echo "Installing pi-ware..."
 fi
