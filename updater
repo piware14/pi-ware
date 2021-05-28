@@ -15,7 +15,8 @@ if [ "$(cat "$PW_PREFIX/version")" != "$LAST_COMMIT" ]; then
   ls
   git clone "$PW_REPO" updater_files
   ls
-  #rm -rf $HOME/pi-ware
+  cd updater_files
+  ls
   cp -r "$PW_PREFIX/share/pi-ware/updater_files" $HOME/pi-ware1
   cp -r $HOME/pi-ware1/store.py "$PW_PREFIX/bin/pi-ware"
   chmod +x "$PW_PREFIX/bin/pi-ware"
