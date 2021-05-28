@@ -7,20 +7,21 @@ export LAST_COMMIT="$(git ls-remote "$PW_REPO" | grep refs/heads/main | cut -f 1
 
 #Main
 if [[ "$(cat "$PW_PREFIX/share/pi-ware/version")" != "$LAST_COMMIT" ]]; then
-	echo "Updating Pi-Ware..."
-	cd "$PW_PREFIX/share/pi-ware"
-	sudo rm -rf ./updater_files
-	mkdir -p ./updater_files
-	git clone "$PW_REPO" ./updater_files
-	cd ./updater_files
-	rm -rf $HOME/pi-ware/apps
-        cp "$PW_PREFIX/share/pi-ware/updater_files/*" $HOME/pi-ware
-        cp $HOME/pi-ware/store.py "$PW_PREFIX/bin/pi-ware"
-        chmod a+x "$PW_PREFIX/bin/pi-ware"
-	cd ..
-	echo "Update complete."
-	exit 0
+  echo "Updating Pi-Ware..."
+  cd "$PW_PREFIX/share/pi-ware"
+  sudo rm -rf ./updater_files
+  mkdir -p ./updater_files
+  git clone "$PW_REPO" ./updater_files
+  cd ./updater_files
+  rm -rf $HOME/pi-ware
+  mkdir $HOME/pi-ware
+  cp "*" $HOME/pi-ware
+  cp $HOME/pi-ware/store.py "$PW_PREFIX/bin/pi-ware"
+  chmod a+x "$PW_PREFIX/bin/pi-ware"
+  cd ..
+  echo "Update complete."
+  exit 0
 else
-	echo "Pi-Ware is currently up-to-date."
-	exit 1
+  echo "Pi-Ware is currently up-to-date."
+  exit 1
 fi
