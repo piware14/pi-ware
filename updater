@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 #Variables
 PW_PREFIX="$HOME/.local/share/pi-ware"
 PW_REPO="https://github.com/zachthecoder14/pi-ware.git"
