@@ -2,18 +2,22 @@
 
 
 #Variables
-export PW_PREFIX="$HOME/.local"
-export PW_REPO="https://github.com/zachthecoder14/pi-ware.git"
-export LAST_COMMIT="$(git ls-remote "$PW_REPO" | grep refs/heads/main | cut -f 1)"
+PW_PREFIX="$HOME/.local/share/pi-ware"
+PW_REPO="https://github.com/zachthecoder14/pi-ware.git"
+LAST_COMMIT="$(git ls-remote "$PW_REPO" | grep refs/heads/main | cut -f 1)"
 
 #Main
-if [[ "$(cat "$PW_PREFIX/share/pi-ware/version")" != "$LAST_COMMIT" ]]; then
+if [ "$(cat "$PW_PREFIX/share/pi-ware/version")" != "$LAST_COMMIT" ]; then
   echo "Updating Pi-Ware..."
-  cd "$PW_PREFIX/share/pi-ware"
+  cd "$PW_PREFIX"
+  ls
   sudo rm -rf updater_files
   mkdir -p updater_files
+  ls
   git clone "$PW_REPO" updater_files
+  ls
   cd updater_files
+  ls
   rm -rf $HOME/pi-ware
   mkdir $HOME/pi-ware
   cp "*" $HOME/pi-ware
