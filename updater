@@ -7,11 +7,7 @@ LAST_COMMIT="$(git ls-remote "$PW_REPO" | grep refs/heads/main | cut -f 1)"
 
 #Main
 if [ "$(cat "$PW_PREFIX/version")" != "$LAST_COMMIT" ] || [ "$2" == force ]; then
-  if [ "$2" == force ]; then
-    echo "Force updating pi-ware"
-  else
-    echo "Updating Pi-Ware..."
-  fi
+  echo "Updating Pi-Ware..."
   cd "$PW_PREFIX"
   ls
   sudo rm -rf updater_files
