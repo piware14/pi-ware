@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 #Variables
 PW_PREFIX="$HOME/.local"
 fwe=""
