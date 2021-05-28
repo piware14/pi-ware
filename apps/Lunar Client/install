@@ -50,10 +50,10 @@ fi
 sudo modprobe fuse
 
 #Download client
-wget https://github.com/gl91306/lunar/raw/master/lunarclient-2.7.0-armv7l.AppImage
+wget https://github.com/gl91306/lunar/raw/master/lunarclient-2.7.2-armv7l.AppImage
 
 #Change perms of Launcher
-sudo chmod +x ~/lunarclient-2.7.0-armv7l.AppImage
+sudo chmod +x ~/lunarclient-2.7.2-armv7l.AppImage
 
 #Handle error about jvm
 #Copy jdk version into ~/.lunarclient/jre/zulu8.52.0.23-ca-fx-jre8.0.282-linux_x64
@@ -64,11 +64,11 @@ echo "Creating a desktop entry for Lunar Client..."
 echo "[Desktop Entry]
 Name=\"Lunar Client\"
 Comment=\"Lunar-Client for Rpi made by PiKATchu on Discord.\"
-Exec=~/lunarclient-2.7.0-armv7l.AppImage
+Exec=~/lunarclient-2.7.2-armv7l.AppImage
 Icon=~/.lunarclient/icon.png
 Categories=Utility;
 Type=Application
-Terminal=false" > "~/.local/share/applications/Lunar-Client.desktop"
+Terminal=false" > " $HOME/.local/share/applications/Lunar-Client.desktop"
 
 #Inform user that the install has finished
 #Check if finished with errors
