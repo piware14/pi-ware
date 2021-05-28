@@ -13,13 +13,9 @@ if [ "$(cat "$PW_PREFIX/pi-ware/version")" != "$LAST_COMMIT" ] || [ "$1" == forc
     echo "Updating Pi-Ware..."
   fi
   cd "$PW_PREFIX/pi-ware"
-  ls
   sudo rm -rf updater_files
-  ls
   git clone "$PW_REPO" updater_files
-  ls
   cd updater_files
-  ls
   cp -r "$PW_PREFIX/pi-ware/updater_files" $HOME/pi-ware
   #cp -r $HOME/pi-ware/store.py "$PW_PREFIX/bin/pi-ware"
   #chmod +x "$PW_PREFIX/bin/pi-ware"
