@@ -46,7 +46,16 @@ Icon=$HOME/pi-ware/icon.png
 Categories=Utility;
 Type=Application
 Terminal=false" > $HOME/.local/share/applications/pi-ware.desktop
-chmod +x $HOME/pi-ware/store.py
+echo "Creating an auto updater for Pi-Ware..."
+mkdir -p $HOME/.config/autostart/
+echo "[Desktop Entry]
+Name=Pi-Ware-auto-updater
+Comment=An auto updater for pi-ware
+Exec=bash $HOME/pi-ware/func/auto-update
+Icon=$HOME/pi-ware/icon.png
+Categories=Utility;
+Type=Application
+Terminal=false" > $HOME/.config/autostart/pi-ware-auto-updater.desktop
 #install lxterminal if it is not alreadt installed
 if ! command -v lxterminal >/dev/null;then
   echo "Installing LXTerminal..."
