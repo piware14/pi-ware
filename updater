@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 #Variables
 export PW_PREFIX="$HOME/.local"
 export PW_REPO="https://github.com/zachthecoder14/pi-ware.git"
