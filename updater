@@ -6,7 +6,7 @@ PW_REPO="https://github.com/zachthecoder14/pi-ware.git"
 LAST_COMMIT="$(git ls-remote "$PW_REPO" | grep refs/heads/main | cut -f 1)"
 
 #Main
-if [ "$(cat "$PW_PREFIX/version")" != "$LAST_COMMIT" ] || [ "$1" == force ]; then
+if [ "$(cat "$PW_PREFIX/pi-ware/version")" != "$LAST_COMMIT" ] || [ "$1" == force ]; then
   if [ "$1" == force ]; then
     echo "Force updating pi-ware"
   else
