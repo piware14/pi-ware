@@ -7,7 +7,7 @@ PW_REPO="https://github.com/zachthecoder14/pi-ware.git"
 LAST_COMMIT="$(git ls-remote "$PW_REPO" | grep refs/heads/main | cut -f 1)"
 
 #Main
-if [ "$(cat "$PW_PREFIX/share/pi-ware/version")" != "$LAST_COMMIT" ]; then
+if [ "$(cat "$PW_PREFIX/version")" != "$LAST_COMMIT" ]; then
   echo "Updating Pi-Ware..."
   cd "$PW_PREFIX"
   ls
