@@ -12,7 +12,7 @@ if [ "$(cat "$PW_PREFIX/version")" != "$LAST_COMMIT" ] || [ "$1" == force ]; the
   else
     echo "Updating Pi-Ware..."
   fi
-  cd "$PW_PREFIX"
+  cd "$PW_PREFIX/pi-ware"
   ls
   sudo rm -rf updater_files
   ls
