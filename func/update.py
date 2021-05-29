@@ -31,7 +31,7 @@ update_button.pack(side="bottom")
 description = tk.Label(
     window,
     text="""A new Pi-Ware update is available.
-Click the 'install' button to proceed.""",
+Click the 'update' button to proceed.""",
     font="Arial 12")
 
 description.pack()
