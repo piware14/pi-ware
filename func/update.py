@@ -15,7 +15,7 @@ Update Pi-Ware
 heading.pack()
 
 def update():
-    os.system("lxterminal -e '$HOME/pi-ware/updater'")
+    os.system("lxterminal -e 'bash $HOME/pi-ware/updater'")
 
 update_button = tk.Button(window,
           text="UPDATE",
