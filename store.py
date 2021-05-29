@@ -91,8 +91,8 @@ def show_desc(app):
     fg="white",
     command=back_to_menu)
     back_to_menu_button.pack(side = "bottom")
-    ucommand = f"bash /home/{username}/pi-ware/func/uninst %s" % app
-    command = f"bash /home/{username}/pi-ware/func/inst %s" % app
+    ucommand = f"bash '/home/{username}/pi-ware/func/uninst' %s" % app
+    command = f"bash '/home/{username}/pi-ware/func/inst' %s" % app
     install_script = "'%s'" % command
     uninstall_script = "'%s'" % ucommand
 def back_to_menu(window, parent, app=None):
