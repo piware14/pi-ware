@@ -133,6 +133,4 @@ def back_to_menu():
     desc_win.destroy()
     window.title("Pi-Ware")
     
-blank_line = tk.Label(text="")
-blank_line.pack()
 window.mainloop()
