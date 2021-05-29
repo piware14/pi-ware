@@ -30,7 +30,8 @@ To learn more vist our wiki!
 ## Install Pi-Ware
 ```sh
 git clone https://github.com/zachthecoder14/pi-ware.git
-$HOME/pi-ware/install
+cd pi-ware
+bash install
 ```
 
 ## Update Pi-Ware
