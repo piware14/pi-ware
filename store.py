@@ -44,7 +44,13 @@ class ScrolledFrame(tk.Frame):
     def resize(self, event=None):
         self._canvas.configure(scrollregion=self._canvas.bbox('all'))
 window = tk.Tk()
+#Set window icon
 window.tk.call('wm', 'iconphoto', window._w, tk.PhotoImage(file=f'/home/{username}/pi-ware/icons/logo.png')
+#Set top icon
+img = ImageTk.PhotoImage(Image.open("True1.gif"))
+panel = Label(root, image = img)
+panel.pack(side = "bottom", fill = "both", expand = "yes")
+#Main
 window.resizable(0, 0)
 window.geometry("320x500")
 window.title("Pi-Ware")
