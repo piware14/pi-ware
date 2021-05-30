@@ -1,5 +1,7 @@
 # Pi-Ware main UI
 
+from tkinter import *
+from tkinter.ttk import *
 import tkinter as tk
 import os
 from functools import partial
