@@ -54,7 +54,7 @@ username = getpass.getuser()
 # And Image should be in the same folder where there is script saved
 p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
 # Icon set for program window
-program.iconphoto(False, p1)
+window.iconphoto(False, p1)
 #Main
 window.resizable(0, 0)
 window.geometry("320x500")
