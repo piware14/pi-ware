@@ -45,6 +45,9 @@ class ScrolledFrame(tk.Frame):
         self._canvas.configure(scrollregion=self._canvas.bbox('all'))
 window = tk.Tk()
 #Set window icon
+global username
+
+username = getpass.getuser()
 #window.tk.call('wm', 'iconphoto', window._w, tk.PhotoImage(file=f'/home/{username}/pi-ware/icons/logo.png')
 # And Image should be in the same folder where there is script saved
 p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
@@ -56,10 +59,6 @@ window.geometry("320x500")
 window.title("Pi-Ware")
 frame = ScrolledFrame(window)
 frame.pack(expand=True, fill="both")
-
-global username
-
-username = getpass.getuser()
 
 def show_desc(app):
     global install_script, uninstall_script, desc_win
