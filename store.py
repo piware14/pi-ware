@@ -46,10 +46,10 @@ class ScrolledFrame(tk.Frame):
 window = tk.Tk()
 #Set window icon
 #window.tk.call('wm', 'iconphoto', window._w, tk.PhotoImage(file=f'/home/{username}/pi-ware/icons/logo.png')
-#Set top icon
-#img = ImageTk.PhotoImage(Image.open(f'/home/{username}/pi-ware/icons/logo.png'))
-#panel = Label(window, image = img)
-#panel.pack(side = "bottom", fill = "both", expand = "yes")
+# And Image should be in the same folder where there is script saved
+p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
+# Icon set for program window
+program.iconphoto(False, p1)
 #Main
 window.resizable(0, 0)
 window.geometry("320x500")
