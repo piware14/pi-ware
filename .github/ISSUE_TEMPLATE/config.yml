@@ -3,4 +3,7 @@ contact_links:
   - name: Pi-ware website
     url: https://github.com/oxmc/pi-ware/issues/new?title=Add%20this%20to%20the%20website
     about: Suggest/submit a change to the website.
+  - name: Pi-ware Wiki
+    url: https://github.com/zachthecoder14/pi-ware/wiki
+    about: Read the wiki.
 
