@@ -51,7 +51,7 @@ window.tk.call('wm', 'iconphoto', window._w, tk.PhotoImage(file=f'/home/{usernam
 #panel = Label(window, image = img)
 #panel.pack(side = "bottom", fill = "both", expand = "yes")
 #Main
-window.resizable(0, 0)
+#window.resizable(0, 0)
 window.geometry("320x500")
 window.title("Pi-Ware")
 frame = ScrolledFrame(window)
