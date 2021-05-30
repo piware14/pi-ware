@@ -47,7 +47,7 @@ window = tk.Tk()
 #Set window icon
 window.tk.call('wm', 'iconphoto', window._w, tk.PhotoImage(file=f'/home/{username}/pi-ware/icons/logo.png')
 #Set top icon
-img = ImageTk.PhotoImage(Image.open("True1.gif"))
+img = ImageTk.PhotoImage(Image.open(f'/home/{username}/pi-ware/icons/logo.png'))
 panel = Label(window, image = img)
 panel.pack(side = "bottom", fill = "both", expand = "yes")
 #Main
