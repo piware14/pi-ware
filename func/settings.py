@@ -29,7 +29,7 @@ def change(setting, mode):
 
 #Buttons
 updatersettings_button = tk.Button(window,text="Change updater settings",font="Arial 11 bold",width=200,bg="darkblue",fg="white",command=change)
-quit_button = tk.Button(window,text="UPDATE",font="Arial 11 bold",bg="green",fg="white",width=100,height=4,command=change)
+quit_button = tk.Button(window,text="Quit",font="Arial 11 bold",width=100,height=4,bg="green",fg="white",command=change)
 
 #Main
 description = tk.Label(window,text="""Change the settings of pi-ware.""",font="Arial 12")
