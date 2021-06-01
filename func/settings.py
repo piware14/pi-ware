@@ -6,6 +6,7 @@ from tkinter.ttk import *
 import tkinter as tk
 import os
 from functools import partial
+import getpass
 
 #Set window info
 window = tk.Tk()
