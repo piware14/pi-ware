@@ -32,8 +32,8 @@ install = tk.Button(window,text="INSTALL",font="Arial 11 bold",width=200,bg="dar
 update_button = tk.Button(window,text="UPDATE",font="Arial 11 bold",bg="green",fg="white",width=100,height=4,command=change)
 
 #Main
-install.pack()
-update_button.pack()
 description = tk.Label(window,text="""Change the settings of pi-ware.""",font="Arial 12")
 description.pack()
+install.pack()
+update_button.pack()
 window.mainloop()
