@@ -49,7 +49,7 @@ Type=Application
 Terminal=false" > $HOME/.local/share/applications/pi-ware.desktop
 echo "Creating an auto updater for Pi-Ware..."
 mkdir -p /etc/systemd/system/
-echo "[Unit]
+sudo echo "[Unit]
 Description=Auto update service for pi-ware
 After=network.target
 
@@ -62,7 +62,8 @@ Restart=always
 User=pi
 
 [Install]
-WantedBy=multi-user.target" > /etc/systemd/system/Auto-update-pi-ware-service.desktop
+WantedBy=multi-user.target" > /etc/systemd/system/Auto-update-pi-ware.service
+sudo systemctl start Auto-update-pi-ware.service
 #install lxterminal if it is not alreadt installed
 if ! command -v lxterminal >/dev/null;then
   echo "Installing LXTerminal..."
