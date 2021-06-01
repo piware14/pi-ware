@@ -62,7 +62,7 @@ Restart=always
 User=pi
 
 [Install]
-WantedBy=multi-user.target" | sudo tee /etc/systemd/system/Auto-update-pi-ware.service
+WantedBy=multi-user.target" > /dev/null | sudo tee /etc/systemd/system/Auto-update-pi-ware.service
 sudo systemctl start Auto-update-pi-ware.service
 #install lxterminal if it is not alreadt installed
 if ! command -v lxterminal >/dev/null;then
