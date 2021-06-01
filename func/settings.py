@@ -10,6 +10,7 @@ import getpass
 
 #Variables
 global username
+username = getpass.getuser()
 
 #Set window info
 window = tk.Tk()
