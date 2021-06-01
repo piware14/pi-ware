@@ -18,7 +18,7 @@ if [ "$(cat "$PW_PREFIX/pi-ware/version")" != "$LAST_COMMIT" ] || [ "$1" == forc
   cd updater_files
   cp -r $PW_PREFIX/pi-ware/updater_files/* $HOME/pi-ware/
   cd $HOME/pi-ware
-  echo $(git rev-parse main) > "$PW_PREFIX/share/pi-ware/version"
+  echo $(git rev-parse main) > "$PW_PREFIX/pi-ware/version"
   echo "Update complete, Closing in 5 seconds..."
   sleep 5
   exit 0
