@@ -25,15 +25,15 @@ heading.pack()
 
 #Functions
 def change(setting, mode):
-    os.system("lxterminal -e 'bash $HOME/pi-ware/func/settings'")
+    os.system("lxterminal -e 'bash $HOME/pi-ware/func/settings {setting} {mode}'")
 
 #Buttons
-install = tk.Button(window,text="INSTALL",font="Arial 11 bold",width=200,bg="darkblue",fg="white",command=change)
-update_button = tk.Button(window,text="UPDATE",font="Arial 11 bold",bg="green",fg="white",width=100,height=4,command=change)
+updatersettings_button = tk.Button(window,text="Change updater settings",font="Arial 11 bold",width=200,bg="darkblue",fg="white",command=change)
+quit_button = tk.Button(window,text="UPDATE",font="Arial 11 bold",bg="green",fg="white",width=100,height=4,command=change)
 
 #Main
 description = tk.Label(window,text="""Change the settings of pi-ware.""",font="Arial 12")
 description.pack()
-install.pack()
-update_button.pack()
+updatersettings_button.pack()
+quit_button.pack(side="bottom")
 window.mainloop()
