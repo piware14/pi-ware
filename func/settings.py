@@ -8,6 +8,9 @@ import os
 from functools import partial
 import getpass
 
+#Variables
+global username
+
 #Set window info
 window = tk.Tk()
 window.title("Pi-Ware Settings")
