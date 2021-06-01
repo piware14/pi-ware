@@ -1,7 +1,8 @@
 # Pi-Ware settings GUI
 
 #Import tk and os
-from functools import partial
+#from functools import partial
+from tkinter.ttk import *
 import tkinter as tk
 import os
 
