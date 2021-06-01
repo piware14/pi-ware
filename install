@@ -38,7 +38,7 @@ fi
 
 #Main
 echo "Creating a desktop entry for Pi-Ware..."
-mkdir -p $HOME/.local/share/applications
+sudo mkdir -p $HOME/.local/share/applications
 echo "[Desktop Entry]
 Name=Pi-Ware
 Comment=Raspberry Pi app store
@@ -49,7 +49,7 @@ Type=Application
 Terminal=false" > $HOME/.local/share/applications/pi-ware.desktop
 echo "Creating an auto updater for Pi-Ware..."
 mkdir -p /etc/systemd/system/
-sudo echo "[Unit]
+echo "[Unit]
 Description=Auto update service for pi-ware
 After=network.target
 
@@ -62,7 +62,7 @@ Restart=always
 User=pi
 
 [Install]
-WantedBy=multi-user.target" > /etc/systemd/system/Auto-update-pi-ware.service
+WantedBy=multi-user.target" | sudo tee /etc/systemd/system/Auto-update-pi-ware.service
 sudo systemctl start Auto-update-pi-ware.service
 #install lxterminal if it is not alreadt installed
 if ! command -v lxterminal >/dev/null;then
