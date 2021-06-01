@@ -7,6 +7,10 @@ import os
 #Set window info
 window = tk.Tk()
 window.title("Pi-Ware Settings")
+#Set window image
+p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
+# Icon set for program window
+window.iconphoto(False, p1)
 window.geometry("500x500")
 heading = tk.Label(window,text="""Pi-Ware Settings""",font="Arial 15 bold")
 heading.pack()
