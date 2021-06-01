@@ -28,7 +28,7 @@ def change(setting, mode):
     os.system("lxterminal -e 'bash $HOME/pi-ware/func/settings'")
 
 #Buttons
-install = tk.Button(window,text="INSTALL",font="Arial 11 bold",width=200,bg="darkblue",fg="white",command=install_app)
+install = tk.Button(window,text="INSTALL",font="Arial 11 bold",width=200,bg="darkblue",fg="white",command=change)
 update_button = tk.Button(window,text="UPDATE",font="Arial 11 bold",bg="green",fg="white",width=100,height=4,command=change)
 
 #Main
