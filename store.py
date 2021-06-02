@@ -52,7 +52,7 @@ global username
 username = getpass.getuser()
 #window.tk.call('wm', 'iconphoto', window._w, tk.PhotoImage(file=f'/home/{username}/pi-ware/icons/logo.png')
 # And Image should be in the same folder where there is script saved
-p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
+p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/icon.png')
 # Icon set for program window
 window.iconphoto(False, p1)
 #Main
@@ -64,7 +64,7 @@ frame.pack(expand=True, fill="both")
 
 def show_desc(app):
     global install_script, uninstall_script, desc_win
-    p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
+    p1 = PhotoImage(file = f'/home/{username}/pi-ware/{app}/logo.png')
     # Icon set for program window
     window.iconphoto(False, p1)
     desc_win = tk.Toplevel(window)
