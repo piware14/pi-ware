@@ -11,7 +11,7 @@ To learn more vist our <a href="https://github.com/zachthecoder14/pi-ware/wiki/"
 
 **Join our Discord server**:
 
-[![Pi-Ware Discord server](https://discord.com/api/guilds/840124418528378881/widget.png?style=banner2)](https://discord.gg/BU8F6D8X6s)
+[![Pi-Ware Discord server](https://img.shields.io/discord/840124418528378881?color=7289da&label=Discord%20Server&logo=discord&style=flat-square)](https://discord.gg/BU8F6D8X6s)
 
 ** Look at our wiki **
 
