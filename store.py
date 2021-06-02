@@ -64,7 +64,7 @@ frame.pack(expand=True, fill="both")
 
 def show_desc(app):
     global install_script, uninstall_script, desc_win
-    p1 = PhotoImage(file = f'/home/{username}/pi-ware/{app}/icon.png')
+    p1 = PhotoImage(file = f'/home/{username}/pi-ware/apps/{app}/icon.png')
     # Icon set for program window
     window.iconphoto(False, p1)
     desc_win = tk.Toplevel(window)
