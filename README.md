@@ -35,9 +35,7 @@ bash install
 ```
 
 ## Update Pi-Ware
-```sh
-$HOME/pi-ware/updater
-```
+Pi-Ware will automatically fetch and install updates, and tell you to restart it to apply these.
 
 ## Uninstall Pi-Ware
 ```sh
