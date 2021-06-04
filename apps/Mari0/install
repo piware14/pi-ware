@@ -57,6 +57,8 @@ Categories=Game;
 Type=Application
 Terminal=false" > $HOME/.local/share/applications/$AppName.desktop
 
+chmod +x $HOME/Mari0_rpi/love-armhf/love
+
 #Inform user that the install has finished
 #Check if finished with errors
 if [ "${fwe}" == "1" ]; then
