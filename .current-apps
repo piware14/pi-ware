@@ -1,5 +1,5 @@
 #!/bin/bash
 
 cd ~/pi-ware/apps
-echo "Here are all the curent apps."
+echo "Here are all the current apps."
 ls
