@@ -5,9 +5,11 @@ Pi-Ware is an app store for the Raspberry Pi that allows you to install apps tha
   
 # NEW:
 
-We have added pacman support to pi-ware!
+We have added a pi-ware utility to your terminal!
+  
+To use it run ``pi-ware --help`` in terminal.
 
-To learn more vist our <a href="https://github.com/zachthecoder14/pi-ware/wiki/" alt="Pi-Ware wiki">wiki</a>!
+To learn more vist our <a href="https://github.com/piware14/pi-ware/wiki/" alt="Pi-Ware wiki">wiki</a>!
   
 # Links:
 
@@ -17,15 +19,15 @@ To learn more vist our <a href="https://github.com/zachthecoder14/pi-ware/wiki/"
 
 **Look at our wiki**
 
-<a href="https://github.com/zachthecoder14/pi-ware/wiki/" alt="Pi-Ware wiki">The Pi-Ware wiki</a>
+<a href="https://github.com/piware14/pi-ware/wiki/" alt="Pi-Ware wiki">The Pi-Ware wiki</a>
 
 **Look at our website**:
 
-<a href="https://oxmc.github.io/pi-ware/" alt="Pi-Ware website">The Pi-Ware website</a>
+<a href="https://pi-ware-team.github.io/" alt="Pi-Ware website">The Pi-Ware website</a>
 
 **Current app list**
 
-<a href="https://oxmc.github.io/pi-ware/apps/current/" alt="App list">App list</a>
+<a href="https://pi-ware-team.github.io/apps/current/" alt="App list">App list</a>
 
 </div>
   
@@ -33,7 +35,7 @@ To learn more vist our <a href="https://github.com/zachthecoder14/pi-ware/wiki/"
 
 ## Install Pi-Ware
 ```sh
-git clone https://github.com/zachthecoder14/pi-ware.git
+git clone https://github.com/piware14/pi-ware.git
 cd pi-ware
 bash install
 ```
@@ -41,9 +43,16 @@ bash install
 ## Update Pi-Ware
 Pi-Ware will automatically fetch and install updates, and tell you to restart it to apply these.
 
+If you widh to force update pi-ware, run
+```sh
+cd $HOME/pi-ware
+bash updater
+```
+
 ## Uninstall Pi-Ware
 ```sh
-$HOME/pi-ware/uninstall
+cd $HOME/pi-ware
+bash uninstall
 ```
 
 Thanks to https://www.logodesign.net/ for providing our logo!
