@@ -1,4 +1,1 @@
-A simple teleporter for MCPI Modded,
-A Sodfard creation
-
-Join the official Sofard discord server: https://discord.gg/BYxcbNkbHH
+A simple teleporter for MCPI Modded
