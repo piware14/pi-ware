@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 #Variables
 PW_PREFIX="$HOME/.local"
 fwe=""
@@ -30,7 +29,6 @@ echo $(git rev-parse main) > "$PW_PREFIX/share/pi-ware/version"
 if [ "$1" == "update" ];then
   rm -rf $HOME/pi-ware
   cp -r "$PW_PREFIX/share/pi-ware/updater_files" $HOME/pi-ware
-  cp -r $HOME/pi-ware/store.py "$PW_PREFIX/bin/pi-ware"
   chmod +x "$PW_PREFIX/bin/pi-ware"
 else
   echo "Installing pi-ware..."
@@ -48,22 +46,26 @@ Categories=Utility;
 Type=Application
 Terminal=false" > $HOME/.local/share/applications/pi-ware.desktop
 echo "Creating an auto updater for Pi-Ware..."
-mkdir -p /etc/systemd/system/
-echo "[Unit]
-Description=Auto update service for pi-ware
-After=network.target
-
-[Service]
-ExecStart=/usr/bin/bash auto-update
-WorkingDirectory=$HOME/pi-ware
-StandardOutput=inherit
-StandardError=inherit
-Restart=always
-User=pi
-
-[Install]
-WantedBy=multi-user.target" > /dev/null | sudo tee /etc/systemd/system/Auto-update-pi-ware.service
-sudo systemctl enable Auto-update-pi-ware.service
+mkdir -p $HOME/.config/autostart/
+echo "[Desktop Entry]
+Name=Pi-Ware-Auto-Updater
+Comment=Auto updater for pi-ware
+Exec=bash $HOME/pi-ware/func/auto-update
+Icon=$HOME/pi-ware/icons/logo.png
+Categories=Utility;
+Type=Application
+Terminal=false" > $HOME/.config/autostart/update-pi-ware.desktop
+#Create pi-ware utility
+if [ -d "$HOME/.local" ]; then
+ mkdir -p "$HOME/.local/bin"
+fi
+if [ -d "$HOME/pi-ware-term" ]; then
+  rm -rf "$HOME/pi-ware-term"
+fi
+wget https://raw.githubusercontent.com/ZaydTheCoder/pi-ware-1/main/func/pi-ware-term
+sudo chmod +x pi-ware-term
+cp -r "pi-ware-term" "$HOME/.local/bin/pi-ware"
+echo "Added pi-ware-commands to Terminal!"
 #install lxterminal if it is not alreadt installed
 if ! command -v lxterminal >/dev/null;then
   echo "Installing LXTerminal..."
