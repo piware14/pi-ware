@@ -71,37 +71,17 @@ def show_desc(app):
     desc_win.iconphoto(False, p2)
     desc_win.title(f"{app}")
     desc_win.geometry("320x500")
+    desc_win.eval('tk::PlaceWindow . center')
     window.withdraw()
     desc = open(f"/home/{username}/pi-ware/apps/{app}/description.txt", "r")
     desc_contents = desc.read()
-    app_desc = tk.Label(desc_win,
-        text=desc_contents,
-        font="Arial 9")
+    app_desc = tk.Label(desc_win, text=desc_contents, font="Arial 9")
     app_desc.pack()
-    install = tk.Button(desc_win,
-        text="INSTALL",
-        font="Arial 11 bold",
-        width=200,
-        bg="darkblue",
-        fg="white",
-        command=install_app)
+    install = tk.Button(desc_win, text="INSTALL", font="Arial 11 bold", width=200, bg="darkblue", fg="white", command=install_app)
     install.pack()
-    uninstall = tk.Button(desc_win,
-        text="UNINSTALL",
-        font="Arial 11 bold",
-        width=200,
-        bg="red",
-        fg="white",
-        command=uninstall_app)
+    uninstall = tk.Button(desc_win, text="UNINSTALL", font="Arial 11 bold", width=200, bg="red", fg="white", command=uninstall_app)
     uninstall.pack()
-    back_to_menu_button = tk.Button(desc_win,
-    text="BACK",
-    font="Arial 11 bold",
-    width=200,
-    height=2,
-    bg="green",
-    fg="white",
-    command=back_to_menu)
+    back_to_menu_button = tk.Button(desc_win, text="BACK", font="Arial 11 bold", width=200, height=2, bg="green", fg="white", command=back_to_menu)
     back_to_menu_button.pack(side = "bottom")
     ucommand = f"bash '/home/{username}/pi-ware/func/uninst' %s" % app
     command = f"bash '/home/{username}/pi-ware/func/inst' %s" % app
@@ -144,5 +124,6 @@ def back_to_menu():
     window.deiconify()
     desc_win.destroy()
     window.title("Pi-Ware")
+    window.eval('tk::PlaceWindow . center')
     
 window.mainloop()
