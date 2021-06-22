@@ -45,16 +45,16 @@ class ScrolledFrame(tk.Frame):
 
     def resize(self, event=None):
         self._canvas.configure(scrollregion=self._canvas.bbox('all'))
-window = tk.Tk()
-#Set window icon
-global username
 
+window = tk.Tk()
+#Set global var username
+global username
 username = getpass.getuser()
-#window.tk.call('wm', 'iconphoto', window._w, tk.PhotoImage(file=f'/home/{username}/pi-ware/icons/logo.png')
-# And Image should be in the same folder where there is script saved
+
+#Set window icon
 p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
-# Icon set for program window
 window.iconphoto(False, p1)
+
 #Main
 window.resizable(0, 0)
 window.geometry("320x500")
@@ -69,6 +69,7 @@ def show_desc(app):
     p2 = PhotoImage(file = f'/home/{username}/pi-ware/apps/{app}/icon.png')
     # Icon set for program window
     desc_win.iconphoto(False, p2)
+    window.resizable(0, 0)
     desc_win.title(f"{app}")
     desc_win.geometry("320x500")
     desc_win.eval('tk::PlaceWindow . center')
