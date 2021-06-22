@@ -72,7 +72,6 @@ def show_desc(app):
     window.resizable(0, 0)
     desc_win.title(f"{app}")
     desc_win.geometry("320x500")
-    desc_win.eval('tk::PlaceWindow . center')
     window.withdraw()
     desc = open(f"/home/{username}/pi-ware/apps/{app}/description.txt", "r")
     desc_contents = desc.read()
