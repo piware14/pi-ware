@@ -23,11 +23,11 @@ To learn more vist our <a href="https://github.com/piware14/pi-ware/wiki/" alt="
 
 **Look at our website**:
 
-<a href="https://pi-ware-team.github.io/" alt="Pi-Ware website">The Pi-Ware website</a>
+<a href="https://pi-ware.ml/" alt="Pi-Ware website">The Pi-Ware website</a>
 
 **Current app list**
 
-<a href="https://pi-ware-team.github.io/apps/current/" alt="App list">App list</a>
+<a href="https://pi-ware.ml/apps/current/" alt="App list">App list</a>
 
 </div>
   
