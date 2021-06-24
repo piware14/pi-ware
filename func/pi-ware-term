@@ -38,7 +38,7 @@ function warning {
 #Main
 #Before doing anything check if script is in $HOME/.local/bin
 if [ "$pwd" != "$HOME/.local/bin" ]; then
-  error "This file is not in the right location, please run pi-ware's install script again."
+  error "This file is not in the right location, please run pi-ware's install script again." exit
 fi
 
 #Check if OG_Year and Year are the same.
