@@ -1,7 +1,7 @@
 <div align='center'>
 <img src='./icons/logo-full.png' width='128px'> 
 <h1>Pi-Ware</h1>
-Pi-Ware is an app store for the Raspberry Pi that allows you to install apps that you generally can't get from the official repos and/or without an extra amount of work.
+Pi-Ware is an app store inspired by Botspots <a href="https://github/com/Botspots/pi-apps">pi-apps</a> for the Raspberry Pi that allows you to install apps that you generally can't get from the official repos and/or without an extra amount of work.
   
 # NEW:
 
@@ -9,7 +9,7 @@ We have added a pi-ware utility to your terminal!
   
 To use it run ``pi-ware --help`` in terminal.
 
-To learn more vist our <a href="https://github.com/piware14/pi-ware/wiki/" alt="Pi-Ware wiki">wiki</a>!
+To learn more vist our <a href="https://github.com/piware14/pi-ware/wiki/new" alt="Pi-Ware wiki">wiki</a>!
   
 # Links:
 
