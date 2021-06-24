@@ -22,8 +22,8 @@ function warning {
 
 #Main
 echo "Uninstalling Pi-Ware"
-rm -rf ~/.local/share/application/pi-ware.desktop
-rm -rf ~/.local/share/pi-ware/*
+rm -rf $HOME/.local/share/application/pi-ware.desktop
+rm -rf $HOME/.local/share/pi-ware/*
 
 #Inform user that the uninstall has finished
 #Check if finished with errors
