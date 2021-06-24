@@ -2,7 +2,7 @@
 
 #Variables
 PW_PREFIX="$HOME/.local/share"
-PW_REPO="https://github.com/zachthecoder14/pi-ware.git"
+PW_REPO="https://github.com/pi-ware14/pi-ware.git"
 LAST_COMMIT="$(git ls-remote "$PW_REPO" | grep refs/heads/main | cut -f 1)"
 
 #Main
