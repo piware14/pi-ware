@@ -1,0 +1,42 @@
+#!/bin/bash
+
+#Variables
+AppName="APTCleaner"
+export PW_PREFIX="$HOME/.local/share/pi-ware"
+PACMANG="$(cat $PW_PREFIX/inst-pref)"
+fwe=""
+ers=""
+
+#Functions
+function error {
+  echo -e "\e[91m$1\e[39m"
+  if [ "$2" == "exit" ]; then
+    exit 1
+  else
+    fwe="1"
+    ers+="$1"
+  fi
+}
+
+function warning {
+  echo -e "\e[91m$2\e[39m"
+  sleep "$1"
+}
+
+#Main
+warning 5 "Warning: Uninstall $AppName will remove any saved data associated with $AppName. /n To cancel press CTRL + C in the next 5 seconds."
+echo "Uninstalling $AppName"
+#Remove AppNames's folder
+rm -rf ~/aptcleaner || error "Unable to remove ~/aptcleaner"
+
+#Inform user that the uninstall has finished
+#Check if finished with errors
+if [ "${fwe}" == "1" ]; then
+  echo "This script finished with errors, Here are the errors: ${ers}"
+  exit 1
+elif [ "${fwe}" == "0" ]; then
+  echo "Successfully uninstalled $AppName."
+  echo "Closing in 5 seconds."
+  sleep 5s
+  exit 0
+fi
