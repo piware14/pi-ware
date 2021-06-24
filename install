@@ -79,12 +79,10 @@ fi
 #Inform user that the install has finished
 #Check if finished with errors
 if [ "${fwe}" == "1" ]; then
-  echo "This script finished with errors, Here are the errors: ${ers}"
+  echo "The install finished with errors, Here are the errors: ${ers}"
   exit 1
 elif [ "${fwe}" == "0" ]; then
   echo "Done!"
   echo "You can find Pi-Ware in Menu > Accessories > Pi-Ware."
-  echo "Closing in 5 seconds."
-  sleep 5s
   exit 0
 fi
