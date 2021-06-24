@@ -1,5 +1,4 @@
 # Pi-Ware main UI
-
 from tkinter import *
 from tkinter.ttk import *
 import tkinter as tk
@@ -87,9 +86,11 @@ def show_desc(app):
     command = f"bash '/home/{username}/pi-ware/func/inst' %s" % app
     install_script = "'%s'" % command
     uninstall_script = "'%s'" % ucommand
+
 def back_to_menu(window, parent, app=None):
     parent.destroy()
     window.deiconify()
+
 ap = next(os.walk(f"/home/{username}/pi-ware/apps"))[1]
 applist = sorted(ap)
 print("Current apps:\n")
@@ -101,13 +102,7 @@ for app in applist:
             appb += "_"
         else:
             appb += a
-    exec(appb + """_button =  tk.Button(frame.inner,
-            text=app,
-            font="Arial 11 bold",
-            width=200,
-            bg="gray",
-            fg="white",
-            command=partial(show_desc,app))""")
+    exec(appb + """_button =  tk.Button(frame.inner, text=app, font="Arial 11 bold", width=200, bg="gray", fg="white", command=partial(show_desc,app))""")
     exec(appb + "_button.pack()")
 
 def install_app():
