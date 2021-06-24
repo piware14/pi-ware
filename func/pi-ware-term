@@ -113,7 +113,7 @@ elif [[ "$1" == "--update" ]]; then
   "
   echo "Checking for updates..."
   echo "To quit at any time press CTRL + C"
-  bash "$HOME/pi-ware/updater --version"
+  bash "$HOME/pi-ware/updater $3"
 elif [[ "$1" == "--uninstall-all" ]]; then
   echo "Uninstalling pi-ware from your system..."
   bash "$HOME/pi-ware/uninstall"
