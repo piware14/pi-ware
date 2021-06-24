@@ -36,6 +36,9 @@ class ScrolledFrame(tk.Frame):
         # resize when configure changed
         self.inner.bind("<Configure>", self.resize)
         self._canvas.bind("<Configure>", self.frame_width)
+        
+        quit = tk.Button(window, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command=window.destroy())
+        quit.pack()
 
     def frame_width(self, event):
         # resize inner frame to canvas size
@@ -61,8 +64,6 @@ window.eval('tk::PlaceWindow . center')
 window.title("Pi-Ware")
 frame = ScrolledFrame(window)
 frame.pack(expand=True, fill="both")
-quit = tk.Button(window, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command=window.destroy())
-quit.pack()
 
 def show_desc(app):
     global install_script, uninstall_script, desc_win
@@ -106,6 +107,8 @@ for app in applist:
             appb += a
     exec(appb + """_button =  tk.Button(frame.inner, text=app, font="Arial 11 bold", width=200, bg="gray", fg="white", command=partial(show_desc,app))""")
     exec(appb + "_button.pack()")
+    quit = tk.Button(window, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command=window.destroy())
+    quit.pack()
 
 def install_app():
     global install_script
