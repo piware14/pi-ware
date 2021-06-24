@@ -17,8 +17,8 @@ if [ "$(cat "$PW_PREFIX/pi-ware/version")" != "$LAST_COMMIT" ] || [ "$1" == forc
   sudo rm -rf updater_files
   git clone "$PW_REPO" updater_files
   cd updater_files
-  ls
   echo "Updater files"
+  ls
   rm -rf $HOME/pi-ware/
   mkdir -p $HOME/pi-ware/
   cp -r $PW_PREFIX/pi-ware/updater_files/* $HOME/pi-ware/
