@@ -62,9 +62,6 @@ window.title("Pi-Ware")
 frame = ScrolledFrame(window)
 frame.pack(expand=True, fill="both")
 
-quit = tk.Button(frame.inner, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command="window.destroy()")
-quit.pack()
-
 def show_desc(app):
     global install_script, uninstall_script, desc_win
     desc_win = tk.Toplevel(window)
@@ -123,5 +120,8 @@ def back_to_menu():
     desc_win.destroy()
     window.title("Pi-Ware")
     window.eval('tk::PlaceWindow . center')
-    
+
+quit = tk.Button(frame.inner, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command="window.destroy()")
+quit.pack()
+
 window.mainloop()
