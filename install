@@ -70,7 +70,7 @@ else
   error "Failed to find any package manager."
 fi
 #install lxterminal if it is not already installed
-PACMANG="$(cat $PW_PREFIX/inst-pref)"
+PACMANG="$(cat $PW_PREFIX/share/pi-ware/inst-pref)"
 if ! command -v lxterminal >/dev/null;then
   echo "Installing LXTerminal..."
   sudo $PACKMANG lxterminal
