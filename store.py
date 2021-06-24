@@ -121,7 +121,7 @@ def back_to_menu():
     window.title("Pi-Ware")
     window.eval('tk::PlaceWindow . center')
 
-quit = tk.Button(frame.inner, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command="window.destroy()")
+quit = tk.Button(self, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command="window.destroy()")
 quit.pack()
 
 window.mainloop()
