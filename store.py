@@ -124,7 +124,7 @@ def back_to_menu():
 def quit():
     window.destroy()
     
-quitbutton = tk.Button(window, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command=quit())
+quitbutton = tk.Button(window, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command=quit)
 quitbutton.pack()
 
 window.mainloop()
