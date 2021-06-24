@@ -2,7 +2,7 @@
 
 #Variables
 PW_PREFIX="$HOME/.local"
-fwe=""
+fwe="0"
 ers=""
 
 #Functions
@@ -54,28 +54,11 @@ cd $HOME
 if [ -d "$HOME/.local" ]; then
  mkdir -p "$HOME/.local/bin"
 fi
-if [ -d "$HOME/pi-ware-term" ]; then
-  rm -rf "$HOME/pi-ware-term"
-fi
 cd $HOME/pi-ware/func
 sudo chmod +x pi-ware-term
 cp -r "pi-ware-term" "$HOME/.local/bin/pi-ware"
 echo "Added pi-ware-commands to Terminal!"
 echo "Please restart terminal to apply changes."
-#install lxterminal if it is not alreadt installed
-if ! command -v lxterminal >/dev/null;then
-  echo "Installing LXTerminal..."
-  if [ -f /usr/bin/apt ];then
-    echo "Package manager is: apt"
-    sudo apt update
-    sudo apt install lxterminal -y || error "Failed to install lxterminal."
-  elif [ -f /usr/bin/pacman ];then
-    echo "Package manager is: pacman"
-    sudo pacman -S lxterminal || error "Failed to install lxterminal;."
-  else
-    error "Failed to find any package manager to install lxterminal."
-  fi
-fi
 #Set package manager
 if [ -f /usr/bin/apt ];then
   echo "Package manager is: apt"
@@ -84,7 +67,24 @@ elif [ -f /usr/bin/pacman ];then
   echo "Package manager is: pacman"
   echo "pacman -S" > "$PW_PREFIX/share/pi-ware/inst-pref"
 else
-  error "Failed to find any package manager to install lxterminal."
+  error "Failed to find any package manager."
 fi
-echo "Done!"
-echo "You can find Pi-Ware in Menu > Accessories > Pi-Ware."
+#install lxterminal if it is not already installed
+PACMANG="$(cat $PW_PREFIX/inst-pref)"
+if ! command -v lxterminal >/dev/null;then
+  echo "Installing LXTerminal..."
+  sudo $PACKMANG lxterminal
+fi
+
+#Inform user that the install has finished
+#Check if finished with errors
+if [ "${fwe}" == "1" ]; then
+  echo "This script finished with errors, Here are the errors: ${ers}"
+  exit 1
+elif [ "${fwe}" == "0" ]; then
+  echo "Done!"
+  echo "You can find Pi-Ware in Menu > Accessories > Pi-Ware."
+  echo "Closing in 5 seconds."
+  sleep 5s
+  exit 0
+fi
