@@ -62,7 +62,7 @@ window.title("Pi-Ware")
 frame = ScrolledFrame(window)
 frame.pack(expand=True, fill="both")
 
-quit = tk.Button(frame.inner, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command=window.destroy())
+quit = tk.Button(frame.inner, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command="window.destroy()")
 quit.pack()
 
 def show_desc(app):
