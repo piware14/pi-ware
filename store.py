@@ -104,8 +104,6 @@ for app in applist:
             appb += a
     exec(appb + """_button =  tk.Button(frame.inner, text=app, font="Arial 11 bold", width=200, bg="gray", fg="white", command=partial(show_desc,app))""")
     exec(appb + "_button.pack()")
-    quit = tk.Button(window, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command=window.destroy())
-    quit.pack()
 
 def install_app():
     global install_script
@@ -122,5 +120,8 @@ def back_to_menu():
     desc_win.destroy()
     window.title("Pi-Ware")
     window.eval('tk::PlaceWindow . center')
+
+quit = tk.Button(window, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command=window.destroy())
+quit.pack()
     
 window.mainloop()
