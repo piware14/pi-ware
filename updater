@@ -13,14 +13,17 @@ if [ "$(cat "$PW_PREFIX/pi-ware/version")" != "$LAST_COMMIT" ] || [ "$1" == forc
     echo "Updating Pi-Ware..."
   fi
   cd $PW_PREFIX/pi-ware
+  echo "pi-ware-2"
   sudo rm -rf updater_files
   git clone "$PW_REPO" updater_files
   cd updater_files
+  echo "pi-ware-1"
   rm -rf $HOME/pi-ware/
   mkdir -p $HOME/pi-ware/
   cp -r $PW_PREFIX/pi-ware/updater_files/* $HOME/pi-ware/
   rm -rf $PW_PREFIX/pi-ware/version
   cd $HOME/pi-ware
+  echo "pi-ware"
   echo $(git rev-parse main) > "$PW_PREFIX/pi-ware/version"
   echo "Update complete, Closing in 5 seconds..."
   sleep 5
