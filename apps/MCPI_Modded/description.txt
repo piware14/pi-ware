@@ -1,0 +1,6 @@
+A modded version of Minecraft: Pi Edition with things like survival mode, multiplayer support and more!
+
+To open the launcher: Menu > Games > gMCPIL. Use the launcher to set up mods and multiplayer.
+NOTE: Make sure "GPU Driver" is set to Full/Fake in "raspi-config". To do so, run "sudo raspi-config" in terminal. Go to Advanced Settings > GL Driver
+
+Need help? Consider asking on our Discord server: https://discord.gg/3wXu3xtr

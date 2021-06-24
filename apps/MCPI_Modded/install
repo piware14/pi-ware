@@ -1,0 +1,34 @@
+#!/bin/bash
+
+##
+## Config
+##
+
+set -e
+
+DIRECTORY="$(dirname "$(dirname "$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )")")"
+STORAGE="$(dirname "$0")"
+
+function error {
+  echo -e "\\e[91m$1\\e[39m"
+  exit 1
+}
+
+##
+## Install mcpi-reborn
+##
+
+if [[ "$(lsb_release -cs)" != "buster" && "$(lsb_release -cs)" != "bullseye" && "$(lsb_release -cs)" != "sid" ]]; then
+    error "Unsupported Debian Version! Your Debian version is $(lsb_release -cs), but supported versions are Buster, Bullseye, or Sid."
+fi
+
+# Remove Old Minecraft Pi
+sudo apt-get remove -y minecraft-pi &>/dev/null || true
+sudo apt-get remove -y minecraft-pi-native &>/dev/null || true
+sudo apt-get remove -y mcpil-r &>/dev/null || true
+
+wget -qO- https://raw.githubusercontent.com/MCPI-Revival/mcpi-packages/master/install.sh | bash | error "Failed to install apt repo!"
+
+"${DIRECTORY}/pkg-install" "minecraft-pi-reborn-native mcpil" "$(dirname "$0")" || exit 1
+
+pip3 install mcpi
