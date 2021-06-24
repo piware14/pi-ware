@@ -3,7 +3,7 @@
 #Variables
 AppName="APTCleaner"
 AppLocation="Menu > System > $AppName"
-RepoUrl="https://github.com/RP400/CryApp"
+RepoUrl="https://github.com/GabeCoder/aptcleaner"
 export PW_PREFIX="$HOME/.local/share/pi-ware"
 PACMANG="$(cat $PW_PREFIX/inst-pref)"
 fwe=""
@@ -30,11 +30,9 @@ function warning {
 sudo $PACKMANG yad
 sudo $PACKMANG git
 cd "$HOME" #find home directory
-git clone https://github.com/GabeCoder/aptcleaner
+git clone $RepoUrl
 cd "aptcleaner"
-chmod +x autostart.sh
-chmod +x aptcleaner.sh
-chmod +x clean.sh
+chmod +x *.sh
 echo "[Desktop Entry]
 Type=Application
 Name=APT Cleaner
@@ -61,7 +59,7 @@ if [ "${fwe}" == "1" ]; then
   sleep 1
   exit 1
 elif [ "${fwe}" == "0" ]; then
-  echo "Successfully installed $AppName. You can find it in %AppLocation."
+  echo "Successfully installed $AppName. You can find it in $AppLocation."
   echo "Closing in 5 seconds."
   sleep 5s
   exit 0
