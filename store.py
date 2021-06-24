@@ -36,9 +36,6 @@ class ScrolledFrame(tk.Frame):
         # resize when configure changed
         self.inner.bind("<Configure>", self.resize)
         self._canvas.bind("<Configure>", self.frame_width)
-        
-        quit = tk.Button(window, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command=window.destroy())
-        quit.pack()
 
     def frame_width(self, event):
         # resize inner frame to canvas size
