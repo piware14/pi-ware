@@ -32,7 +32,7 @@ def change(setting, mode):
 #Buttons
 se = next(os.walk(f"/home/{username}/pi-ware/func/settings/"))[1]
 settingslist = sorted(se)
-print("Current apps:\n")
+print("Current settings:\n")
 for app in settingslist:
     print(app)
     appb = ""
