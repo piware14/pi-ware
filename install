@@ -21,20 +21,14 @@ function warning {
   sleep "$1"
 }
 
+#Main
+echo "Installing pi-ware..."
 #Make required directory for updater
 mkdir -p "$PW_PREFIX/share/pi-ware"
 mkdir -p "$PW_PREFIX/bin"
 echo $(git rev-parse main) > "$PW_PREFIX/share/pi-ware/version"
-
-if [ "$1" == "update" ];then
-  rm -rf $HOME/pi-ware
-  cp -r "$PW_PREFIX/share/pi-ware/updater_files" $HOME/pi-ware
-  chmod +x "$PW_PREFIX/bin/pi-ware"
-else
-  echo "Installing pi-ware..."
-fi
-
-#Main
+#Install pi-ware
+echo "Installing pi-ware..."
 echo "Creating a desktop entry for Pi-Ware..."
 sudo mkdir -p $HOME/.local/share/applications
 echo "[Desktop Entry]
