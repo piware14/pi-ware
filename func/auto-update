@@ -2,11 +2,11 @@
 
 #Variables
 PW_PREFIX="$HOME/.local/share"
-PW_REPO="https://github.com/zachthecoder14/pi-ware.git"
+PW_REPO="https://github.com/piware14/pi-ware.git"
+sleep 10 #Wait for internet
 LAST_COMMIT="$(git ls-remote "$PW_REPO" | grep refs/heads/main | cut -f 1)"
 
 #Main
-sleep 20 #Wait for internet
 if [ "$(cat "$PW_PREFIX/pi-ware/version")" != "$LAST_COMMIT" ]; then
   python3 $HOME/pi-ware/func/update.py
   exit 0
