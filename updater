@@ -12,7 +12,7 @@ if [ "$(cat "$PW_PREFIX/pi-ware/version")" != "$LAST_COMMIT" ] || [ "$1" == forc
   else
     echo "Updating Pi-Ware..."
   fi
-  cd $PW_PREFIX/pi-ware
+  cd $PW_PREFIX/pi-ware || echo "error" && ls
   echo "pi-ware-2"
   sudo rm -rf updater_files
   git clone "$PW_REPO" updater_files
