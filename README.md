@@ -9,7 +9,7 @@ We have added a pi-ware utility to your terminal!
   
 To use it run ``pi-ware --help`` in terminal.
 
-To learn more vist our <a href="https://github.com/piware14/pi-ware/wiki/new" alt="Pi-Ware wiki">wiki</a>!
+To learn more vist our <a href="https://github.com/piware14/pi-ware/wiki/new-stuff" alt="Pi-Ware wiki">wiki</a>!
   
 # Links:
 
