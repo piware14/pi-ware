@@ -75,6 +75,18 @@ else
   error "Failed to make desktop entry!"
 fi
 
+#Clean up
+if [ -f /usr/bin/apt ];then
+  #Check architectures
+  if [ "$arch" == "aarch64" ]; then
+    rm -rf $HOME/love_11.1-2_arm64.deb
+  elif [ "$arch" == "armv7l" ]; then
+    rm -rf $HOME/love_11.1-2_armhf.deb
+  else
+    rm -rf $HOME/love_11.1-2_*.deb
+  fi
+fi
+
 #Inform user that the install has finished
 #Check if finished with errors
 if [ "${fwe}" == "1" ]; then
