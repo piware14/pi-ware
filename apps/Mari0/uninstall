@@ -24,19 +24,6 @@ function warning {
 }
 
 #Main
-if [ -f /usr/bin/apt ];then
-  #Check architectures
-  if [ "$(uname -m)" == "aarch64" ]; then
-    wget http://ftp.br.debian.org/debian/pool/main/l/love/love_11.1-2_arm64.deb
-    arch="aarch64"
-  elif [ "$(uname -m)" == "armv7l" ]; then
-    wget http://ftp.es.debian.org/debian/pool/main/l/love/love_11.1-2_armhf.deb
-    arch="armv7l"
-  else
-    error "Unable to detect architecture! Something is verry wrong!" exit
-  fi
-fi
-
 #Uninstall dependencies
 if [ -f /usr/bin/apt ];then
   sudo apt remove love
