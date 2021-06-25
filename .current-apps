@@ -1,5 +1,6 @@
 #!/bin/bash
 
-cd ~/pi-ware/apps
-echo "Here are all the curent apps."
+cd $HOME/pi-ware/apps
+echo "There are currently $('ls -1 | wc -l'), installable apps"
+echo "They are:"
 ls
