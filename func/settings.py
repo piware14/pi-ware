@@ -7,6 +7,30 @@ import os
 from functools import partial
 import getpass
 
+window = tk.Tk()
+
+#Set global var username
+global username
+username = getpass.getuser()
+
+#Set window icon
+p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
+window.iconphoto(False, p1)
+
+#Main
+window.resizable(0, 0)
+window.geometry("320x500")
+window.eval('tk::PlaceWindow . center')
+window.title("Pi-Ware Settings")
+frame = ScrolledFrame(window)
+frame.pack(expand=True, fill="both")
+
+#Show latest news message
+NewsMessagefile = open(f"/home/{username}/pi-ware/func/message", "r")
+NewsMessagecontent = NewsMessagefile.read()
+NewsMessage = tk.Label(window, text=NewsMessagecontent, font="Arial 9")
+NewsMessage.pack()
+
 class ScrolledFrame(tk.Frame):
     def __init__(self, parent, vertical=True, horizontal=False):
         super().__init__(parent)
@@ -46,30 +70,6 @@ class ScrolledFrame(tk.Frame):
 
     def resize(self, event=None):
         self._canvas.configure(scrollregion=self._canvas.bbox('all'))
-
-window = tk.Tk()
-
-#Set global var username
-global username
-username = getpass.getuser()
-
-#Set window icon
-p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
-window.iconphoto(False, p1)
-
-#Main
-window.resizable(0, 0)
-window.geometry("320x500")
-window.eval('tk::PlaceWindow . center')
-window.title("Pi-Ware Settings")
-frame = ScrolledFrame(window)
-frame.pack(expand=True, fill="both")
-
-#Show latest news message
-NewsMessagefile = open(f"/home/{username}/pi-ware/func/message", "r")
-NewsMessagecontent = NewsMessagefile.read()
-NewsMessage = tk.Label(window, text=NewsMessagecontent, font="Arial 9")
-NewsMessage.pack()
 
 def show_desc(app):
     global install_script, uninstall_script, desc_win
