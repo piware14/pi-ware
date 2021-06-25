@@ -69,10 +69,18 @@ sudo chmod +x pi-ware-term
 cp -r "pi-ware-term" "$HOME/.local/bin/pi-ware"
 echo "Added pi-ware-commands to Terminal!"
 echo "Please restart terminal to apply changes."
+#Set aarch
+if [ "$uname -m" == "armv7l" ]; then
+  echo "armv7l" > $HOME/.local/share/pi-ware/arch
+elif [ "$uname -m" == "aarch64" ]; then
+  echo "aarch64" > $HOME/.local/share/pi-ware/arch
+else
+  warning "2" "Unable to detect arch type! Continuing install..."
+fi
 #Set package manager
 if [ -f /usr/bin/apt ];then
   echo "Package manager is: apt"
-  echo "apt-get" > "$PW_PREFIX/share/pi-ware/inst-pref"
+  echo "apt-get -y" > "$PW_PREFIX/share/pi-ware/inst-pref"
 elif [ -f /usr/bin/pacman ];then
   echo "Package manager is: pacman"
   echo "pacman -S" > "$PW_PREFIX/share/pi-ware/inst-pref"
