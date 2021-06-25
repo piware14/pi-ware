@@ -59,7 +59,7 @@ window.iconphoto(False, p1)
 
 #Main
 window.resizable(0, 0)
-window.geometry("420x500")
+window.geometry("320x500")
 window.eval('tk::PlaceWindow . center')
 window.title("Pi-Ware Settings")
 #Show latest news message
@@ -78,7 +78,7 @@ def show_desc(app):
     desc_win.iconphoto(False, p2)
     window.resizable(0, 0)
     desc_win.title(f"Change {app} settings")
-    desc_win.geometry("320x500")
+    desc_win.geometry("350x500")
     window.withdraw()
     desc = open(f"/home/{username}/pi-ware/func/settings/{app}/control", "r")
     desc_contents = desc.read()
