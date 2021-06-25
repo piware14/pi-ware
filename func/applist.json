@@ -26,5 +26,9 @@
     {
         "name": "PyEnCrypter",
         "author": "@White Lizard"
+    },
+    {
+        "name": "APT Cleaner",
+        "author": "@GabeTheCoder"
     }
 ]
