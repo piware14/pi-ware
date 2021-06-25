@@ -32,7 +32,7 @@ elif [ -f /usr/bin/pacman ]; then
 fi
 
 #Clean up dirs
-rm -rf /opt/Mari0_rpi
+sudo rm -rf /opt/Mari0_rpi
 rm -rf $HOME/Mari0
 
 #Remove desktop entrys
