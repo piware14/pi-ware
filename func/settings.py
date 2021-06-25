@@ -6,6 +6,10 @@ import tkinter as tk
 import os
 from functools import partial
 import getpass
+
+quitbutton = tk.Button(window, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command=quit)
+quitbutton.pack()
+
 class ScrolledFrame(tk.Frame):
     def __init__(self, parent, vertical=True, horizontal=False):
         super().__init__(parent)
@@ -47,6 +51,7 @@ class ScrolledFrame(tk.Frame):
         self._canvas.configure(scrollregion=self._canvas.bbox('all'))
 
 window = tk.Tk()
+
 #Set global var username
 global username
 username = getpass.getuser()
@@ -124,8 +129,5 @@ def back_to_menu():
 
 def quit():
     window.destroy()
-    
-quitbutton = tk.Button(window, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command=quit)
-quitbutton.pack()
 
 window.mainloop()
