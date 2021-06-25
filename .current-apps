@@ -1,6 +1,9 @@
 #!/bin/bash
 
+#Variables
+AoA="$(ls -1 | wc -l)"
+
 cd $HOME/pi-ware/apps
-echo "There are currently $('ls -1 | wc -l'), installable apps"
+echo "There are currently $AoA, installable apps"
 echo "They are:"
 ls
