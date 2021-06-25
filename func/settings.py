@@ -40,7 +40,7 @@ def show_desc(app):
     desc_contents = desc.read()
     app_desc = tk.Label(desc_win, text=desc_contents, font="Arial 9")
     app_desc.pack()
-    install = tk.Button(desc_win, text="INSTALL", font="Arial 11 bold", width=200, bg="darkblue", fg="white", command=change(app, "off"))
+    install = tk.Button(desc_win, text="INSTALL", font="Arial 11 bold", width=200, bg="darkblue", fg="white", command=desc_win.destroy)
     install.pack()
     back_to_menu_button = tk.Button(desc_win, text="BACK", font="Arial 11 bold", width=200, height=2, bg="green", fg="white", command=back_to_menu)
     back_to_menu_button.pack(side = "bottom")
