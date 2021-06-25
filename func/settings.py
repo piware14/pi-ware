@@ -1,35 +1,11 @@
 # Pi-Ware settings GUI
 
-#Import tk and os
 from tkinter import *
 from tkinter.ttk import *
 import tkinter as tk
 import os
 from functools import partial
 import getpass
-
-#Variables
-global username
-username = getpass.getuser()
-
-#Set window info
-window = tk.Tk()
-window.title("Pi-Ware Settings")
-
-#Set window image
-p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
-
-# Icon set for program window
-window.iconphoto(False, p1)
-window.geometry("500x500")
-heading = tk.Label(window,text="""Pi-Ware Settings""",font="Arial 15 bold")
-heading.pack()
-
-#Functions
-def change(setting, mode):
-    os.system(f"lxterminal -e 'bash $HOME/pi-ware/func/settings {setting} {mode}'")
-
-#Main
 class ScrolledFrame(tk.Frame):
     def __init__(self, parent, vertical=True, horizontal=False):
         super().__init__(parent)
@@ -71,7 +47,6 @@ class ScrolledFrame(tk.Frame):
         self._canvas.configure(scrollregion=self._canvas.bbox('all'))
 
 window = tk.Tk()
-
 #Set global var username
 global username
 username = getpass.getuser()
@@ -80,17 +55,20 @@ username = getpass.getuser()
 p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
 window.iconphoto(False, p1)
 
-#View
+#Main
 window.resizable(0, 0)
 window.geometry("320x500")
 window.eval('tk::PlaceWindow . center')
-window.title("Pi-Ware")
+window.title("Pi-Ware Settings")
 frame = ScrolledFrame(window)
 frame.pack(expand=True, fill="both")
 
 def show_desc(app):
     global install_script, uninstall_script, desc_win
     desc_win = tk.Toplevel(window)
+    p2 = PhotoImage(file = f'/home/{username}/pi-ware/func/settings/{app}/icon.png')
+    # Icon set for program window
+    desc_win.iconphoto(False, p2)
     window.resizable(0, 0)
     desc_win.title(f"{app}")
     desc_win.geometry("320x500")
@@ -105,6 +83,10 @@ def show_desc(app):
     uninstall.pack()
     back_to_menu_button = tk.Button(desc_win, text="BACK", font="Arial 11 bold", width=200, height=2, bg="green", fg="white", command=back_to_menu)
     back_to_menu_button.pack(side = "bottom")
+    ucommand = f"bash '/home/{username}/pi-ware/func/uninst' %s" % app
+    command = f"bash '/home/{username}/pi-ware/func/inst' %s" % app
+    install_script = "'%s'" % command
+    uninstall_script = "'%s'" % ucommand
 
 def back_to_menu(window, parent, app=None):
     parent.destroy()
@@ -123,6 +105,16 @@ for app in applist:
             appb += a
     exec(appb + """_button =  tk.Button(frame.inner, text=app, font="Arial 11 bold", width=200, bg="gray", fg="white", command=partial(show_desc,app))""")
     exec(appb + "_button.pack()")
+
+def install_app():
+    global install_script
+    print("lxterminal -e " + install_script)
+    os.system("lxterminal -e " + install_script)
+    
+def uninstall_app():
+    global uninstall_script
+    print("lxterminal -e " + uninstall_script)
+    os.system("lxterminal -e " + uninstall_script)
     
 def back_to_menu():
     window.deiconify()
