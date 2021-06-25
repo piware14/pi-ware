@@ -71,7 +71,7 @@ for app in settingslist:
             appb += "_"
         else:
             appb += a
-    exec(appb + f"""_button =  tk.Button(frame.inner, text=Change {app} settings, font="Arial 11 bold", width=200, bg="darkblue", fg="white", command=change({app}, {mode})""")
+    exec(appb + f"""_button =  tk.Button(frame.inner, text=Change {app} settings, font="Arial 11 bold", width=200, bg="darkblue", fg="white", command=show_desc({app})""")
     exec(appb + "_button.pack()")
 
 #updatersettings_button = tk.Button(window,text="Change updater settings",font="Arial 11 bold",width=200,bg="darkblue",fg="white",command=change)
