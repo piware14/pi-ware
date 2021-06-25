@@ -21,15 +21,27 @@ function warning {
 
 
 #Variables
-fwe=""
+fwe="0"
 ers=""
 
 #Main
+
+#Cd into home dir
+cd $HOME
+
 #Remove Lunar-Client folder
-Sudo rm -rf ~/.lunarclient || error "unable to remove dir!"
+Sudo rm -rf $HOME/.lunarclient || error "unable to remove $HOME/.lunarclient!"
 
 #Remove AppImage
-Sudo rm -rf ~/lunarclient-2.7.0-armv7l.AppImage || error "Unable to remove Lunar-Client AppImage!"
+Sudo rm -rf $HOME/lunarclient-2.7.0-armv7l.AppImage || error "Unable to remove $HOME/lunarclient-2.7.0-armv7l.AppImage!"
+
+rm -rf lunarclient-2.7.3b-armv7l.AppImage
+rm -rf lunarclient-2.7.3a-armv7l.AppImage
+rm -rf lunarclient-2.7.2-armv7l.AppImage
+rm -rf lunarclient-2.7.0-armv7l.AppImage
+
+rm -rf '$HOME/Desktop/Lunar Client'
+rm -rf "$HOME/.local/share/applications/Lunar-Client.desktop"
 
 #Inform user that the install has finished
 #Check if finished with errors
