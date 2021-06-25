@@ -33,7 +33,7 @@ fi
 
 #Clean up dirs
 sudo rm -rf /opt/Mari0_rpi
-rm -rf $HOME/Mari0-rpi
+rm -rf $HOME/Mari0_rpi
 
 #Remove desktop entrys
 rm -rf $HOME/.local/share/applications/$AppName.desktop
