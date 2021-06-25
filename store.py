@@ -5,6 +5,7 @@ import tkinter as tk
 import os
 from functools import partial
 import getpass
+
 class ScrolledFrame(tk.Frame):
     def __init__(self, parent, vertical=True, horizontal=False):
         super().__init__(parent)
@@ -59,6 +60,11 @@ window.resizable(0, 0)
 window.geometry("320x500")
 window.eval('tk::PlaceWindow . center')
 window.title("Pi-Ware")
+#Show latest news message
+NewsMessagefile = open(f"/home/{username}/pi-ware/func/infomessage", "r")
+NewsMessagecontent = NewsMessagefile.read()
+NewsMessage = tk.Label(window, text=NewsMessagecontent, font="Arial 9")
+NewsMessage.pack()
 frame = ScrolledFrame(window)
 frame.pack(expand=True, fill="both")
 
