@@ -1,12 +1,12 @@
-#!/bin/bash
+#/bin/sh
 
 #Variables
 AppName="Mari0"
-AppLocation="Menu > games > $AppName"
+AppLocation="Menu > Games > $AppName"
 RepoUrl="https://github.com/IsaacMvmv/Mari0_rpi"
 export PW_PREFIX="$HOME/.local/share/pi-ware"
 PACMANG="$(cat $PW_PREFIX/inst-pref)"
-fwe=""
+fwe="0"
 ers=""
 
 #Functions
@@ -25,39 +25,55 @@ function warning {
   sleep "$1"
 }
 
-#Main
-echo "Installing $AppName"
-#Clone repo
+cd $HOME
 git clone $RepoUrl || error "Unable to clone ${AppName}'s repo!" exit
-#Cd into repo
-cd $AppName || error "Unable to cd into ${AppName}!"
-#change perms
-chmod +x launch.sh love_armhf/love
-#Install dependencies based on package manager
+sudo mv Mari0_rpi /opt/Mari0_rpi
 if [ -f /usr/bin/apt ];then
-  dependencies="libc6 libfreetype6 libgcc1 libluajit-5.1-2 libmodplug1 libmpg123-0 libogg0 libopenal1 libsdl2-2.0-0 libstdc++6 libtheora0 libvorbisfile3 zlib1g"
-elif [ -f /usr/bin/pacman ];then
-  dependencies="--needed desktop-file-utils freetype2 hicolor-icon-theme libmodplug libtheora libvorbis luajit mpg123 openal sdl2 shared-mime-info"
-else
-  error "Failed to find any package manager."
+  #Check architectures
+  if [ "$(uname -m)" == "aarch64" ]; then
+    wget http://ftp.br.debian.org/debian/pool/main/l/love/love_11.1-2_arm64.deb
+    arch="aarch64"
+  elif [ "$(uname -m)" == "armv7l" ]; then
+    wget http://ftp.es.debian.org/debian/pool/main/l/love/love_11.1-2_armhf.deb
+    arch="armv7l"
+  else
+    error "Unable to detect architecture! Something is verry wrong!" exit
+  fi
 fi
-sudo $PACKMANG 'install' '$dependencies'
 
-chmod +x $HOME/Mari0_rpi/launch.sh
+#installs love
+if [ $arch == "aarch64" ]; then
+  sudo dpkg -i love_11.1-2_arm64.deb
+elif [ $arch == "armv7l" ]; then
+  sudo dpkg -i love_11.1-2_armhf.deb
+fi
 
 #Make menu button
-echo "Creating a desktop entry for ${Appame}..."
+echo "Creating a desktop entry for ${AppName}"
 mkdir -p $HOME/.local/share/applications
-echo "[Desktop Entry]
+if [ "$arch" == "armv7l" ]; then
+  echo "[Desktop Entry]
 Name=$AppName
 Comment=Mario's classic game but with coop multiplayer and portals!
-Exec=$HOME/Mari0_rpi/launch.sh
-Icon=$HOME/Mari0_rpi/mari0.png
+Exec=love /opt/Mari0_rpi/mari0.love
+Icon=/opt/Mari0_rpi/mari0.png
 Categories=Game;
-Type=Application
-Terminal=false" > $HOME/.local/share/applications/$AppName.desktop
-
-chmod +x $HOME/Mari0_rpi/love-armhf/love
+Type=Application;
+Terminal=false;" > $HOME/.local/share/applications/$AppName.desktop
+elif [ "$arch" == "aarch64" ]; then
+  pacman -S mari0
+  #Make menu button
+  echo "[Desktop Entry]
+Name=$AppName
+Comment=Mario's classic game but with coop multiplayer and portals!
+Exec=mari0
+Icon=/opt/Mari0_rpi/mari0.png
+Categories=Game;
+Type=Application;
+Terminal=false;" > $HOME/.local/share/applications/$AppName.desktop
+else
+  error "Failed to make desktop entry!"
+fi
 
 #Inform user that the install has finished
 #Check if finished with errors
@@ -65,7 +81,7 @@ if [ "${fwe}" == "1" ]; then
   echo "This script finished with errors, Here are the errors: ${ers}"
   exit 1
 elif [ "${fwe}" == "0" ]; then
-  echo "Successfully installed $AppName. You can find it in %AppLocation."
+  echo "Successfully installed $AppName. You can find it in $AppLocation."
   echo "Closing in 5 seconds."
   sleep 5s
   exit 0
