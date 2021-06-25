@@ -63,7 +63,7 @@ window.title("Pi-Ware")
 #Show latest news message
 NewsMessagefile = open(f"/home/{username}/pi-ware/func/infomessage", "r")
 NewsMessagecontent = NewsMessagefile.read()
-NewsMessage = tk.Label(window, text=f"Latest news:\n{NewsMessagecontent}", font="Arial 9")
+NewsMessage = tk.Label(window, text=f"Latest news:\n{NewsMessagecontent}", font="Arial 11 bold")
 NewsMessage.pack()
 frame = ScrolledFrame(window)
 frame.pack(expand=True, fill="both")
