@@ -77,7 +77,7 @@ def show_desc(app):
     # Icon set for program window
     desc_win.iconphoto(False, p2)
     window.resizable(0, 0)
-    desc_win.title(f"{app}")
+    desc_win.title(f"Change {app} settings")
     desc_win.geometry("320x500")
     window.withdraw()
     desc = open(f"/home/{username}/pi-ware/func/settings/{app}/control", "r")
