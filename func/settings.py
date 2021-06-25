@@ -49,9 +49,6 @@ class ScrolledFrame(tk.Frame):
 
 window = tk.Tk()
 
-quitbutton = tk.Button(window, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command=quit)
-quitbutton.pack()
-
 #Set global var username
 global username
 username = getpass.getuser()
@@ -69,7 +66,7 @@ frame = ScrolledFrame(window)
 frame.pack(expand=True, fill="both")
 
 #Show latest news message
-NewsMessagefile = open(f"/home/{username}/pi-ware/apps/{app}/description.txt", "r")
+NewsMessagefile = open(f"/home/{username}/pi-ware/func/message", "r")
 NewsMessagecontent = NewsMessagefile.read()
 NewsMessage = tk.Label(window, text=NewsMessagecontent, font="Arial 9")
 NewsMessage.pack()
@@ -77,7 +74,7 @@ NewsMessage.pack()
 def show_desc(app):
     global install_script, uninstall_script, desc_win
     desc_win = tk.Toplevel(window)
-    p2 = PhotoImage(file = f'/home/{username}/pi-ware/func/settings/{app}/icon.png')
+    p2 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
     # Icon set for program window
     desc_win.iconphoto(False, p2)
     window.resizable(0, 0)
