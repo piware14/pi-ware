@@ -27,7 +27,7 @@ function warning {
 #Uninstall dependencies
 if [ -f /usr/bin/apt ]; then
   sudo apt remove love
-elif
+elif [ -f /usr/bin/pacman ]; then
   sudo pacman -Rs love
 fi
 
