@@ -88,8 +88,8 @@ def show_desc(app):
     uninstall.pack()
     back_to_menu_button = tk.Button(desc_win, text="BACK", font="Arial 11 bold", width=200, height=2, bg="green", fg="white", command=back_to_menu)
     back_to_menu_button.pack(side = "bottom")
-    ucommand = f"bash '/home/{username}/pi-ware/func/term-run '/home/{username}/pi-ware/func/uninst {app}' 'Uninstalling {app}''"
-    command = f"bash '/home/{username}/pi-ware/func/term-run '/home/{username}/pi-ware/func/inst {app}' 'Installing {app}''"
+    ucommand = f"bash '/home/{username}/pi-ware/func/term-run /home/{username}/pi-ware/func/uninst {app} Uninstalling {app}'"
+    command = f"bash '/home/{username}/pi-ware/func/term-run /home/{username}/pi-ware/func/inst {app} Installing {app}'"
     install_script = "'%s'" % command
     uninstall_script = "'%s'" % ucommand
 
