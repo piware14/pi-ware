@@ -113,13 +113,13 @@ for app in applist:
 
 def install_app():
     global install_script
-    print(f"bash /home/{username}/pi-ware/func/term-run " + install_script)
-    os.system(f"bash /home/{username}/pi-ware/func/term-run " + install_script)
+    print(f"bash /home/{username}/pi-ware/func/term-run '{install_script}'")
+    os.system(f"bash /home/{username}/pi-ware/func/term-run '{install_script}'")
     
 def uninstall_app():
     global uninstall_script
-    print(f"bash /home/{username}/pi-ware/func/term-run " + uninstall_script)
-    os.system(f"bash /home/{username}/pi-ware/func/term-run " + uninstall_script)
+    print(f"bash /home/{username}/pi-ware/func/term-run '{uninstall_script}'")
+    os.system(f"bash /home/{username}/pi-ware/func/term-run '{uninstall_script}'")
     
 def back_to_menu():
     window.deiconify()
