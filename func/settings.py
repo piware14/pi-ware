@@ -7,9 +7,6 @@ import os
 from functools import partial
 import getpass
 
-quitbutton = tk.Button(window, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command=quit)
-quitbutton.pack()
-
 class ScrolledFrame(tk.Frame):
     def __init__(self, parent, vertical=True, horizontal=False):
         super().__init__(parent)
@@ -52,6 +49,9 @@ class ScrolledFrame(tk.Frame):
 
 window = tk.Tk()
 
+quitbutton = tk.Button(window, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command=quit)
+quitbutton.pack()
+
 #Set global var username
 global username
 username = getpass.getuser()
@@ -67,6 +67,12 @@ window.eval('tk::PlaceWindow . center')
 window.title("Pi-Ware Settings")
 frame = ScrolledFrame(window)
 frame.pack(expand=True, fill="both")
+
+#Show latest news message
+NewsMessagefile = open(f"/home/{username}/pi-ware/apps/{app}/description.txt", "r")
+NewsMessagecontent = NewsMessagefile.read()
+NewsMessage = tk.Label(window, text=NewsMessagecontent, font="Arial 9")
+NewsMessage.pack()
 
 def show_desc(app):
     global install_script, uninstall_script, desc_win
@@ -129,5 +135,8 @@ def back_to_menu():
 
 def quit():
     window.destroy()
+
+quitbutton = tk.Button(window, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command=quit)
+quitbutton.pack()
 
 window.mainloop()
