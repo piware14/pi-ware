@@ -2,6 +2,7 @@
 
 #Variables
 AoA="$(ls -1 | wc -l)"
+echo "$AoA"
 
 cd $HOME/pi-ware/apps
 echo "There are currently $AoA, installable apps"
