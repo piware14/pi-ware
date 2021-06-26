@@ -67,14 +67,5 @@ elif [ -f /usr/bin/pacman ];then
 else
   error "Failed to find any package manager."
 fi
-
-#Inform user that the install has finished
-#Check if finished with errors
-if [ "${fwe}" == "1" ]; then
-  echo "The install finished with errors, Here are the errors: ${ers}"
-  exit 1
-elif [ "${fwe}" == "0" ]; then
-  echo "Done!"
-  echo "You can find Pi-Ware in Menu > Accessories > Pi-Ware."
-  exit 0
-fi
+echo "Done!"
+echo "You can find Pi-Ware in Menu > Accessories > Pi-Ware."
