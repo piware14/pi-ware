@@ -14,7 +14,8 @@ VER="1.4"
 #Program name
 AppName="Pi-Ware-Term"
 
-
+#load functions
+source "$HOME/pi-ware/func/api" || error "failed to source $HOME/pi-ware/func/api"
 
 #Main
 #Check if OG_Year and Year are the same.
