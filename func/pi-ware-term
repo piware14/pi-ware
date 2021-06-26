@@ -106,12 +106,3 @@ else
   pi-ware --help
   exit 1
 fi
-
-#Inform user that the script has finished
-#Check if finished with errors
-if [ "${fwe}" == "1" ]; then
-  echo "This script finished with errors, Here are the errors: ${ers}"
-  exit 1
-elif [ "${fwe}" == "0" ]; then
-  exit 0
-fi
