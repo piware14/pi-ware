@@ -1,24 +1,7 @@
 #!/bin/bash
 
-#Variables
-fwe=""
-ers=""
-
-#Functions
-function error {
-  echo -e "\e[91m$1\e[39m"
-  if [ "$2" == "exit" ]; then
-    exit 1
-  else
-    fwe="1"
-    ers+="$1"
-  fi
-}
-
-function warning {
-  echo -e "\e[91m$2\e[39m"
-  sleep "$1"
-}
+#load functions
+source "$HOME/pi-ware/func/api" || error "failed to source $HOME/pi-ware/func/api"
 
 #Main
 echo "Uninstalling Pi-Ware"
