@@ -1,8 +1,8 @@
 
-Lunar client for the Raspberry Pi
+PyEncypter
 
-Website: https://www.lunarclient.com/
+Website: https://github.com/Painadath/PyEncrypter
 
-Thanks to @gl91306 and @oxmc for porting this app to the Raspberry Pi!
-https://github.com/gl91306
-https://github.com/oxmc
+A simple yet Powerfull Word Encrypter 
+Made with Guizero
+by Painadath(or White Lizard)
