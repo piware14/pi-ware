@@ -43,7 +43,7 @@ bash install
 ## Update Pi-Ware
 Pi-Ware will automatically fetch and install updates, and tell you to restart it to apply them.
 
-If you widh to force update pi-ware, run
+If you want to force update pi-ware, run
 ```sh
 bash $HOME/pi-ware/updater
 ```
