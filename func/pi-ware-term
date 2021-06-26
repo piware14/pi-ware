@@ -96,7 +96,7 @@ elif [[ "$1" == "--update" ]]; then
   echo "Checking for updates..."
   echo "To quit at any time press CTRL + C"
   if [ "$2" == "force" ]; then
-    bash "$HOME/pi-ware/updater force"
+    bash "$HOME/pi-ware/updater 'force'"
   else
     bash "$HOME/pi-ware/updater"
   fi
