@@ -5,10 +5,10 @@ wget -q --spider http://google.com
 
 if [ $? -eq 0 ]; then
     #User online
-    
+    internet="1"
 else
     #User offline
-    
+    internet="0"
 fi
 
 #Variables
@@ -17,23 +17,28 @@ PW_REPO="https://github.com/piware14/pi-ware.git"
 LAST_COMMIT="$(git ls-remote "$PW_REPO" | grep refs/heads/main | cut -f 1)"
 
 #Main
-if [ "$(cat "$PW_PREFIX/pi-ware/version")" != "$LAST_COMMIT" ] || [ "$1" == force ]; then
-  if [ "$1" == force ]; then
-    echo "Force updating pi-ware"
+if [ "$internet" == "1" ]; then
+  if [ "$(cat "$PW_PREFIX/pi-ware/version")" != "$LAST_COMMIT" ] || [ "$1" == force ]; then
+    if [ "$1" == force ]; then
+      echo "Force updating pi-ware"
+    else
+      echo "Updating Pi-Ware..."
+    fi
+    cd $HOME/pi-ware
+    rm -rf $HOME/pi-ware/
+    cd $PW_PREFIX/pi-ware
+    git clone "$PW_REPO" $HOME/pi-ware
+    rm -rf $PW_PREFIX/pi-ware/version
+    cd $HOME/pi-ware
+    echo $(git rev-parse main) > "$PW_PREFIX/pi-ware/version"
+    echo "Update complete, Closing in 5 seconds..."
+    sleep 5
+    exit 0
   else
-    echo "Updating Pi-Ware..."
+    echo "Pi-Ware is currently up-to-date."
+    exit 1
   fi
-  cd $HOME/pi-ware
-  rm -rf $HOME/pi-ware/
-  cd $PW_PREFIX/pi-ware
-  git clone "$PW_REPO" $HOME/pi-ware
-  rm -rf $PW_PREFIX/pi-ware/version
-  cd $HOME/pi-ware
-  echo $(git rev-parse main) > "$PW_PREFIX/pi-ware/version"
-  echo "Update complete, Closing in 5 seconds..."
-  sleep 5
-  exit 0
 else
-  echo "Pi-Ware is currently up-to-date."
+  echo "I couldn't detect an internet connection! Please re-connect and try again."
   exit 1
 fi
