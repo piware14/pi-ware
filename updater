@@ -1,5 +1,16 @@
 #!/bin/bash
 
+#Check if connected to internet
+wget -q --spider http://google.com
+
+if [ $? -eq 0 ]; then
+    #User online
+    
+else
+    #User offline
+    
+fi
+
 #Variables
 PW_PREFIX="$HOME/.local/share"
 PW_REPO="https://github.com/piware14/pi-ware.git"
