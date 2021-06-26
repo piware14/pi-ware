@@ -36,9 +36,11 @@ if [ "$internet" == "1" ]; then
     exit 0
   else
     echo "Pi-Ware is currently up-to-date."
+    sleep 2
     exit 1
   fi
 else
   echo "I couldn't detect an internet connection! Please re-connect and try again."
+  sleep 2
   exit 1
 fi
