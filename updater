@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#load functions
+source "$HOME/pi-ware/func/api" || error "failed to source $HOME/pi-ware/func/api"
+
 #Check if connected to internet
 wget -q --spider http://google.com
 
@@ -40,7 +43,7 @@ if [ "$internet" == "1" ]; then
     exit 1
   fi
 else
-  echo "I couldn't detect an internet connection! Please re-connect and try again."
+  error "I couldn't detect an internet connection! Please re-connect and try again."
   sleep 2
   exit 1
 fi
