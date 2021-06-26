@@ -35,9 +35,9 @@ fi
 # flags. default is to launch app.
 if [[ "$1" == "--version" ]] || [[ "$1" == "-v" ]]; then
   echo -e "
-  $(tput setaf 9)###############################################
+  $(tput setaf 9)###############################################################
   $(tput setaf 9)# $(tput setaf 4)$(tput bold)$AppName version $VER by $OG_Creator & The Pi-Ware-Team | $CopyYear $(tput sgr 0)$(tput setaf 9) #
-  $(tput setaf 9)###############################################$(tput sgr 0)
+  $(tput setaf 9)###############################################################$(tput sgr 0)
   "
   exit 0
 elif [[ "$1" == "--help" ]] || [[ "$1" == "-h" ]]; then
@@ -62,9 +62,9 @@ elif [[ "$1" == "--author" ]]; then
 elif [[ "$1" == "--install" ]]; then
   if [[ "$2" != "" ]]; then
     echo -e "
-    $(tput setaf 9)###############################################
+    $(tput setaf 9)###############################################################
     $(tput setaf 9)# $(tput setaf 4)$(tput bold)$AppName version $VER by $OG_Creator & The Pi-Ware-Team | $CopyYear $(tput sgr 0)$(tput setaf 9) #
-    $(tput setaf 9)###############################################$(tput sgr 0)
+    $(tput setaf 9)###############################################################$(tput sgr 0)
     "
     echo "Installing $2"
     echo "To quit at any time press CTRL + C"
@@ -76,9 +76,9 @@ elif [[ "$1" == "--install" ]]; then
 elif [[ "$1" == "--uninstall" ]]; then
   if [[ "$2" != "" ]]; then
     echo -e "
-    $(tput setaf 9)###############################################
+    $(tput setaf 9)###############################################################
     $(tput setaf 9)# $(tput setaf 4)$(tput bold)$AppName version $VER by $OG_Creator & The Pi-Ware-Team | $CopyYear $(tput sgr 0)$(tput setaf 9) #
-    $(tput setaf 9)###############################################$(tput sgr 0)
+    $(tput setaf 9)###############################################################$(tput sgr 0)
     "
     echo "Uninstalling $2"
     echo "To quit at any time press CTRL + C"
