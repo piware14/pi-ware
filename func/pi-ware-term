@@ -10,30 +10,11 @@ Year="$(date +'%Y')"
 #Get the current date.
 todaydate="$(date +'%A,%B,%d,%Y')"
 #Prgram version
-VER="1.3"
+VER="1.4"
 #Program name
 AppName="Pi-Ware-Term"
-#Program version
-CRVER="0.1"
 
-fwe="0"
-ers=""
 
-#Functions
-function error {
-  echo -e "\e[91m$1\e[39m"
-  if [ "$2" == "exit" ]; then
-    exit 1
-  else
-    fwe="1"
-    ers+="$1"
-  fi
-}
-
-function warning {
-  echo -e "\e[91m$2\e[39m"
-  sleep "$1"
-}
 
 #Main
 #Check if OG_Year and Year are the same.
@@ -81,7 +62,7 @@ elif [[ "$1" == "--install" ]]; then
   if [[ "$2" != "" ]]; then
     echo -e "
     $(tput setaf 9)###############################################
-    $(tput setaf 9)# $(tput setaf 4)$(tput bold)$AppName version $CRVER by $OG_Creator | $CopyYear $(tput sgr 0)$(tput setaf 9) #
+    $(tput setaf 9)# $(tput setaf 4)$(tput bold)$AppName version $VER by $OG_Creator | $CopyYear $(tput sgr 0)$(tput setaf 9) #
     $(tput setaf 9)###############################################$(tput sgr 0)
     "
     echo "Installing $2"
@@ -95,7 +76,7 @@ elif [[ "$1" == "--uninstall" ]]; then
   if [[ "$2" != "" ]]; then
     echo -e "
     $(tput setaf 9)###############################################
-    $(tput setaf 9)# $(tput setaf 4)$(tput bold)$AppName version $CRVER by $OG_Creator | $CopyYear $(tput sgr 0)$(tput setaf 9) #
+    $(tput setaf 9)# $(tput setaf 4)$(tput bold)$AppName version $VER by $OG_Creator | $CopyYear $(tput sgr 0)$(tput setaf 9) #
     $(tput setaf 9)###############################################$(tput sgr 0)
     "
     echo "Uninstalling $2"
@@ -103,17 +84,17 @@ elif [[ "$1" == "--uninstall" ]]; then
     bash "$HOME/pi-ware/apps/$2/uninstall"
   else
     error "ERROR: AppName not provided."
-    echo "pi-ware --install AppName | for help run 'pi-ware --help'"
+    echo "pi-ware --uninstall AppName | for help run 'pi-ware --help'"
   fi
 elif [[ "$1" == "--update" ]]; then
   echo -e "
   $(tput setaf 9)###############################################
-  $(tput setaf 9)# $(tput setaf 4)$(tput bold)$AppName version $CRVER by $OG_Creator | $CopyYear $(tput sgr 0)$(tput setaf 9) #
+  $(tput setaf 9)# $(tput setaf 4)$(tput bold)$AppName version $VER by $OG_Creator | $CopyYear $(tput sgr 0)$(tput setaf 9) #
   $(tput setaf 9)###############################################$(tput sgr 0)
   "
   echo "Checking for updates..."
   echo "To quit at any time press CTRL + C"
-  bash "$HOME/pi-ware/updater $3"
+  bash "$HOME/pi-ware/updater"
 elif [[ "$1" == "--uninstall-all" ]]; then
   echo "Uninstalling pi-ware from your system..."
   bash "$HOME/pi-ware/uninstall"
