@@ -89,17 +89,13 @@ elif [[ "$1" == "--uninstall" ]]; then
   fi
 elif [[ "$1" == "--update" ]]; then
   echo -e "
-  $(tput setaf 9)###############################################
+  $(tput setaf 9)#########################################################################
   $(tput setaf 9)# $(tput setaf 4)$(tput bold)$AppName version $VER by $OG_Creator & The Pi-Ware-Team | $CopyYear $(tput sgr 0)$(tput setaf 9) #
   $(tput setaf 9)###############################################$(tput sgr 0)
   "
   echo "Checking for updates..."
   echo "To quit at any time press CTRL + C"
-  if [ "$2" == "force" ]; then
-    bash "$HOME/pi-ware/updater 'force'"
-  else
-    bash "$HOME/pi-ware/updater"
-  fi
+  bash "$HOME/pi-ware/updater"
 elif [[ "$1" == "--uninstall-all" ]]; then
   echo "Uninstalling pi-ware from your system..."
   bash "$HOME/pi-ware/uninstall"
