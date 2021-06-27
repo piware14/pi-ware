@@ -10,7 +10,7 @@ mkdir -p "$PW_PREFIX/share/pi-ware"
 mkdir -p "$PW_PREFIX/bin"
 echo $(git rev-parse main) > "$PW_PREFIX/share/pi-ware/version"
 echo "Creating a desktop entry for Pi-Ware..."
-sudo mkdir -p $HOME/.local/share/applications
+mkdir -p $HOME/.local/share/applications
 echo "[Desktop Entry]
 Name=Pi-Ware
 Comment=Raspberry Pi app store
@@ -20,7 +20,7 @@ Categories=Utility;
 Type=Application
 Terminal=false" > $HOME/.local/share/applications/pi-ware.desktop
 echo "Creating a settings desktop entry for Pi-Ware..."
-sudo mkdir -p $HOME/.local/share/applications
+mkdir -p $HOME/.local/share/applications
 echo "[Desktop Entry]
 Name=Pi-Ware Settings
 Comment=Change some of pi-ware's settings
