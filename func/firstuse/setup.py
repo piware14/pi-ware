@@ -7,12 +7,12 @@ import os
 from functools import partial
 import getpass
 
-#Create window
-window = tk.Tk()
-
 #Set global var username
 global username
 username = getpass.getuser()
+
+#Create window
+window = tk.Tk()
 
 #Set window icon
 p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
@@ -32,7 +32,7 @@ def StoreData(Data, Location):
 
 def retrieve_input():
     inputValue=textBox.get("1.0", "end-1c")
-    StoreData(inputValue, "$HOME/.local/share/pi-ware/passwd")
+    #StoreData(inputValue, "$HOME/.local/share/pi-ware/passwd")
 
 Thankforinstall = tk.Label(window, text="""Thanks for installing pi-ware! \nLet's set some things up.""", font="Arial 12")
 Thankforinstall.pack()
