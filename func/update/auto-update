@@ -1,0 +1,31 @@
+#!/bin/bash
+
+sleep 10 #Wait for internet
+
+#Check if connected to internet
+wget -q --spider http://google.com
+
+if [ $? -eq 0 ]; then
+    #User online
+    internet="1"
+else
+    #User offline
+    internet="0"
+fi
+
+#Variables
+PW_PREFIX="$HOME/.local/share"
+PW_REPO="https://github.com/piware14/pi-ware.git"
+LAST_COMMIT="$(git ls-remote "$PW_REPO" | grep refs/heads/main | cut -f 1)"
+
+#Main
+if [ "$internet" == "1" ]; then
+  if [ "$(cat "$PW_PREFIX/pi-ware/version")" != "$LAST_COMMIT" ]; then
+    python3 $HOME/pi-ware/func/update.py
+    exit 0
+  else
+    echo "I couldn't detect an internet connection! Please re-connect and try again."
+    sleep 2
+    exit 1
+  fi
+fi
