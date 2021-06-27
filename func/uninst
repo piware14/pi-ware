@@ -1,13 +1,12 @@
 #!/bin/bash
 
-export PW_PREFIX="$HOME/.local/share/pi-ware"
-PACMANG="Unkown"
+#load functions
+source "$HOME/pi-ware/func/api" || error "failed to source $HOME/pi-ware/func/api"
 
 if [ -f "$PW_PREFIX/inst-pref" ]; then
-  PACMANG="$(cat $PW_PREFIX/inst-pref)"
   echo "Your package manager is: $PACMANG"
   echo "Uninstalling $1"
-  bash $HOME/pi-ware/apps/$1/uninstall
+  echo $PASSWD | sudo -S bash $HOME/pi-ware/apps/$1/uninstall
   sleep 2
 else
   echo "Your package manager is: $PACMANG"
