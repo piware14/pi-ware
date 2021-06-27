@@ -95,8 +95,8 @@ def show_desc(app):
     button1option = button1optioncommandfile.read()
     button2option = button2optioncommandfile.read()
     #Set button
-    option1 = tk.Button(desc_win, text=f"{button1optiontext}", font="Arial 11 bold", width=200, bg="darkblue", fg="white", command=execute button2option)
-    option2 = tk.Button(desc_win, text=f"{button2optiontext}", font="Arial 11 bold", width=200, bg="red", fg="white", command=execute button2option)
+    option1 = tk.Button(desc_win, text=f"{button1optiontext}", font="Arial 11 bold", width=200, bg="darkblue", fg="white", command=execute 'button2option')
+    option2 = tk.Button(desc_win, text=f"{button2optiontext}", font="Arial 11 bold", width=200, bg="red", fg="white", command=execute 'button2option')
     option1.pack()
     option2.pack()
     back_to_menu_button = tk.Button(desc_win, text="BACK", font="Arial 11 bold", width=200, height=2, bg="green", fg="white", command=back_to_menu)
