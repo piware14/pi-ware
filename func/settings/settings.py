@@ -118,7 +118,7 @@ for app in applist:
 
 def execute(command):
     print(command)
-    os.system(command)
+    #os.system(command)
     
 def back_to_menu():
     window.deiconify()
