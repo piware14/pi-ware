@@ -3,7 +3,7 @@ summary: A appstore for the raspberry pi.
 description: |
     A appstore for the raspberry pi.
 version: 1.0
-icon: ../icons/logo.png
+icon: icons/logo.png
 base: core18
 grade: stable
 confinement: strict
