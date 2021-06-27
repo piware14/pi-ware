@@ -98,7 +98,7 @@ elif [[ "$1" == "--update" ]]; then
   bash "$HOME/pi-ware/updater"
 elif [[ "$1" == "--uninstall-all" ]]; then
   echo "Uninstalling pi-ware from your system..."
-  bash "$HOME/pi-ware/uninstall"
+  bash $HOME/pi-ware/uninstall
   rm -rf $HOME/.local/bin/pi-ware
   echo "Successfully uninstalled pi-ware from your system!"
 else
