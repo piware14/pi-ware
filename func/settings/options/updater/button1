@@ -1,1 +1,1 @@
-echo "Repo='-b dev-branch' > '$HOME/.local/share/pi-ware/branch'"
+echo "-b dev-branch" > '$HOME/.local/share/pi-ware/branch'
