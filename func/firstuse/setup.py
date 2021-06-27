@@ -1,11 +1,27 @@
 # Pi-Ware setup window
 
+from tkinter import *
+from tkinter.ttk import *
 import tkinter as tk
 import os
+from functools import partial
+import getpass
 
+#Create window
 window = tk.Tk()
+
+#Set global var username
+global username
+username = getpass.getuser()
+
+#Set window icon
+p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
+window.iconphoto(False, p1)
+
+#Set window title, size, and location
 window.title("Setup Pi-Ware")
 window.geometry("300x200")
+window.eval('tk::PlaceWindow . center')
 
 heading = tk.Label(window, text="""Setup Pi-Ware""", font="Arial 15 bold")
 heading.pack()
