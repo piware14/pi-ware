@@ -14,7 +14,7 @@ rm -rf $HOME/.local/share/applications/pi-ware.desktop || error "Unable to remov
 #Remove pi-ware auto-updater
 echo "Removing Pi-Ware auto-updater"
 rm -rf $HOME/.config/autostart/update-pi-ware.desktop || error "Unable to remove $HOME/.config/autostart/update-pi-ware.desktop"
-#Remove pi-ware update-files
+#Remove saved pi-ware info
 echo "Removing Pi-Ware updater files..."
 rm -rf $HOME/.local/share/pi-ware || error "Unable to remove $HOME/.local/share/pi-ware"
 #Remove Pi-Ware's folder
