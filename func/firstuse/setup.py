@@ -5,7 +5,7 @@ import os
 
 window = tk.Tk()
 window.title("Setup Pi-Ware")
-window.geometry("100x200")
+window.geometry("300x200")
 
 heading = tk.Label(window, text="""Setup Pi-Ware""", font="Arial 15 bold")
 heading.pack()
