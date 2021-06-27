@@ -21,7 +21,7 @@ window.geometry("320x500")
 window.eval('tk::PlaceWindow . center')
 window.title("Pi-Ware")
 #Show latest news message
-NewsMessagefile = open(f"/home/{username}/pi-ware/func/infomessage", "r")
+NewsMessagefile = open(f"/home/{username}/pi-ware/func/info/infomessage", "r")
 NewsMessagecontent = NewsMessagefile.read()
 NewsMessage = tk.Label(window, text=f"Latest news:\n{NewsMessagecontent}", font="Arial 11 bold")
 NewsMessage.pack()
@@ -47,8 +47,8 @@ def show_desc(apt,*args):
     uninstall.pack()
     back_to_menu_button = tk.Button(desc_win, text="BACK", font="Arial 11 bold", width=200, height=2, bg="green", fg="white", command=back_to_menu)
     back_to_menu_button.pack(side = "bottom")
-    ucommand = f"bash /home/{username}/pi-ware/func/uninst '{app}'' 'Uninstalling {app}"
-    command = f"bash /home/{username}/pi-ware/func/inst '{app}'' 'Installing {app}"
+    ucommand = f"bash /home/{username}/pi-ware/func/term/uninst '{app}'' 'Uninstalling {app}"
+    command = f"bash /home/{username}/pi-ware/func/term/inst '{app}'' 'Installing {app}"
     install_script = "'%s'" % command
     uninstall_script = "'%s'" % ucommand
 
@@ -76,13 +76,13 @@ for app in applist:
     exec("""tree.insert('', 'end', text=f"{app}",image=""" + appb + """_button)""")
 def install_app():
     global install_script
-    print(f"bash /home/{username}/pi-ware/func/term-run {install_script}")
-    os.system(f"bash /home/{username}/pi-ware/func/term-run {install_script}")
+    #print(f"bash /home/{username}/pi-ware/func/term/term-run {install_script}")
+    os.system(f"bash /home/{username}/pi-ware/func/term/term-run {install_script}")
 
 def uninstall_app():
     global uninstall_script
-    print(f"bash /home/{username}/pi-ware/func/term-run {uninstall_script}")
-    os.system(f"bash /home/{username}/pi-ware/func/term-run {uninstall_script}")
+    #print(f"bash /home/{username}/pi-ware/func/term/term-run {uninstall_script}")
+    os.system(f"bash /home/{username}/pi-ware/func/term/term-run {uninstall_script}")
 
 def back_to_menu():
     window.deiconify()
