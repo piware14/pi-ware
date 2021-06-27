@@ -32,7 +32,6 @@ def StoreData(Data, Location):
 
 def retrieve_input():
     inputValue=textBox.get("1.0", "end-1c")
-    print(inputValue)
     StoreData(inputValue, "$HOME/.local/share/pi-ware/passwd")
 
 Thankforinstall = tk.Label(window, text="""Thanks for installing pi-ware! \nLet's set some things up.""", font="Arial 12")
