@@ -5,7 +5,7 @@ import os
 
 window = tk.Tk()
 window.title("Setup Pi-Ware")
-window.geometry("500x500")
+window.geometry("100x200")
 
 heading = tk.Label(window, text="""Setup Pi-Ware""", font="Arial 15 bold")
 heading.pack()
@@ -25,7 +25,7 @@ Thankforinstall.pack()
 description = tk.Label(window, text="""First enter your password:""", font="Arial 12")
 description.pack()
 
-textBox=tk.Text(window, height=2, width=10)
+textBox=tk.Text(window, height=1, width=10)
 textBox.pack()
 
 buttonCommit=tk.Button(window, height=1, width=10, text="Enter", command=lambda: retrieve_input())
