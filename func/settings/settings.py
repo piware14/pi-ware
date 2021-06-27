@@ -101,14 +101,6 @@ def show_desc(app):
     option2.pack()
     back_to_menu_button = tk.Button(desc_win, text="BACK", font="Arial 11 bold", width=200, height=2, bg="green", fg="white", command=back_to_menu)
     back_to_menu_button.pack(side = "bottom")
-    ucommand = f"bash '/home/{username}/pi-ware/func/term/uninst' %s" % app
-    command = f"bash '/home/{username}/pi-ware/func/term/inst' %s" % app
-    install_script = "'%s'" % command
-    uninstall_script = "'%s'" % ucommand
-
-def back_to_menu(window, parent, app=None):
-    parent.destroy()
-    window.deiconify()
 
 ap = next(os.walk(f"/home/{username}/pi-ware/func/settings/options/"))[1]
 applist = sorted(ap)
@@ -127,16 +119,6 @@ for app in applist:
 def execute(command):
     print(command)
     os.system(command)
-
-def install_app():
-    global install_script
-    print("lxterminal -e " + install_script)
-    os.system("lxterminal -e " + install_script)
-    
-def uninstall_app():
-    global uninstall_script
-    print("lxterminal -e " + uninstall_script)
-    os.system("lxterminal -e " + uninstall_script)
     
 def back_to_menu():
     window.deiconify()
