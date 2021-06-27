@@ -10,8 +10,8 @@ window.geometry("500x500")
 heading = tk.Label(window,text="""Setup Pi-Ware""",font="Arial 15 bold")
 heading.pack()
 
-def StoreData():
-    os.system("echo '' > $HOME/.local/share/pi-ware/passwd")
+def StoreData(Data, Location):
+    os.system(f"echo '{Data}' > {Location}")
     window.destroy()
 
 def retrieve_input():
@@ -24,7 +24,7 @@ Thankforinstall.pack()
 description = tk.Label(window,text="""First enter your password:""",font="Arial 12")
 description.pack()
 
-textBox=Text(window, height=2, width=10)
+textBox=tk.Text(window, height=2, width=10)
 textBox.pack()
 
 buttonCommit=Button(root, height=1, width=10, text="Enter", command=lambda: retrieve_input())
