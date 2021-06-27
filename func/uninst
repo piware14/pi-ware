@@ -6,7 +6,7 @@ source "$HOME/pi-ware/func/api" || error "failed to source $HOME/pi-ware/func/ap
 if [ -f "$PW_PREFIX/share/pi-ware/inst-pref" ]; then
   echo "Your package manager is: $PACMANG"
   echo "Uninstalling $1"
-  echo $PASSWD | sudo -S bash $HOME/pi-ware/apps/$1/uninstall
+  bash $HOME/pi-ware/apps/$1/uninstall
   sleep 2
 else
   echo "Your package manager is: $PACMANG"
