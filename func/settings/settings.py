@@ -95,9 +95,9 @@ def show_desc(app):
     button2optioncommandfile = open(f"/home/{username}/pi-ware/func/settings/options/{app}/button2", "r")
     button2option = button2optioncommandfile.read()
     #Set button
-    option1 = tk.Button(desc_win, text=f"{button1optiontext}", font="Arial 11 bold", width=200, bg="darkblue", fg="white", command={button1option})
+    option1 = tk.Button(desc_win, text=f"{button1optiontext}", font="Arial 11 bold", width=200, bg="darkblue", fg="white", command=os.system({button1option}))
     option1.pack()
-    option2 = tk.Button(desc_win, text=f"{button2optiontext}", font="Arial 11 bold", width=200, bg="red", fg="white", command={button1option})
+    option2 = tk.Button(desc_win, text=f"{button2optiontext}", font="Arial 11 bold", width=200, bg="red", fg="white", command=os.system({button2option}))
     option2.pack()
     back_to_menu_button = tk.Button(desc_win, text="BACK", font="Arial 11 bold", width=200, height=2, bg="green", fg="white", command=back_to_menu)
     back_to_menu_button.pack(side = "bottom")
