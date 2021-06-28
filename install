@@ -49,6 +49,7 @@ cp -r "pi-ware-term" "$HOME/.local/bin/pi-ware"
 echo "Added pi-ware-commands to Terminal!"
 echo "Please restart terminal to apply changes."
 #Set aarch
+echo "Your aarch type is: $(uname -m)"
 if [ "$(uname -m)" == "armv7l" ]; then
   echo "armv7l" > $HOME/.local/share/pi-ware/arch
 elif [ "$(uname -m)" == "aarch64" ]; then
