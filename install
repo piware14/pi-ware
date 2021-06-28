@@ -49,9 +49,9 @@ cp -r "pi-ware-term" "$HOME/.local/bin/pi-ware"
 echo "Added pi-ware-commands to Terminal!"
 echo "Please restart terminal to apply changes."
 #Set aarch
-if [ "$uname -m" == "armv7l" ]; then
+if [ "$(uname -m)" == "armv7l" ]; then
   echo "armv7l" > $HOME/.local/share/pi-ware/arch
-elif [ "$uname -m" == "aarch64" ]; then
+elif [ "$(uname -m)" == "aarch64" ]; then
   echo "aarch64" > $HOME/.local/share/pi-ware/arch
 else
   warning "2" "Unable to detect arch type! Continuing install..."
