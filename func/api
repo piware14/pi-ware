@@ -4,7 +4,8 @@ fwe="0"
 ers=""
 
 #User's password
-PASSWD="$(cat $HOME/.local/share/pi-ware/passwd)"
+#Disable this for now.
+#PASSWD="$(cat $HOME/.local/share/pi-ware/passwd)"
 
 #Functions
 function error {
