@@ -1,34 +1,9 @@
 #!/bin/bash
 
-#load functions
-source "$HOME/pi-ware/func/api" || error "failed to source $HOME/pi-ware/func/api"
+export PW_PREFIX="$HOME/.local"
 
-#Main
-echo "Uninstalling Pi-Ware"
-#Remove pi-ware utility
-echo "Removing Pi-Ware from terminal"
-rm -rf $HOME/.local/bin/pi-ware || error "Unable to remove $HOME/.local/bin/pi-ware"
-#Remove pi-ware desktop entry
-echo "Removing Pi-Ware from applications"
-rm -rf $HOME/.local/share/applications/pi-ware.desktop || error "Unable to remove $HOME/.local/share/applications/pi-ware.desktop"
-#Remove pi-ware auto-updater
-echo "Removing Pi-Ware auto-updater"
-rm -rf $HOME/.config/autostart/update-pi-ware.desktop || error "Unable to remove $HOME/.config/autostart/update-pi-ware.desktop"
-#Remove saved pi-ware info
-echo "Removing Pi-Ware updater files..."
-rm -rf $HOME/.local/share/pi-ware || error "Unable to remove $HOME/.local/share/pi-ware"
-#Remove Pi-Ware's folder
-echo "Removing Pi-Ware folder..."
-rm -rf $HOME/pi-ware || error "Unable to remove $HOME/pi-ware"
-
-#Inform user that the uninstall has finished
-#Check if finished with errors
-if [ "${fwe}" == "1" ]; then
-  echo "This script finished with errors, Here are the errors: ${ers}"
-  exit 1
-elif [ "${fwe}" == "0" ]; then
-  echo "Successfully uninstalled pi-ware."
-  echo "Closing in 5 seconds."
-  sleep 5s
-  exit 0
-fi
+echo "Uninstalling Pi-Ware..."
+rm -rf "$PW_PREFIX/share/pi-ware"
+rm "$PW_PREFIX/bin/pi-ware"
+rm "$PW_PREFIX/share/applications/pi-ware.desktop"
+echo "Successfully uninstalled Pi-Ware. Come back soon!"

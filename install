@@ -1,71 +1,48 @@
 #!/bin/bash
 
-#load functions
-source "$HOME/pi-ware/func/api" || error "failed to source $HOME/pi-ware/func/api"
+export PW_ACTION="$1"
+export PW_PREFIX="$HOME/.local"
 
-#Main
-echo "Installing pi-ware..."
-#Make required directory for updater
+install_echo()
+{
+	if [[ "$PW_ACTION" != "update" ]]; then
+		echo -e "$1"
+	fi
+}
+
+# If executed directly from outside the repo
+if [[ ! -d ".git" ]]; then
+	git clone https://github.com/zachthecoder14/pi-ware.git
+	cd pi-ware
+fi
+
+install_echo "Installing dependencies..."
+sudo apt install -qq -y git python3 python3-tk
+
+install_echo "Installing Pi-Ware..."
+mkdir -p "$PW_PREFIX/share/applications"
 mkdir -p "$PW_PREFIX/share/pi-ware"
+mkdir -p "$PW_PREFIX/share/pixmaps"
 mkdir -p "$PW_PREFIX/bin"
+rsync -r ./apps/ "$PW_PREFIX/share/pi-ware" --delete
+rsync ./{uninstall,install,update} "$PW_PREFIX/share/pi-ware"
+rsync ./store.py "$PW_PREFIX/bin/pi-ware"
+rsync ./dist_icon.png "$PW_PREFIX/share/pixmaps/pi-ware.png"
+chmod a+x "$PW_PREFIX/bin/pi-ware"
 echo $(git rev-parse main) > "$PW_PREFIX/share/pi-ware/version"
-echo "Creating a desktop entry for Pi-Ware..."
-mkdir -p $HOME/.local/share/applications
-echo "[Desktop Entry]
+
+if [[ "$PW_PREFIX" == "$HOME/.local" ]]; then
+	echo "export PATH=$PW_PREFIX/bin:$PATH" >> $HOME/.bashrc
+fi
+
+install_echo "Creating a desktop entry for Pi-Ware..."
+install_echo "[Desktop Entry]
 Name=Pi-Ware
 Comment=Raspberry Pi app store
-Exec=python3 $HOME/pi-ware/store.py
-Icon=$HOME/pi-ware/icons/logo.png
+Exec=sudo python3 $PW_PREFIX/bin/pi-ware
+Icon=$PW_PREFIX/share/pixmaps/pi-ware.png
 Categories=Utility;
 Type=Application
-Terminal=false" > $HOME/.local/share/applications/pi-ware.desktop
-echo "Creating a settings desktop entry for Pi-Ware..."
-mkdir -p $HOME/.local/share/applications
-echo "[Desktop Entry]
-Name=Pi-Ware Settings
-Comment=Change some of pi-ware's settings
-Exec=python3 $HOME/pi-ware/func/settings/settings.py
-Icon=$HOME/pi-ware/icons/logo.png
-Categories=Utility;
-Type=Application
-Terminal=false" > $HOME/.local/share/applications/pi-ware-settings.desktop
-echo "Creating an auto updater for Pi-Ware..."
-mkdir -p $HOME/.config/autostart/
-echo "[Desktop Entry]
-Name=Pi-Ware-Auto-Updater
-Comment=Auto updater for pi-ware
-Exec=bash $HOME/pi-ware/func/update/auto-update
-Icon=$HOME/pi-ware/icons/logo.png
-Categories=Utility;
-Type=Application
-Terminal=false" > $HOME/.config/autostart/update-pi-ware.desktop
-#Create pi-ware utility
-cd $HOME
-if [ -d "$HOME/.local" ]; then
- mkdir -p "$HOME/.local/bin"
-fi
-sudo chmod +x $HOME/pi-ware/func/term
-cp -r "pi-ware-term" "$HOME/.local/bin/pi-ware"
-echo "Added pi-ware-commands to Terminal!"
-echo "Please restart terminal to apply changes."
-#Set aarch
-echo "Your aarch type is: $(uname -m)"
-if [ "$(uname -m)" == "armv7l" ]; then
-  echo "armv7l" > $HOME/.local/share/pi-ware/arch
-elif [ "$(uname -m)" == "aarch64" ]; then
-  echo "aarch64" > $HOME/.local/share/pi-ware/arch
-else
-  warning "2" "Unable to detect arch type! Continuing install..."
-fi
-#Set package manager
-if [ -f /usr/bin/apt ];then
-  echo "Package manager is: apt"
-  echo "apt-get -y" > "$PW_PREFIX/share/pi-ware/inst-pref"
-elif [ -f /usr/bin/pacman ];then
-  echo "Package manager is: pacman"
-  echo "pacman -S" > "$PW_PREFIX/share/pi-ware/inst-pref"
-else
-  error "Failed to find any package manager."
-fi
-echo "Done!"
-echo "You can find Pi-Ware in Menu > Accessories > Pi-Ware."
+Terminal=false" > "$PW_PREFIX/share/applications/pi-ware.desktop"
+install_echo "Done! You can find Pi-Ware in Menu > Accessories > Pi-Ware."
+install_echo "Note: you may need to restart your shell/terminal to be able to run Pi-Ware."
