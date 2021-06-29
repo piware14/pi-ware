@@ -44,8 +44,8 @@ cd $HOME
 if [ -d "$HOME/.local" ]; then
  mkdir -p "$HOME/.local/bin"
 fi
-sudo chmod +x $HOME/pi-ware/func/term
-cp -r "pi-ware-term" "$HOME/.local/bin/pi-ware"
+sudo chmod +x $HOME/pi-ware/func/term/pi-ware-term
+cp -r "$HOME/pi-ware/func/term/pi-ware-term" "$HOME/.local/bin/pi-ware"
 echo "Added pi-ware-commands to Terminal!"
 echo "Please restart terminal to apply changes."
 #Set aarch
