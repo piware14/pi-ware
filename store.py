@@ -3,6 +3,8 @@ from tkinter import *
 from tkinter.ttk import *
 import tkinter as tk
 import os
+import json
+import webbrowser
 from functools import partial
 import getpass
 
@@ -15,6 +17,28 @@ username = getpass.getuser()
 p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
 window.iconphoto(False, p1)
 
+#Classes
+class WrapLabel(tk.Label):
+    def __init__(self, parent, justify=None, font=None, *args, **kwargs):
+        super().__init__(parent,
+            wraplength=315,
+            font=(font or "Arial 9"),
+            justify=(justify or "center"),
+        *args, **kwargs)
+
+class HyperLink(tk.Label):
+	def __init__(self, parent, url, text=None, fg=None, cursor=None, *args, **kwargs):
+		self.url = url;
+		super().__init__(parent, text=(text or url),
+            fg=(fg or "blue"),
+            cursor=(cursor or "hand2"),
+            font="Arial 9",
+        *args, **kwargs)
+		self.bind("<Button-1>", self.web_open);
+
+	def web_open(self, event):
+		return webbrowser.open(self.url);
+
 #Main
 window.resizable(0, 0)
 window.geometry("320x500")
@@ -26,6 +50,22 @@ NewsMessagecontent = NewsMessagefile.read()
 NewsMessage = tk.Label(window, text=f"Latest news:\n{NewsMessagecontent}", font="Arial 11 bold")
 NewsMessage.pack()
 def show_desc(apt,*args):
+    app_website = None
+    with open(f"{apps_dir}/{app}/meta.json", "r") as fd:
+        tmp = fd.read().replace("\\\n", "").replace("\n", "").replace("\t", "")
+        meta = json.loads(tmp)
+        app_desc = WrapLabel(desc_win, text=f"""\n{meta["description"]}""")
+        app_desc.pack()
+        if "attr" in meta:
+            app_attr = WrapLabel(desc_win, text=f"""\nSubmitted by: {meta["attr"]}""")
+            app_attr.pack()
+        if "website" in meta:
+            app_website = HyperLink(desc_win, f"""{meta["website"]}""");
+            app_website.pack()
+
+    back.pack(side="bottom")
+    uninstall.pack(side="bottom")
+    install.pack(side="bottom")
     item = tree.selection()[0]
     app = tree.item(item,"text")
     global install_script, uninstall_script, desc_win
