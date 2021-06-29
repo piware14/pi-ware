@@ -30,5 +30,9 @@
     {
         "name": "APT Cleaner",
         "author": "@GabeTheCoder"
+    },
+    {
+        "name": "Discord",
+        "author": "@oxmc"
     }
 ]
