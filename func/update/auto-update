@@ -24,8 +24,11 @@ if [ "$internet" == "1" ]; then
     python3 $HOME/pi-ware/func/update.py
     exit 0
   else
-    echo "I couldn't detect an internet connection! Please re-connect and try again."
-    sleep 2
+    echo "Pi-ware is currently Up-To-Date"
     exit 1
   fi
+else
+  echo "I couldn't detect an internet connection! Please re-connect and try again."
+  sleep 2
+  exit 1
 fi
