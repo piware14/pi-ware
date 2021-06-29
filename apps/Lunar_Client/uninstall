@@ -30,10 +30,10 @@ ers=""
 cd $HOME
 
 #Remove Lunar-Client folder
-Sudo rm -rf $HOME/.lunarclient || error "unable to remove $HOME/.lunarclient!"
+sudo rm -rf $HOME/.lunarclient || error "unable to remove $HOME/.lunarclient!"
 
 #Remove AppImage
-Sudo rm -rf $HOME/lunarclient-2.7.0-armv7l.AppImage || error "Unable to remove $HOME/lunarclient-2.7.0-armv7l.AppImage!"
+sudo rm -rf $HOME/lunarclient-2.7.0-armv7l.AppImage || error "Unable to remove $HOME/lunarclient-2.7.0-armv7l.AppImage!"
 
 rm -rf lunarclient-2.7.3b-armv7l.AppImage
 rm -rf lunarclient-2.7.3a-armv7l.AppImage
