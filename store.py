@@ -20,11 +20,23 @@ window.resizable(0, 0)
 window.geometry("320x500")
 window.eval('tk::PlaceWindow . center')
 window.title("Pi-Ware")
+
+# Window tabs
+tab_control = Notebook(window)
+apps_tab = Frame(tab_control)
+news_tab = Frame(tab_control)
+info_tab = Frame(tab_control)
+tab_control.add(apps_tab, text="Apps")
+tab_control.add(news_tab, text="News")
+tab_control.add(info_tab, text="Info")
+tab_control.pack(expand=0, fill="both")
+
 #Show latest news message
 NewsMessagefile = open(f"/home/{username}/pi-ware/func/info/infomessage", "r")
 NewsMessagecontent = NewsMessagefile.read()
-NewsMessage = tk.Label(window, text=f"Latest news:\n{NewsMessagecontent}", font="Arial 11 bold")
+NewsMessage = tk.Label(news_tab, text=f"Latest news:\n{NewsMessagecontent}", font="Arial 11 bold")
 NewsMessage.pack()
+
 def show_desc(apt,*args):
     item = tree.selection()[0]
     app = tree.item(item,"text")
@@ -55,7 +67,8 @@ def show_desc(apt,*args):
 def back_to_menu(window, parent, app=None):
     parent.destroy()
     window.deiconify()
-tree = Treeview(window)
+
+tree = Treeview(apps_tab)
 tree.pack(expand=YES, fill=BOTH)
 tree.column("#0", minwidth=0, width=320, stretch=NO)
 s = Style()
@@ -74,6 +87,7 @@ for app in applist:
     tree.bind("<<TreeviewSelect>>", partial(show_desc,app))
     exec(appb + """_button =  PhotoImage(file=f'/home/{username}/pi-ware/apps/{app}/icon.png')""")
     exec("""tree.insert('', 'end', text=f"{app}",image=""" + appb + """_button)""")
+
 def install_app():
     global install_script
     #print(f"bash /home/{username}/pi-ware/func/term/term-run {install_script}")
@@ -94,6 +108,6 @@ def quit():
     window.destroy()
 
 quitbutton = tk.Button(window, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command=quit)
-quitbutton.pack()
+quitbutton.pack(side="bottom")
 
 window.mainloop()
