@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #load functions
-source "$HOME/pi-ware/func/api" || error "failed to source $HOME/pi-ware/func/api"
+source "$HOME/pi-ware/func/api" || echo "failed to source $HOME/pi-ware/func/api"
 
 #Main
 echo "Installing pi-ware..."
@@ -9,8 +9,8 @@ echo "Installing pi-ware..."
 mkdir -p "$PW_PREFIX/share/pi-ware"
 echo $(git rev-parse main) > "$PW_PREFIX/share/pi-ware/version"
 echo "Creating a desktop entry for Pi-Ware..."
-mkdir -p /usr/local/share/applications
-echo "[Desktop Entry]
+sudo mkdir -p /usr/local/share/applications
+sudo echo "[Desktop Entry]
 Name=Pi-Ware
 Comment=Raspberry Pi app store
 Exec=python3 $HOME/pi-ware/store.py
@@ -19,8 +19,7 @@ Categories=Utility;
 Type=Application
 Terminal=false" > /usr/local/share/applications/pi-ware.desktop
 echo "Creating a settings desktop entry for Pi-Ware..."
-mkdir -p /usr/local/share/applications
-echo "[Desktop Entry]
+sudo echo "[Desktop Entry]
 Name=Pi-Ware Settings
 Comment=Change some of pi-ware's settings
 Exec=python3 $HOME/pi-ware/func/settings/settings.py
@@ -40,8 +39,8 @@ Type=Application
 Terminal=false" > $HOME/.config/autostart/update-pi-ware.desktop
 #Create pi-ware utility
 cd $HOME
-if [ -d "$HOME/.local" ]; then
- mkdir -p "$HOME/.local/bin"
+if [ -d "/usr/local/bin" ]; then
+ mkdir -p "/usr/local/bin"
 fi
 sudo cp -r "$HOME/pi-ware/func/term/pi-ware-term" "/usr/local/bin/pi-ware"
 sudo chmod +x /usr/local/bin/pi-ware
