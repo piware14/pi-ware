@@ -1,0 +1,73 @@
+#!/bin/bash
+
+#Variables
+AppName="Orthorobot"
+AppLocation="Menu > games > $AppName"
+export PW_PREFIX="$HOME/.local/share/pi-ware"
+fwe="0"
+ers=""
+
+#Functions
+function error {
+  echo -e "\e[91m$1\e[39m"
+  if [ "$2" == "exit" ]; then
+    exit 1
+  else
+    fwe="1"
+    ers+="$1"
+  fi
+}
+
+function warning {
+  echo -e "\e[91m$2\e[39m"
+  sleep "$1"
+}
+
+mkdir $HOME/.apps
+#Main
+echo "Installing $AppName"
+#Clone repo
+git clone https://github.com/IsaacMvmv/Robot_rpi $HOME/.apps/Robot_rpi || error "Unable to clone ${AppName}'s repo!" exit
+#Cd into repo
+cd $HOME/.apps/Robot_rpi || error "Unable to cd into Robot_rpi!"
+
+#Download love 10
+git clone https://github.com/IsaacMvmv/love_10-armhf
+
+#change perms
+chmod +x launch.sh
+chmod +x love_10-armhf/love
+
+#Install dependencies based on package manager
+if [ -f /usr/bin/apt ];then
+  sudo apt install libc6 libphysfs1 libfreetype6 libgcc1 libluajit-5.1-2 libmodplug1 libmpg123-0 libogg0 libopenal1 libsdl2-2.0-0 libstdc++6 libtheora0 libvorbisfile3 zlib1g
+elif [ -f /usr/bin/pacman ];then
+  sudo pacman -S --needed desktop-file-utils freetype2 hicolor-icon-theme libmodplug libtheora libvorbis luajit mpg123 openal sdl2 shared-mime-info physfs
+else
+  error "Failed to find any package manager."
+  fwe="1"
+fi
+
+#Make menu button
+echo "Creating a desktop entry for ${Appame}..."
+mkdir -p $HOME/.local/share/applications
+echo "[Desktop Entry]
+Name=$AppName
+Comment=Some robot game with interdimensional puzzles :D
+Exec=$HOME/.apps/Robot_rpi/launch.sh
+Icon=$HOME/.apps/Robot_rpi/robot.png
+Categories=Game;
+Type=Application
+Terminal=false" > $HOME/.local/share/applications/$AppName.desktop
+
+#Inform user that the install has finished
+#Check if finished with errors
+if [ "${fwe}" == "1" ]; then
+  echo "This script finished with errors, Here are the errors: ${ers}"
+  exit 1
+elif [ "${fwe}" == "0" ]; then
+  echo "Successfully installed $AppName. You can find it in $AppLocation."
+  echo "Closing in 5 seconds."
+  sleep 5s
+  exit 0
+fi
