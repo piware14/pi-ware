@@ -118,8 +118,6 @@ def show_desc(apt,*args):
 	else:
 	     Web = "True"
 
-	if Web == "True":
-		print("g")
 
     install = tk.Button(desc_win, text="INSTALL", font="Arial 11 bold", width=200, bg="darkblue", fg="white", command=install_app)
     install.pack()
