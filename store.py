@@ -119,9 +119,9 @@ def show_desc(apt,*args):
 	     Web = "True"
 
 	if Web == "True":
-        #Add website from file
+		#Add website from file
 		Websitefile = open(f"/home/{username}/pi-ware/apps/{app}/website", "r")
-    	websiteurl = Websitefile.read()
+		websiteurl = Websitefile.read()
 		Websitelabel = HyperLink(desc_win, f"""{websiteurl}""");
 		Websitelabel.pack()
 
