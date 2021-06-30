@@ -3,10 +3,6 @@ PW_PREFIX="$HOME/.local"
 fwe="0"
 ers=""
 
-#User's password
-#Disable this for now.
-#PASSWD="$(cat $HOME/.local/share/pi-ware/passwd)"
-
 #Functions
 function error {
   echo -e "\e[91m$1\e[39m"

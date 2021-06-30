@@ -1,0 +1,71 @@
+#!/bin/bash
+
+#Pi-Ware PackageManger script
+#Written by: oxmc
+
+#Load functions and variables
+source "$HOME/pi-ware/func/api" || echo "failed to source $HOME/pi-ware/func/api"
+
+reduceapt() { #remove unwanted lines from apt output
+  grep -v "apt does not have a stable CLI interface.\|Reading package lists...\|Building dependency tree\|Reading state information...\|Need to get\|After this operation,\|Get:\|Fetched\|Selecting previously unselected package\|Preparing to unpack\|Unpacking \|Setting up \|Processing triggers for "
+}
+
+#Main
+#Get OS name
+sed '2!d' /etc/os-release | tail -c 20 | head -c 18 > $HOME/pi-ware/.logs/$todaydate-install.log
+
+#$1 is the mode i.e install uninstall etc.
+if [ -z "$1" ]; then
+  error "No mode given! Exiting..."
+else
+  if [ "$1" == "install" ]; then
+    Mode="install"
+  elif [ "$1" == "uninstall" ]; then
+    Mode="remove"
+  else
+    error "Unkown mode: '$1'"   
+  fi
+  if [ -z "$2" ]; then
+    error "No packages given! Exiting..."
+  else
+    echo "PackMang: apt"
+    echo "Mode: $Mode"
+    echo "Packages to $Mode: $2"
+    echo "Waiting for apt-locks..."
+    while true
+    do
+      if [ -z "$(lsof /var/lib/dpkg/lock)" ]; then
+        break
+      fi
+    done
+    #sudo apt update
+    echo -e "Running \e[4msudo a\e[0mp\e[4mt u\e[0mp\e[4mdate\e[0m..."
+    output="$(sudo LANG=C LC_ALL=C apt update 2>&1)"
+    exitcode=$?
+
+    #inform user about autoremovable packages
+    if [ ! -z "$(echo "$output" | grep 'autoremove to remove them' )" ];then
+      echo -e "\e[33mSome packages are unnecessary.\e[39m Please consider running \e[4msudo apt autoremove\e[0m."
+    fi
+    
+    #inform user packages are upgradeable
+    if [ ! -z "$(echo "$output" | grep 'packages can be upgraded' )" ];then
+      echo -e "\e[33mSome packages can be upgraded.\e[39m Please consider running \e[4msudo apt full-upgrade\e[0m."
+    fi
+    
+    #exit on apt error
+    errors="$(echo "$output" | grep '^[(W)|(E)|(Err]:')"
+    if [ $exitcode != 0 ] || [ ! -z "$errors" ];then
+      echo -e "\e[91mpkg-install failed to run \e[4msudo apt update\e[0m\e[39m!"
+      echo -e "APT reported these errors:\n\e[91m$errors\e[39m"
+      exit 1
+    fi
+    
+    #format PKG_LIST - remove double spaces, preceding spaces, and trailing spaces.
+    PKG_LIST="$(echo "$PKG_LIST" | sed 's/  / /g' | sed 's/^ //g' | sed 's/ $//g')"
+    
+    echo "Installing packages..."
+    sudo apt $Mode -y $2 | reduceapt
+    echo "Done"
+  fi
+fi

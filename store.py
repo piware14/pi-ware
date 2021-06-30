@@ -26,6 +26,18 @@ window = tk.Tk()
 global username
 username = getpass.getuser()
 
+#Check if dev files exist
+filepath = f"/home/{username}/pi-ware/.dev"
+try:
+    file_tst = open(filepath)
+    file_tst.close()
+ 
+except FileNotFoundError:
+    IsDev = "False"
+
+else:
+     IsDev = "True"
+
 #Set window icon
 p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
 window.iconphoto(False, p1)
@@ -41,10 +53,27 @@ tab_control = Notebook(window)
 apps_tab = Frame(tab_control)
 news_tab = Frame(tab_control)
 credits_tab = Frame(tab_control)
+DEV_tab = Frame(tab_control)
 tab_control.add(apps_tab, text="Apps")
 tab_control.add(news_tab, text="News")
 tab_control.add(credits_tab, text="Credits")
+if IsDev == "True":
+    tab_control.add(DEV_tab, text="Dev")
 tab_control.pack(expand=0, fill="both")
+
+#Show DEV stuff
+PiWareVersionFile = open(f"/home/{username}/.local/share/pi-ware/version", "r")
+PiWareVersioncontent = PiWareVersionFile.read()
+
+files = folders = 0
+for _, dirnames, filenames in os.walk(f"/home/{username}/pi-ware/apps"):
+  # ^ this idiom means "we won't be using this value"
+    files += len(filenames)
+    folders += len(dirnames)
+    InstallibleApps = "{:,} installible Apps".format(folders)
+
+PiWareVersion = tk.Label(DEV_tab, text=f"Pi-Ware Version:\n{PiWareVersioncontent}\n{InstallibleApps}", font="Arial 11 bold")
+PiWareVersion.pack()
 
 #Show latest news message
 NewsMessagefile = open(f"/home/{username}/pi-ware/func/info/latestnewsmessage", "r")

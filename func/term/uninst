@@ -1,15 +1,9 @@
 #!/bin/bash
 
 #load functions
-source "$HOME/pi-ware/func/api" || error "failed to source $HOME/pi-ware/func/api"
+source "$HOME/pi-ware/func/api" || echo "failed to source $HOME/pi-ware/func/api"
 
-if [ -f "$PW_PREFIX/share/pi-ware/inst-pref" ]; then
-  echo "Your package manager is: $PACMANG"
-  echo "Uninstalling $1"
-  bash $HOME/pi-ware/apps/$1/uninstall
-  sleep 2
-else
-  echo "Your package manager is: $PACMANG"
-  echo "Unable to locate '$PW_PREFIX/share/pi-ware/inst-pref', please contact staff at pi-ware discord"
-  sleep 4
-fi
+echo "Your package manager is: $PackMang"
+echo "Uninstalling $1"
+bash $HOME/pi-ware/apps/$1/uninstall
+sleep 2
