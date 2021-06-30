@@ -31,7 +31,7 @@ filepath = f"/home/{username}/pi-ware/.dev"
 try:
     file_tst = open(filepath)
     file_tst.close()
- 
+
 except FileNotFoundError:
     IsDev = "False"
 
@@ -107,7 +107,7 @@ def show_desc(apt,*args):
     app_desc = tk.Label(desc_win, text=desc_contents, font="Arial 9")
     app_desc.pack()
     #Check if website file exist
-    filepath = f"/home/{username}/pi-ware/apps/{app}/website
+    filepath = f"/home/{username}/pi-ware/apps/{app}/website"
     try:
         file_tst = open(filepath)
         file_tst.close()
