@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #load functions
-source "$HOME/pi-ware/func/api" || error "failed to source $HOME/pi-ware/func/api"
+source "$HOME/pi-ware/func/api" || echo "failed to source $HOME/pi-ware/func/api"
 
 #Main
 echo "Uninstalling Pi-Ware"
@@ -11,6 +11,9 @@ rm -rf $HOME/.local/bin/pi-ware || error "Unable to remove $HOME/.local/bin/pi-w
 #Remove pi-ware desktop entry
 echo "Removing Pi-Ware from applications"
 rm -rf $HOME/.local/share/applications/pi-ware.desktop || error "Unable to remove $HOME/.local/share/applications/pi-ware.desktop"
+#Remove pi-ware settings desktop entry
+echo "Removing Pi-Ware Settings from applications"
+rm -rf $HOME/.local/share/applications/pi-ware-settings.desktop || error "Unable to remove $HOME/.local/share/applications/pi-ware-settings.desktop"
 #Remove pi-ware auto-updater
 echo "Removing Pi-Ware auto-updater"
 rm -rf $HOME/.config/autostart/update-pi-ware.desktop || error "Unable to remove $HOME/.config/autostart/update-pi-ware.desktop"
