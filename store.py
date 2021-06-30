@@ -120,10 +120,10 @@ def show_desc(apt,*args):
 
 	if Web == "True":
         #Add website from file
-	    Websitefile = open(f"/home/{username}/pi-ware/apps/{app}/website", "r")
-        websiteurl = Websitefile.read()
-	    Websitelabel = HyperLink(desc_win, f"""{websiteurl}""");
-	    Websitelabel.pack()
+		Websitefile = open(f"/home/{username}/pi-ware/apps/{app}/website", "r")
+    	websiteurl = Websitefile.read()
+		Websitelabel = HyperLink(desc_win, f"""{websiteurl}""");
+		Websitelabel.pack()
 
     install = tk.Button(desc_win, text="INSTALL", font="Arial 11 bold", width=200, bg="darkblue", fg="white", command=install_app)
     install.pack()
