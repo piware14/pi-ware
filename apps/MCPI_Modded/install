@@ -6,29 +6,52 @@
 
 set -e
 
-DIRECTORY="$(dirname "$(dirname "$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )")")"
-STORAGE="$(dirname "$0")"
+export PW_PREFIX="$HOME/.local/share/pi-ware"
+PACKMANG="$(cat $PW_PREFIX/inst-pref)"
 
 function error {
   echo -e "\\e[91m$1\\e[39m"
   exit 1
 }
 
-##
-## Install mcpi-reborn
-##
+# Wait for apt lock to be released
+i=0
+while sudo fuser /var/{lib/{dpkg,apt/lists},cache/apt/archives}/lock > /dev/null 2>&1
+do
+  case $(($i % 4)) in
+    0) j="-";;
+    1) j="\\";;
+    2) j="|";;
+    3) j="/";;
+  esac
+  printf "\r[$j] Waiting for other package managers to finish..."
+  sleep 0.5
+  ((i+=1))
+done
+[[ $i -gt 0 ]] && printf "Done.\n"
 
-if [[ "$(lsb_release -cs)" != "buster" && "$(lsb_release -cs)" != "bullseye" && "$(lsb_release -cs)" != "sid" ]]; then
-    error "Unsupported Debian Version! Your Debian version is $(lsb_release -cs), but supported versions are Buster, Bullseye, or Sid."
-fi
+# Remove old MCPILs
+sudo apt-get remove -y mcpil-r mcpil &>/dev/null || true
 
-# Remove Old Minecraft Pi
-sudo apt-get remove -y minecraft-pi &>/dev/null || true
-sudo apt-get remove -y minecraft-pi-native &>/dev/null || true
-sudo apt-get remove -y mcpil-r &>/dev/null || true
+wget -qO- https://raw.githubusercontent.com/MCPI-Revival/mcpi-packages/master/install.sh | bash - &>/dev/null || error "Failed to install APT repo!"
 
-wget -qO- https://raw.githubusercontent.com/MCPI-Revival/mcpi-packages/master/install.sh | bash | error "Failed to install apt repo!"
-
-"${DIRECTORY}/pkg-install" "minecraft-pi-reborn-native mcpil" "$(dirname "$0")" || exit 1
+# Choose MCPIL to use
+PS3="Which launcher for MCPI Modded would you like to use? Need help deciding? Ask here: https://discord.com/invite/aDqejQGMMy
+"
+options=("gMCPIL (recommended)" "jMCPIL (better GUI)" "Quit")
+select opt in "${options[@]}"
+do
+  case $opt in
+    "${options[0]}")
+        sudo $PACKMANG minecraft-pi-reborn-client gmcpil || exit 1
+        break;;
+    "${options[1]}")
+        sudo $PACKMANG minecraft-pi-reborn-client jmcpil || exit 1
+        break;;
+    "${options[2]}")
+        break;;
+    *) echo "Invalid option: $REPLY";;
+  esac
+done
 
 pip3 install mcpi

@@ -1,5 +1,9 @@
 #!/bin/bash
 
-DIRECTORY="$(dirname "$(dirname "$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )")")"
+export PW_PREFIX="$HOME/.local/share/pi-ware"
+PACKMANG="$(cat $PW_PREFIX/inst-pref)"
 
-sudo apt purge -y minecraft-pi-reborn-native gmcpil
+
+sudo apt-get remove -y minecraft-pi-reborn-client || true
+sudo apt-get remove -y gmcpil || true
+sudo apt-get remove -y jmcpil || true
