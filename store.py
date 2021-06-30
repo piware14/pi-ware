@@ -106,18 +106,11 @@ def show_desc(apt,*args):
     desc_contents = desc.read()
     app_desc = tk.Label(desc_win, text=desc_contents, font="Arial 9")
     app_desc.pack()
-    #Check if website file exist
-    filepath = f"/home/{username}/pi-ware/apps/{app}/website"
-    try:
-        file_tst = open(filepath)
-        file_tst.close()
-
-    else:
-        #Add website from file
-		desc = open(f"/home/{username}/pi-ware/apps/{app}/description", "r")
-        desc_contents = desc.read()
-		Website = HyperLink(desc_win, f"""{websiteurl}""");
-		Website.pack()
+    #Add website from file
+	websiteurlfile = open(f"/home/{username}/pi-ware/apps/{app}/description", "r")
+    websiteurl = desc.read()
+	Website = HyperLink(desc_win, f"""{websiteurl}""");
+	Website.pack()
 
     install = tk.Button(desc_win, text="INSTALL", font="Arial 11 bold", width=200, bg="darkblue", fg="white", command=install_app)
     install.pack()
