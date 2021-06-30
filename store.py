@@ -109,15 +109,14 @@ def show_desc(apt,*args):
     #Check if website file exist
 	filepath = f"/home/{username}/pi-ware/apps/{app}/website"
 	try:
-	    file_tst = open(filepath)
-	    file_tst.close()
+		file_tst = open(filepath)
+		file_tst.close()
 
 	except FileNotFoundError:
-	    Web = "False"
+		Web = "False"
 
 	else:
-	     Web = "True"
-
+		Web = "True"
 
     install = tk.Button(desc_win, text="INSTALL", font="Arial 11 bold", width=200, bg="darkblue", fg="white", command=install_app)
     install.pack()
