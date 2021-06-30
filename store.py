@@ -111,7 +111,6 @@ def show_desc(apt,*args):
     try:
         file_tst = open(filepath)
         file_tst.close()
-
     else:
         #Add website from file
 		Websitefile = open(f"/home/{username}/pi-ware/apps/{app}/website", "r")
