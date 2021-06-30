@@ -1,10 +1,25 @@
+#!/usr/bin/env python3
 # Pi-Ware main UI
 from tkinter import *
 from tkinter.ttk import *
 import tkinter as tk
 import os
+import webbrowser
 from functools import partial
 import getpass
+
+class HyperLink(tk.Label):
+	def __init__(self, parent, url, text=None, fg=None, cursor=None, *args, **kwargs):
+		self.url = url;
+		super().__init__(parent, text=(text or url),
+            fg=(fg or "blue"),
+            cursor=(cursor or "hand2"),
+            font="Arial 9",
+        *args, **kwargs)
+		self.bind("<Button-1>", self.web_open);
+
+	def web_open(self, event):
+		return webbrowser.open(self.url);
 
 window = tk.Tk()
 #Set global var username
@@ -28,7 +43,7 @@ news_tab = Frame(tab_control)
 info_tab = Frame(tab_control)
 tab_control.add(apps_tab, text="Apps")
 tab_control.add(news_tab, text="News")
-tab_control.add(info_tab, text="Info")
+tab_control.add(credits_tab, text="Credits")
 tab_control.pack(expand=0, fill="both")
 
 #Show latest news message
@@ -40,8 +55,11 @@ NewsMessage.pack()
 #Show info message
 InfoMessagefile = open(f"/home/{username}/pi-ware/func/info/infomessage", "r")
 InfoMessagecontent = InfoMessagefile.read()
-InfoMessage = tk.Label(info_tab, text=f"{InfoMessagecontent}", font="Arial 11 bold")
+InfoMessage = tk.Label(credits_tab, text=f"{InfoMessagecontent}", font="Arial 11 bold")
 InfoMessage.pack()
+#Add pi-ware website
+Website = HyperLink(credits_tab, f"""https://pi-ware.ml""");
+Website.pack()
 
 def show_desc(apt,*args):
     item = tree.selection()[0]
