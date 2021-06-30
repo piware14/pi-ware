@@ -40,7 +40,7 @@ NewsMessage.pack()
 #Show info message
 InfoMessagefile = open(f"/home/{username}/pi-ware/func/info/infomessage", "r")
 InfoMessagecontent = InfoMessagefile.read()
-InfoMessage = tk.Label(info_tab, text=f"Latest news:\n{InfosMessagecontent}", font="Arial 11 bold")
+InfoMessage = tk.Label(info_tab, text=f"Latest news:\n{InfoMessagecontent}", font="Arial 11 bold")
 InfoMessage.pack()
 
 def show_desc(apt,*args):
