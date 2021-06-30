@@ -32,7 +32,7 @@ tab_control.add(info_tab, text="Info")
 tab_control.pack(expand=0, fill="both")
 
 #Show latest news message
-NewsMessagefile = open(f"/home/{username}/pi-ware/func/info/infomessage", "r")
+NewsMessagefile = open(f"/home/{username}/pi-ware/func/info/latestnewsmessage", "r")
 NewsMessagecontent = NewsMessagefile.read()
 NewsMessage = tk.Label(news_tab, text=f"Latest news:\n{NewsMessagecontent}", font="Arial 11 bold")
 NewsMessage.pack()
