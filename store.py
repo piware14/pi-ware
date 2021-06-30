@@ -114,10 +114,10 @@ def show_desc(apt,*args):
 
     else:
         #Add website from file
-	desc = open(f"/home/{username}/pi-ware/apps/{app}/description", "r")
+		desc = open(f"/home/{username}/pi-ware/apps/{app}/description", "r")
         desc_contents = desc.read()
-	Website = HyperLink(desc_win, f"""{websiteurl}""");
-	Website.pack()
+		Website = HyperLink(desc_win, f"""{websiteurl}""");
+		Website.pack()
 
     install = tk.Button(desc_win, text="INSTALL", font="Arial 11 bold", width=200, bg="darkblue", fg="white", command=install_app)
     install.pack()
