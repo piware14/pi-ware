@@ -108,16 +108,12 @@ def show_desc(apt,*args):
     desc = open(f"/home/{username}/pi-ware/apps/{app}/description.txt", "r")
     desc_contents = desc.read()
     text_box = Text(
-    desc_win
+    desc_win,
+    height=12,
+    width=40
     )
     text_box.pack()
     text_box.insert('end', desc_contents)
-    widget_width = 0
-    widget_height = float(test_box.index(tk.END))
-    for line in test_box.get("1.0", tk.END).split("\n"):
-       if len(line) > widget_width:
-          widget_width = len(line)+1
-    test_box.config(width=widget_width, height=widget_height)
     text_box.config(state='disabled')
     #Disabled for now.
     #app_desc = tk.Label(desc_win, text=desc_contents, font="Arial 9")
