@@ -120,7 +120,7 @@ def show_desc(apt,*args):
 
     #Add website from file
     if Web == "True":
-            websiteurlfile = open(f"/home/{username}/pi-ware/apps/{app}/description", "r")
+            websiteurlfile = open(f"/home/{username}/pi-ware/apps/{app}/website", "r")
             websiteurl = desc.read()
             Website = HyperLink(desc_win, f"""{websiteurl}""");
             Website.pack()
