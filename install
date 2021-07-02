@@ -43,6 +43,7 @@ cd $HOME
 mkdir -p "$HOME/.local/bin"
 sudo cp -r "$HOME/pi-ware/func/term/pi-ware-term" "$HOME/.local/bin/pi-ware"
 sudo chmod +x $HOME/.local/bin/pi-ware
+PATH="$HOME/.local/bin:$PATH"
 echo "Added pi-ware-commands to Terminal!"
 echo "Please restart terminal to apply changes."
 #Set aarch
