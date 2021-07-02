@@ -109,8 +109,8 @@ def show_desc(apt,*args):
     desc_contents = desc.read()
     text_box = Text(
     desc_win,
-    height=12,
-    width=40
+    height=auto,
+    width=auto
     )
     text_box.pack()
     text_box.insert('end', desc_contents)
