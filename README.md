@@ -5,9 +5,13 @@ Pi-Ware is an app store inspired by Botspots <a href="https://github.com/Botspot
   
 # NEW:
 
-We have added a pi-ware utility to your terminal!
+We have added the ability to add website links in your app!
   
-To use it run ``pi-ware --help`` in terminal.
+To add a website create a new file called ``website`` (No extention),
+  
+Then add the link tou want people to see!
+
+Done! Users will now see the link.
 
 To learn more vist our <a href="https://github.com/piware14/pi-ware/wiki/new-stuff" alt="Pi-Ware wiki">wiki</a>!
   
