@@ -86,6 +86,7 @@ InfoMessagefile = open(f"/home/{username}/pi-ware/func/info/infomessage", "r")
 InfoMessagecontent = InfoMessagefile.read()
 InfoMessage = tk.Label(credits_tab, text=f"{InfoMessagecontent}", font="Arial 11 bold")
 InfoMessage.pack()
+
 #Add pi-ware website
 Website = HyperLink(credits_tab, f"""https://pi-ware.ml""");
 Website.pack()
@@ -121,7 +122,7 @@ def show_desc(apt,*args):
     #Add website from file
     if Web == "True":
             websiteurlfile = open(f"/home/{username}/pi-ware/apps/{app}/website", "r")
-            websiteurl = desc.read()
+            websiteurl = websiteurlfile.read()
             Website = HyperLink(desc_win, f"""{websiteurl}""");
             Website.pack()
 
