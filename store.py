@@ -108,7 +108,7 @@ def show_desc(apt,*args):
     desc = open(f"/home/{username}/pi-ware/apps/{app}/description.txt", "r")
     desc_contents = desc.read()
     text_box = Text(
-    ws,
+    desc_win,
     height=12,
     width=40
     )
