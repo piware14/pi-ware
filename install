@@ -40,8 +40,8 @@ Type=Application
 Terminal=false" > $HOME/.config/autostart/update-pi-ware.desktop
 #Create pi-ware utility
 cd $HOME
-if [ -d "/usr/local/bin" ]; then
- mkdir -p "/usr/local/bin"
+if [ -d "$HOME/.local/bin" ]; then
+ mkdir -p "$HOME/.local/bin"
 fi
 sudo cp -r "$HOME/pi-ware/func/term/pi-ware-term" "$HOME/.local/bin/pi-ware"
 sudo chmod +x $HOME/.local/bin/pi-ware
