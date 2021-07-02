@@ -107,6 +107,14 @@ def show_desc(apt,*args):
     window.withdraw()
     desc = open(f"/home/{username}/pi-ware/apps/{app}/description.txt", "r")
     desc_contents = desc.read()
+    text_box = Text(
+    ws,
+    height=12,
+    width=40
+    )
+    text_box.pack(expand=True)
+    text_box.insert('end', desc_contents)
+    text_box.config(state='disabled')
     app_desc = tk.Label(desc_win, text=desc_contents, font="Arial 9")
     app_desc.pack()
     #Check if website file exist
