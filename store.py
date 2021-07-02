@@ -112,7 +112,7 @@ def show_desc(apt,*args):
     height=12,
     width=40
     )
-    text_box.pack(expand=True)
+    text_box.pack()
     text_box.insert('end', desc_contents)
     text_box.config(state='disabled')
     #Disabled for now.
