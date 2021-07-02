@@ -107,10 +107,14 @@ def show_desc(apt,*args):
     window.withdraw()
     desc = open(f"/home/{username}/pi-ware/apps/{app}/description.txt", "r")
     desc_contents = desc.read()
+    widget_width = 0
+    widget_height = float(event.widget.index(tk.END))
+    for line in event.widget.get("1.0", tk.END).split("\n"):
+       if len(line) > widget_width:
+          widget_width = len(line)+1
+    event.widget.config(width=widget_width, height=widget_height)
     text_box = Text(
-    desc_win,
-    height=auto,
-    width=auto
+    desc_win
     )
     text_box.pack()
     text_box.insert('end', desc_contents)
