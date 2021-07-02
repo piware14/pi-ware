@@ -75,7 +75,7 @@ for _, dirnames, filenames in os.walk(f"/home/{username}/pi-ware/apps"):
 PiWareVersion = tk.Label(DEV_tab, text=f"Pi-Ware Version:\n{PiWareVersioncontent}", font="Arial 11 bold")
 PiWareInstallableApps = tk.Label(DEV_tab, text=f"{InstallibleApps}", font="Arial 11 bold")
 PiWareVersion.pack()
-PiWareInstallableApp.pack()
+PiWareInstallableApps.pack()
 
 #Show latest news message
 NewsMessagefile = open(f"/home/{username}/pi-ware/func/info/latestnewsmessage", "r")
