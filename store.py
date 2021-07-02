@@ -115,8 +115,9 @@ def show_desc(apt,*args):
     text_box.pack(expand=True)
     text_box.insert('end', desc_contents)
     text_box.config(state='disabled')
-    app_desc = tk.Label(desc_win, text=desc_contents, font="Arial 9")
-    app_desc.pack()
+    #Disabled for now.
+    #app_desc = tk.Label(desc_win, text=desc_contents, font="Arial 9")
+    #app_desc.pack()
     #Check if website file exist
     filepath = f"/home/{username}/pi-ware/apps/{app}/website"
     try:
