@@ -143,7 +143,7 @@ def show_desc(apt,*args):
     uninstall.pack()
     back_to_menu_button = tk.Button(desc_win, text="BACK", font="Arial 11 bold", width=200, height=2, bg="green", fg="white", command=back_to_menu)
     back_to_menu_button.pack(side = "bottom")
-
+    desc_win.protocol("WM_DELETE_WINDOW",back_to_menu)
 def back_to_menu(window, parent, app=None):
     parent.destroy()
     window.deiconify()
