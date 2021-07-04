@@ -15,7 +15,7 @@ username = getpass.getuser()
 
 #Add pi-ware to path
 sys.path.append(fr'/home/{username}/pi-ware')
-print(sys.path.append(fr'/home/{username}/pi-ware'))
+print(sys.path.append(f'/home/{username}/pi-ware'))
 
 #Import custom  pi-ware functions
 from pyfunc.classes import *
