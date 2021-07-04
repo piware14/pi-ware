@@ -1,3 +1,7 @@
+from tkinter import *
+from tkinter.ttk import *
+import tkinter as tk
+
 class HyperLink(tk.Label):
 	def __init__(self, parent, url, text=None, fg=None, cursor=None, *args, **kwargs):
 		self.url = url;
