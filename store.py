@@ -17,8 +17,8 @@ username = getpass.getuser()
 sys.path.append(fr'/home/{username}/pi-ware')
 
 #Import custom  pi-ware functions
-import pyfunc.classes
-import pyfunc.functions as func
+from pyfunc.classes import *
+from pyfunc.functions import *
 
 window = tk.Tk()
 
