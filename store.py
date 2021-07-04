@@ -4,7 +4,7 @@ from tkinter import *
 from tkinter.ttk import *
 import tkinter as tk
 import os
-import
+import sys
 import webbrowser
 from functools import partial
 import getpass
