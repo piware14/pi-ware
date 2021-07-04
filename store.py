@@ -4,18 +4,23 @@ from tkinter import *
 from tkinter.ttk import *
 import tkinter as tk
 import os
+import
 import webbrowser
 from functools import partial
 import getpass
+
+#Set global var username
+global username
+username = getpass.getuser()
+
+#Add pi-ware to path
+sys.path.append(fr'/home/{username}/pi-ware')
 
 #Import custom  pi-ware functions
 import pyfunc.classes
 import pyfunc.functions as func
 
 window = tk.Tk()
-#Set global var username
-global username
-username = getpass.getuser()
 
 #Check if dev files exist
 filepath = f"/home/{username}/pi-ware/.dev"
