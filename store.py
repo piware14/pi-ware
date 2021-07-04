@@ -18,8 +18,8 @@ sys.path.insert(0, f'/home/{username}/pi-ware')
 print(sys.path.insert(0, f'/home/{username}/pi-ware/pyfunc/function.py'))
 
 #Import custom  pi-ware functions
-from pyfunc.classes import *
-from pyfunc.functions import *
+from function
+#from pyfunc.functions import *
 
 window = tk.Tk()
 
