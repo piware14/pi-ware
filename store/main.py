@@ -111,7 +111,7 @@ window.iconphoto(False, p1)
 
 #Main
 window.resizable(0, 0)
-window.geometry("320x510")
+window.geometry("330x500")
 window.eval('tk::PlaceWindow . center')
 window.title("Pi-Ware")
 
