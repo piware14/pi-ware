@@ -113,11 +113,11 @@ for app in applist:
             appb += "_"
         else:
             appb += a
-    tree.bind("<<TreeviewSelect>>", partial(functions.show_desc,app))
+    tree.bind("<<TreeviewSelect>>", partial(function.show_desc,app))
     exec(appb + """_button =  PhotoImage(file=f'/home/{username}/pi-ware/apps/{app}/icon.png')""")
     exec("""tree.insert('', 'end', text=f"{app}",image=""" + appb + """_button)""")
 
-quitbutton = tk.Button(window, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command=functions.quit)
+quitbutton = tk.Button(window, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command=function.quit)
 quitbutton.pack(side="bottom")
 
 window.mainloop()
