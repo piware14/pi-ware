@@ -82,7 +82,7 @@ InfoMessage = tk.Label(credits_tab, text=f"{InfoMessagecontent}", font="Arial 11
 InfoMessage.pack()
 
 #Add pi-ware website
-Website = HyperLink(credits_tab, f"""https://pi-ware.ml""");
+Website = classes.HyperLink(credits_tab, f"""https://pi-ware.ml""");
 Website.pack()
 
 def show_desc(apt,*args):
@@ -126,7 +126,7 @@ def show_desc(apt,*args):
     if Web == "True":
             websiteurlfile = open(f"/home/{username}/pi-ware/apps/{app}/website", "r")
             websiteurl = websiteurlfile.read()
-            Website = HyperLink(desc_win, f"""{websiteurl}""");
+            Website = classes.HyperLink(desc_win, f"""{websiteurl}""");
             Website.pack()
 
     install = tk.Button(desc_win, text="INSTALL", font="Arial 11 bold", width=200, bg="darkblue", fg="white", command=install_app)
