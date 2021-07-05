@@ -53,3 +53,22 @@ def show_desc(apt,*args):
 def back_to_menu(window, parent, app=None):
     parent.destroy()
     window.deiconify()
+
+def install_app():
+    global install_script
+    #print(f"bash /home/{username}/pi-ware/func/term/term-run {install_script}")
+    os.system(f"bash /home/{username}/pi-ware/func/term/term-run {install_script}")
+
+def uninstall_app():
+    global uninstall_script
+    #print(f"bash /home/{username}/pi-ware/func/term/term-run {uninstall_script}")
+    os.system(f"bash /home/{username}/pi-ware/func/term/term-run {uninstall_script}")
+
+def back_to_menu():
+    window.deiconify()
+    desc_win.destroy()
+    window.title("Pi-Ware")
+    window.eval('tk::PlaceWindow . center')
+
+def quit():
+    window.destroy()
