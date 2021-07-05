@@ -188,6 +188,9 @@ for app in applist:
     exec(appb + """_button =  PhotoImage(file=f'/home/{username}/pi-ware/apps/{app}/icon.png')""")
     exec("""tree.insert('', 'end', text=f"{app}",image=""" + appb + """_button)""")
 
+ScrollForMore = tk.Label(apps_tab, text="Scroll down for more apps.", font="Arial 11 bold")
+ScrollForMore.pack()
+
 quitbutton = tk.Button(window, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command=quit)
 quitbutton.pack(side="bottom")
 
