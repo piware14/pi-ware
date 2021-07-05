@@ -163,6 +163,8 @@ commit = classes.HyperLink(credits_tab, f"""https://github.com/piware14/pi-ware/
 commit.pack()
 
 #Add pi-ware website
+piwarewebsite = tk.Label(credits_tab, text=f"To vist the pi-ware website, click the link below.", font="Arial 11 bold")
+piwarewebsite.pack()
 Website = classes.HyperLink(credits_tab, f"""https://pi-ware.ml""");
 Website.pack()
 
