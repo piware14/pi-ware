@@ -4,6 +4,7 @@ from tkinter.ttk import *
 import tkinter as tk
 
 #Variables
+window = tk.Tk()
 # Window tabs
 tab_control = Notebook(window)
 apps_tab = Frame(tab_control)
