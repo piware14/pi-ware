@@ -184,7 +184,7 @@ for app in applist:
             appb += "_"
         else:
             appb += a
-    tree.bind("<<TreeviewSelect>>", partial(function.show_desc,app))
+    tree.bind("<<TreeviewSelect>>", partial(show_desc,app))
     exec(appb + """_button =  PhotoImage(file=f'/home/{username}/pi-ware/apps/{app}/icon.png')""")
     exec("""tree.insert('', 'end', text=f"{app}",image=""" + appb + """_button)""")
 
