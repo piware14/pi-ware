@@ -57,7 +57,7 @@ def show_desc(apt,*args):
             websiteurlfile = open(f'/home/{username}/pi-ware/apps/{app}/website', 'r')
             websiteurl = websiteurlfile.readlines()
             # Strips the newline character
-            for line in Lines:
+            for line in websiteurl:
                 print("{}".format(line.strip()))
                 Website = classes.HyperLink(desc_win, f"""{line}""");
                 Website.pack()
