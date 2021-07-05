@@ -58,7 +58,7 @@ def show_desc(apt,*args):
             websiteurl = websiteurlfile.readlines()
             # Strips the newline character
             for line in websiteurl:
-                print("{}".format(line.strip()))
+                #print("{}".format(line.strip()))
                 Website = classes.HyperLink(desc_win, f"""{line}""");
                 Website.pack()
 
