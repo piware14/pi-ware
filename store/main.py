@@ -54,17 +54,13 @@ def show_desc(apt,*args):
 
     #Add website from file
     if Web == "True":
-            file1 = open(f'/home/{username}/pi-ware/apps/{app}/website', 'r')
-            Lines = file1.readlines()
- 
-            count = 0
+            websiteurlfile = open(f'/home/{username}/pi-ware/apps/{app}/website', 'r')
+            websiteurl = websiteurlfile.readlines()
             # Strips the newline character
             for line in Lines:
                 print("{}".format(line.strip()))
-            websiteurlfile = open(f"/home/{username}/pi-ware/apps/{app}/website", "r")
-            websiteurl = websiteurlfile.read()
-            Website = classes.HyperLink(desc_win, f"""{websiteurl}""");
-            Website.pack()
+                Website = classes.HyperLink(desc_win, f"""{line}""");
+                Website.pack()
 
     install = tk.Button(desc_win, text="INSTALL", font="Arial 11 bold", width=200, bg="darkblue", fg="white", command=install_app)
     install.pack()
