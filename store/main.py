@@ -93,17 +93,6 @@ def back_to_menu():
 def quit():
     window.destroy()
 
-#Test
-# Using readlines()
-#file1 = open(f'/home/{username}/pi-ware/.dev', 'r')
-#Lines = file1.readlines()
- 
-#count = 0
-# Strips the newline character
-#for line in Lines:
-#    count += 1
-#    print("Line{}: {}".format(count, line.strip()))
-
 #Check if dev files exist
 filepath = f"/home/{username}/pi-ware/.dev"
 try:
@@ -166,6 +155,12 @@ InfoMessagefile = open(f"/home/{username}/pi-ware/func/info/infomessage", "r")
 InfoMessagecontent = InfoMessagefile.read()
 InfoMessage = tk.Label(credits_tab, text=f"{InfoMessagecontent}", font="Arial 11 bold")
 InfoMessage.pack()
+
+#Show commit links
+commitmessage = tk.Label(credits_tab, text=f"To see commits, please go to the link below.", font="Arial 11 bold")
+commitmessage.pack()
+commit = classes.HyperLink(credits_tab, f"""https://github.com/piware14/pi-ware/graphs/contributors""");
+commit.pack()
 
 #Add pi-ware website
 Website = classes.HyperLink(credits_tab, f"""https://pi-ware.ml""");
