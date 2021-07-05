@@ -3,3 +3,4 @@
 cd $HOME/pi-ware/apps
 echo "Here are all the current apps"
 ls
+ls > $HOME/pi-ware/logs/current-apps
