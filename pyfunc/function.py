@@ -79,5 +79,5 @@ def back_to_menu():
     window.title("Pi-Ware")
     window.eval('tk::PlaceWindow . center')
 
-def quit():
+def quit(window):
     window.destroy()
