@@ -20,7 +20,7 @@ window = tk.Tk()
 
 #Test
 # Using readlines()
-file1 = open('myfile.txt', 'r')
+file1 = open(f'/home/{username}/pi-ware/.dev', 'r')
 Lines = file1.readlines()
  
 count = 0
