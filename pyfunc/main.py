@@ -20,14 +20,14 @@ window = tk.Tk()
 
 #Test
 # Using readlines()
-file1 = open(f'/home/{username}/pi-ware/.dev', 'r')
-Lines = file1.readlines()
+#file1 = open(f'/home/{username}/pi-ware/.dev', 'r')
+#Lines = file1.readlines()
  
-count = 0
+#count = 0
 # Strips the newline character
-for line in Lines:
-    count += 1
-    print("Line{}: {}".format(count, line.strip()))
+#for line in Lines:
+#    count += 1
+#    print("Line{}: {}".format(count, line.strip()))
 
 #Check if dev files exist
 filepath = f"/home/{username}/pi-ware/.dev"
@@ -71,7 +71,6 @@ PiWareVersioncontent = PiWareVersionFile.read()
 
 files = folders = 0
 for _, dirnames, filenames in os.walk(f"/home/{username}/pi-ware/apps"):
-  # ^ this idiom means "we won't be using this value"
     files += len(filenames)
     folders += len(dirnames)
     InstallibleApps = "{:,} installible Apps".format(folders)
