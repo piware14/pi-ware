@@ -1,7 +1,12 @@
+#Import modules
 from tkinter import *
 from tkinter.ttk import *
 import tkinter as tk
 
+#Variables
+tree = Treeview(apps_tab)
+
+#Functions
 def show_desc(apt,*args):
     item = tree.selection()[0]
     app = tree.item(item,"text")
