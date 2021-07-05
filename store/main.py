@@ -60,8 +60,7 @@ def show_desc(apt,*args):
             count = 0
             # Strips the newline character
             for line in Lines:
-                count += 1
-                print("Line{}: {}".format(count, line.strip()))
+                print("{}".format(line.strip()))
             websiteurlfile = open(f"/home/{username}/pi-ware/apps/{app}/website", "r")
             websiteurl = websiteurlfile.read()
             Website = classes.HyperLink(desc_win, f"""{websiteurl}""");
