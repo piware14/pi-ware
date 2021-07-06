@@ -6,7 +6,7 @@ chmod +x runner
 sudo touch $HOME/.local/share/applications/Deltarune.desktop
 echo "[Desktop Entry]
 Name=Deltarune
-Comment="The sequel to Toby Fox's Undertale"
+Comment=The sequel to Toby Fox's Undertale
 Exec=$HOME/deltarune/Deltarune/runner
 Icon=$HOME/deltarune/Deltarune/deltarune.png
 Categories=Game;
