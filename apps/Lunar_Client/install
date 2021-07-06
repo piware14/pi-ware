@@ -3,41 +3,23 @@
 #Script created by oxmc
 #Made for Lunar-Client by gl91306
 
-#Functions
-function error {
-  echo -e "\e[91m$1\e[39m"
-  if [ "$2" == "exit" ]; then
-    exit 1
-  else
-    fwe="1"
-    ers+="$1"
-  fi
-}
-
-function warning {
-  echo -e "\e[91m$2\e[39m"
-  sleep "$1"
-}
-
-#Variables
-export PW_PREFIX="$HOME/.local/share/pi-ware"
-PACMANG="$(cat $PW_PREFIX/inst-pref)"
-fwe="0"
-ers=""
-
-#Main
 #install modprobe if not already installed
 if ! command -v modprobe >/dev/null;then
-   sudo $PACKMANG modprobe
+  
+  if [ -f /usr/bin/apt ];then
+    sudo apt update
+    sudo apt install -y modprobe || echo "Failed to install modprobe."
+  else
+    error "Failed to find any package manager to install modprobe."
+  fi
 fi
 
 #Run modprobe fuse
 sudo modprobe fuse
 
-cd $HOME
+cd
 #Download client
 wget https://github.com/gl91306/lunar/raw/master/lunarclient-2.7.3b-armv7l.AppImage
-
 if [ ! -d ~/lwjgl3arm32 ]; then
     mkdir ~/lwjgl3arm32
 fi
@@ -59,7 +41,6 @@ fi
 if [ ! -d /opt/jdk ]; then
     sudo mkdir /opt/jdk
 fi
-
 sudo tar -zxf jdk-8u251-linux-arm32-vfp-hflt.tar.gz -C /opt/jdk
 sudo tar -zxf jdk-16.0.1+9-jre.tar.gz -C /opt/jdk
 tar -zxf lwjgl3arm32.tar.gz -C ~/lwjgl3arm32
@@ -70,9 +51,13 @@ sudo update-alternatives --set java /opt/jdk/jdk1.8.0_251/bin/java
 sudo update-alternatives --set javac /opt/jdk/jdk1.8.0_251/bin/javac
 cd lwjgl2arm32
 wget https://github.com/gl91306/lunar/raw/master/libwebp-imageio32.so
+wget https://github.com/gl91306/lunar/raw/master/libgstreamer-lite.so
+wget https://github.com/gl91306/lunar/raw/master/libjfxmedia.so
 cd
 cd lwjgl3arm32
 wget https://github.com/gl91306/lunar/raw/master/libwebp-imageio32.so
+wget https://github.com/gl91306/lunar/raw/master/libgstreamer-lite.so
+wget https://github.com/gl91306/lunar/raw/master/libjfxmedia.so
 cd
 cd /opt/jdk/opt/jdk
 sudo cp -r jdk-16.0.1+9-jre /opt/jdk
@@ -88,10 +73,17 @@ cd
 sudo apt-get install unzip
 wget https://github.com/gl91306/lunar/raw/master/javafx-sdk-17.zip
 unzip javafx-sdk-17.zip -d /home/pi/Desktop
+cd Desktop
+cd javafx-sdk-17
+cd lib
+rm -rf libjfxwebkit.so
+wget https://github.com/gl91306/lunar/raw/master/libjfxwebkit.so
 cd
 #Change perms of Launcher
 sudo chmod +x $HOME/lunarclient-2.7.3b-armv7l.AppImage
 
+#Run launcher
+$HOME/lunarclient-2.7.3b-armv7l.AppImage
 cd
 rm -rf jdk-8u251-linux-arm32-vfp-hflt.tar.gz
 rm -rf jdk-16.0.1+9-jre.tar.gz
@@ -116,17 +108,12 @@ Icon=$HOME/lunarassets/lunarclient.png
 Categories=Game;
 Type=Application
 Terminal=false" > "$HOME/.local/share/applications/Lunar-Client.desktop"
-echo "Adding desktop shortcut..."
-cp $HOME/.local/share/applications/Lunar-Client.desktop $HOME/Desktop
 
-#Inform user that the install has finished
-#Check if finished with errors
-if [ "${fwe}" == "1" ]; then
-  echo "This script finished with errors, Here are the errors: ${ers}"
-  exit 1
-elif [ "${fwe}" == "0" ]; then
-  echo "Successfully installed Lunar Client. You can find it in Menu > Games > Lunar Client."
-  echo "Closing in 5 seconds."
-  sleep 5s
-  exit 0
-fi
+echo "[Desktop Entry]
+Name=Lunar Client
+Comment=Lunar Client for Rpi made by PiKATchu on Discord.
+Exec=$HOME/lunarclient-2.7.3b-armv7l.AppImage
+Icon=$HOME/lunarassets/lunarclient.png
+Categories=Game;
+Type=Application
+Terminal=false" > "$HOME/Desktop/Lunar Client"
