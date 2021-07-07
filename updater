@@ -36,6 +36,8 @@ if [ "$internet" == "1" ]; then
     echo $(git rev-parse main) > "$PW_PREFIX/pi-ware/version"
     bash install
     cd $HOME
+    sed -i -e 's/\r$//' $HOME/pi-ware/apps/MCPI_Modded/install
+    sed -i -e 's/\r$//' $HOME/pi-ware/apps/MCPI_Modded/uninstall
     echo "Update complete, Closing in 5 seconds..."
     sleep 5
     exit 0
