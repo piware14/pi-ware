@@ -12,6 +12,9 @@ import getpass
 global username
 username = getpass.getuser()
 
+#Set global install/uninstall scripts
+global install_script uninstall_script
+
 #Import custom  pi-ware functions
 #import function
 import classes
