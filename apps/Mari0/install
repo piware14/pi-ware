@@ -53,24 +53,24 @@ echo "Creating a desktop entry for ${AppName}"
 mkdir -p $HOME/.local/share/applications
 if [ "$arch" == "armv7l" ]; then
   echo "[Desktop Entry]
-Name=$AppName
-Comment=Mario's classic game but with coop multiplayer and portals!
-Exec=love /opt/Mari0_rpi/mari0.love
-Icon=/opt/Mari0_rpi/mari0.png
-Categories=Game;
-Type=Application;
-Terminal=false;" > $HOME/.local/share/applications/$AppName.desktop
+  Name=$AppName
+  Comment=Mario's classic game but with coop multiplayer and portals!
+  Exec=love /opt/Mari0_rpi/mari0.love
+  Icon=/opt/Mari0_rpi/mari0.png
+  Categories=Game;
+  Type=Application;
+  Terminal=false;" > $HOME/.local/share/applications/$AppName.desktop
 elif [ "$arch" == "aarch64" ]; then
   pacman -S mari0
   #Make menu button
   echo "[Desktop Entry]
-Name=$AppName
-Comment=Mario's classic game but with coop multiplayer and portals!
-Exec=mari0
-Icon=/opt/Mari0_rpi/mari0.png
-Categories=Game;
-Type=Application;
-Terminal=false;" > $HOME/.local/share/applications/$AppName.desktop
+  Name=$AppName
+  Comment=Mario's classic game but with coop multiplayer and portals!
+  Exec=mari0
+  Icon=/opt/Mari0_rpi/mari0.png
+  Categories=Game;
+  Type=Application;
+  Terminal=false;" > $HOME/.local/share/applications/$AppName.desktop
 else
   error "Failed to make desktop entry!"
 fi
