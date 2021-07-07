@@ -94,7 +94,6 @@ elif [[ "$1" == "--update" ]]; then
   $(tput setaf 9)###############################################################$(tput sgr 0)
   "
   echo "Checking for updates..."
-  echo "To quit at any time press CTRL + C"
   bash "$HOME/pi-ware/updater"
 elif [[ "$1" == "--uninstall-all" ]]; then
   echo "Uninstalling pi-ware from your system..."
