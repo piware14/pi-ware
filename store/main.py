@@ -84,12 +84,14 @@ def back_to_menu(window, parent, app=None):
 
 def install_app():
     global install_script
-    #print(f"bash /home/{username}/pi-ware/func/term/term-run {install_script}")
+    if IsDev == "True":
+        print(f"bash /home/{username}/pi-ware/func/term/term-run {install_script}")
     os.system(f"bash /home/{username}/pi-ware/func/term/term-run {install_script}")
 
 def uninstall_app():
     global uninstall_script
-    #print(f"bash /home/{username}/pi-ware/func/term/term-run {uninstall_script}")
+    if IsDev == "True":
+        print(f"bash /home/{username}/pi-ware/func/term/term-run {uninstall_script}")
     os.system(f"bash /home/{username}/pi-ware/func/term/term-run {uninstall_script}")
 
 def back_to_menu():
