@@ -70,8 +70,8 @@ def show_desc(apt,*args):
     install.pack()
     uninstall = tk.Button(desc_win, text="UNINSTALL", font="Arial 11 bold", width=200, bg="red", fg="white", command=uninstall_app)
     uninstall.pack()
-    ucommand = f"bash /home/{username}/pi-ware/func/uninst '{app}' 'Uninstalling {app}"
-    command = f"bash /home/{username}/pi-ware/func/inst '{app}' 'Installing {app}"
+    ucommand = f"bash /home/{username}/pi-ware/func/term/uninst '{app}' 'Uninstalling {app}"
+    command = f"bash /home/{username}/pi-ware/func/term/inst '{app}' 'Installing {app}"
     install_script = "'%s'" % command
     uninstall_script = "'%s'" % ucommand
     back_to_menu_button = tk.Button(desc_win, text="BACK", font="Arial 11 bold", width=200, height=2, bg="green", fg="white", command=back_to_menu)
