@@ -9,16 +9,15 @@ wget https://github.com/hiulit/Unofficial-Godot-Engine-Raspberry-Pi/releases/dow
 unzip godot_3.2.4.rc.1_rpi4_editor.zip
 rm godot_3.2.4.rc.1_rpi4_editor.zip
 mkdir games
-mv Godot_icon.svg icon.svg
 mkdir -p $HOME/.local/share/applications
 echo "[Desktop Entry]
 Name=Godot Engine
 Comment="Create games on the Raspberry Pi"
 Exec=$HOME/godot/godot_3.2.4.rc.1_rpi4_editor.bin
-Icon=$HOME/godot/icon.svg
+Icon=$HOME/pi-ware/apps/Godot_Engine/icon.png
 Categories=Game;
 Type=Application
-Terminal=false" > $HOME/.local/share/applications/pi-ware.desktop
+Terminal=false" > $HOME/.local/share/applications/godot.desktop
 clear
 echo "Successfully installed Godot Engine. Find it in Menu > Games > Godot Engine."
 echo "Save your projects to /home/pi/godot/games."
