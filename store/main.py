@@ -24,6 +24,8 @@ window = tk.Tk()
 
 #Functions
 def show_desc(apt,*args):
+    mainwinx = str(window.winfo_x())
+    mainwiny = str(window.winfo_y())
     item = tree.selection()[0]
     app = tree.item(item,"text")
     global install_script, uninstall_script, desc_win
@@ -33,7 +35,8 @@ def show_desc(apt,*args):
     desc_win.iconphoto(False, p2)
     window.resizable(0, 0)
     desc_win.title(f"{app}")
-    desc_win.geometry("320x500")
+    print("320x500+" + mainwinx + "+" + mainwiny)
+    desc_win.geometry("320x500+" + mainwinx + "+" + mainwiny)
     window.withdraw()
     desc = open(f"/home/{username}/pi-ware/apps/{app}/description.txt", "r")
     desc_contents = desc.read()
@@ -98,7 +101,7 @@ def back_to_menu():
     window.deiconify()
     desc_win.destroy()
     window.title("Pi-Ware")
-    window.eval('tk::PlaceWindow . center')
+    #window.eval('tk::PlaceWindow . center')
 
 def quit():
     window.destroy()
@@ -205,3 +208,4 @@ quitbutton = tk.Button(window, text="Quit", font="Arial 11 bold", width=200, bg=
 quitbutton.pack(side="bottom")
 
 window.mainloop()
+
