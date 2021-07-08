@@ -7,7 +7,8 @@
 set -e
 
 export PW_PREFIX="$HOME/.local/share/pi-ware"
-PACKMANG="$(cat $PW_PREFIX/inst-pref)"
+PACKMANG="$(cat $PW_PREFIX/inst-pref)"" install"
+echo $PACKMANG
 
 function error {
   echo -e "\\e[91m$1\\e[39m"
