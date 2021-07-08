@@ -183,7 +183,7 @@ Website.pack()
 
 tree = Treeview(apps_tab)
 tree.pack(expand=YES, fill=BOTH)
-tree.column("#0", minwidth=0, width=320, stretch=NO)
+tree.column("#0", minwidth=0, width=330, stretch=NO)
 s = Style()
 s.configure('Treeview', rowheight=35)
 ap = next(os.walk(f"/home/{username}/pi-ware/apps"))[1]
