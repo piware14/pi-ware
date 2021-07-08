@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #load functions
-source "$HOME/pi-ware/func/api" || error "failed to source $HOME/pi-ware/func/api"
+source "$HOME/pi-ware/func/api" || echo "failed to source $HOME/pi-ware/func/api"
 
 #Check if connected to internet
 wget -q --spider http://google.com
