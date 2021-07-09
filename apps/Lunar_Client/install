@@ -90,6 +90,11 @@ rm -rf jdk-16.0.1+9-jre.tar.gz
 rm -rf javafx-sdk-17.zip
 rm -rf lwjgl2arm32.tar.gz
 rm -rf lwjgl3arm32.tar.gz
+cd
+cd lwjgl2arm32
+rm -rf libopenal.so
+cd
+cp lwjgl3arm32/libopenal.so $HOME/lwjgl2arm32
 
 #Add icon
 cd
