@@ -33,7 +33,8 @@ def show_desc(apt,*args):
     desc_win.iconphoto(False, p1)
     window.resizable(0, 0)
     desc_win.title(f"{app}")
-    print("320x500+" + mainwinx + "+" + mainwiny)
+    if IsDev == "True":
+        print("320x500+" + mainwinx + "+" + mainwiny)
     desc_win.geometry("320x500+" + mainwinx + "+" + mainwiny)
     window.withdraw()
     desc = open(f"/home/{username}/pi-ware/func/settings/options/{app}/description", "r")
