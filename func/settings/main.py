@@ -133,8 +133,8 @@ prefrence_tab = Frame(tab_control)
 news_tab = Frame(tab_control)
 credits_tab = Frame(tab_control)
 DEV_tab = Frame(tab_control)
-tab_control.add(prefrence_tab, text="Prefrence")
 tab_control.add(news_tab, text="News")
+tab_control.add(prefrence_tab, text="Prefrence")
 tab_control.add(credits_tab, text="Credits")
 #Show dev tab if dev files are found
 if IsDev == "True":
