@@ -29,9 +29,8 @@ def show_desc(apt,*args):
     app = tree.item(item,"text")
     global enable, disable, desc_win
     desc_win = tk.Toplevel(window)
-    p2 = PhotoImage(file = f'/home/{username}/pi-ware/func/settings/options/{app}/icon.png')
     # Icon set for program window
-    desc_win.iconphoto(False, p2)
+    desc_win.iconphoto(False, p1)
     window.resizable(0, 0)
     desc_win.title(f"{app}")
     print("320x500+" + mainwinx + "+" + mainwiny)
