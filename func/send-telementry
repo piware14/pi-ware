@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#This file uploads a app telementry file to http://pi-ware-telementry.ml/
+
+#load functions
+source "$HOME/pi-ware/func/api" || echo "failed to source $HOME/pi-ware/func/api"
+
+#Main
+echo "Sending telementry file..."
+cd ..
+curl -F "fileToUpload=@data.json" http://pi-ware-telementry.ml/uploader.php
