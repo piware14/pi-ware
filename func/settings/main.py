@@ -180,7 +180,7 @@ piwarewebsite.pack()
 Website = classes.HyperLink(credits_tab, f"""https://pi-ware.ml""");
 Website.pack()
 
-tree = Treeview(news_tab)
+tree = Treeview(prefrence_tab)
 tree.pack(expand=YES, fill=BOTH)
 tree.column("#0", minwidth=0, width=330, stretch=NO)
 s = Style()
