@@ -29,7 +29,7 @@ def show_desc(apt,*args):
     app = tree.item(item,"text")
     global enable, disable, desc_win
     desc_win = tk.Toplevel(window)
-    p2 = PhotoImage(file = f'/home/{username}/pi-ware/settings/options/{app}/icon.png')
+    p2 = PhotoImage(file = f'/home/{username}/pi-ware/func/settings/options/{app}/icon.png')
     # Icon set for program window
     desc_win.iconphoto(False, p2)
     window.resizable(0, 0)
@@ -37,7 +37,7 @@ def show_desc(apt,*args):
     print("320x500+" + mainwinx + "+" + mainwiny)
     desc_win.geometry("320x500+" + mainwinx + "+" + mainwiny)
     window.withdraw()
-    desc = open(f"/home/{username}/pi-ware/settings/options/{app}/description", "r")
+    desc = open(f"/home/{username}/pi-ware/func/settings/options/{app}/description", "r")
     desc_contents = desc.read()
     text_box = Text(desc_win, height=12, width=40)
     text_box.pack()
@@ -121,10 +121,10 @@ PiWareVersionFile = open(f"/home/{username}/.local/share/pi-ware/version", "r")
 PiWareVersioncontent = PiWareVersionFile.read()
 
 files = folders = 0
-for _, dirnames, filenames in os.walk(f"/home/{username}/pi-ware/apps"):
+for _, dirnames, filenames in os.walk(f"/home/{username}/pi-ware/func/settings/options"):
     files += len(filenames)
     folders += len(dirnames)
-    InstallibleApps = "{:,} installible Apps".format(folders)
+    InstallibleApps = "{:,} avilible settings".format(folders)
 
 PiWareVersion = tk.Label(DEV_tab, text=f"Pi-Ware Version:\n{PiWareVersioncontent}", font="Arial 11 bold")
 PiWareInstallableApps = tk.Label(DEV_tab, text=f"{InstallibleApps}", font="Arial 11 bold")
@@ -132,7 +132,7 @@ PiWareVersion.pack()
 PiWareInstallableApps.pack()
 
 #Show latest news message
-NewsMessagefile = open(f"/home/{username}/pi-ware/func/info/latestnewsmessage", "r")
+NewsMessagefile = open(f"/home/{username}/pi-ware/func/info/settingsmessage", "r")
 NewsMessagecontent = NewsMessagefile.read()
 NewsMessage = tk.Label(news_tab, text=f"Latest news:\n{NewsMessagecontent}", font="Arial 11 bold")
 NewsMessage.pack()
@@ -142,7 +142,7 @@ tree.pack(expand=YES, fill=BOTH)
 tree.column("#0", minwidth=0, width=330, stretch=NO)
 s = Style()
 s.configure('Treeview', rowheight=35)
-ap = next(os.walk(f"/home/{username}/pi-ware/settings/options"))[1]
+ap = next(os.walk(f"/home/{username}/pi-ware/func/settings/options"))[1]
 applist = sorted(ap)
 print("Current settings:\n")
 for app in applist:
