@@ -50,8 +50,8 @@ def show_desc(apt,*args):
     disablebutton.pack()
     ucommand = f"""bash /home/{username}/pi-ware/func/settings/options/{app}/disable '{app}' 'Changing setting for {app}'"""
     command = f"""bash /home/{username}/pi-ware/func/settings/options/{app}/enable '{app}' 'Changing setting for {app}'"""
-    install_script = "'%s'" % command
-    uninstall_script = "'%s'" % ucommand
+    enable = "'%s'" % command
+    disable = "'%s'" % ucommand
     back_to_menu_button = tk.Button(desc_win, text="BACK", font="Arial 11 bold", width=200, height=2, bg="green", fg="white", command=back_to_menu)
     back_to_menu_button.pack(side = "bottom")
     desc_win.protocol("WM_DELETE_WINDOW",back_to_menu)
@@ -63,14 +63,14 @@ def back_to_menu(window, parent, app=None):
 def enable_setting():
     global enable
     if IsDev == "True":
-        print(f"bash /home/{username}/pi-ware/func/term/term-run {install_script}")
-    os.system(f"bash /home/{username}/pi-ware/func/term/term-run {install_script}")
+        print(f"bash /home/{username}/pi-ware/func/term/term-run {enable}")
+    os.system(f"bash /home/{username}/pi-ware/func/term/term-run {enable}")
 
 def disable_setting():
     global disable
     if IsDev == "True":
-        print(f"bash /home/{username}/pi-ware/func/term/term-run {uninstall_script}")
-    os.system(f"bash /home/{username}/pi-ware/func/term/term-run {uninstall_script}")
+        print(f"bash /home/{username}/pi-ware/func/term/term-run {disable}")
+    os.system(f"bash /home/{username}/pi-ware/func/term/term-run {disable}")
 
 def back_to_menu():
     window.deiconify()
