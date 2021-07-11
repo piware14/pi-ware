@@ -59,13 +59,13 @@ def back_to_menu(window, parent, app=None):
     parent.destroy()
     window.deiconify()
 
-def install_app():
+def enable_setting():
     global enable
     if IsDev == "True":
         print(f"bash /home/{username}/pi-ware/func/term/term-run {install_script}")
     os.system(f"bash /home/{username}/pi-ware/func/term/term-run {install_script}")
 
-def uninstall_app():
+def disable_setting():
     global disable
     if IsDev == "True":
         print(f"bash /home/{username}/pi-ware/func/term/term-run {uninstall_script}")
