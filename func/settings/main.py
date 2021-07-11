@@ -125,7 +125,7 @@ window.iconphoto(False, p1)
 window.resizable(0, 0)
 window.geometry("330x500")
 window.eval('tk::PlaceWindow . center')
-window.title("Pi-Ware")
+window.title("Pi-Ware Settings")
 
 # Window tabs
 tab_control = Notebook(window)
