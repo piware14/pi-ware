@@ -32,6 +32,16 @@ OOOOOOOOOOOOOO                      OOOOOOOOOOOOOO"""
 echo "Installing Dependencies"
 sudo pip3 install guizero
 cd ~/
-git clone https://github.com/Painadath/PyEncrypter.git
-cd PyEncrypter/
-sudo python3 setup.py install
+mkdir pyencrypter/ && cd pyencrypter
+wget https://github.com/Painadath/PyEncrypter/releases/download/v1.0/pyencypter_v1.0_linux
+chmod +x pyen*
+wget https://github.com/Painadath/PyEncrypter/raw/master/data/PE.png
+echo """[Desktop Entry]
+Name=PyEncrypter
+Comment=Encrypt and Decrypt words
+Exec=$HOME/pyencrypter/pyencypter_v1.0_linux
+Icon=$HOME/pyencrypter/PE.png
+Terminal=false
+Type=Application
+Categories=Utility;
+Name[en_IN]=PyEncrypter"""
