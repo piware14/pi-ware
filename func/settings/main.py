@@ -154,7 +154,7 @@ for app in applist:
         else:
             appb += a
     tree.bind("<<TreeviewSelect>>", partial(show_desc,app))
-    exec("""tree.insert('', 'end', text=f"{app}"_button)""")
+    exec("""tree.insert('', 'end', text=f"{app}")""")
 
 ScrollForMore = tk.Label(prefrence_tab, text="Scroll down for more settings.", font="Arial 11 bold")
 ScrollForMore.pack()
