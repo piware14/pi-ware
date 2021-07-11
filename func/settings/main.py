@@ -45,7 +45,7 @@ def show_desc(apt,*args):
 
     enablebutton = tk.Button(desc_win, text="Enable", font="Arial 11 bold", width=200, bg="darkblue", fg="white", command=enable_setting)
     enablebutton.pack()
-    disableutton = tk.Button(desc_win, text="Disable", font="Arial 11 bold", width=200, bg="red", fg="white", command=disable_setting)
+    disablebutton = tk.Button(desc_win, text="Disable", font="Arial 11 bold", width=200, bg="red", fg="white", command=disable_setting)
     disablebutton.pack()
     ucommand = f"""bash /home/{username}/pi-ware/func/settings/options/{app}/disable '{app}' 'Changing setting for {app}'"""
     command = f"""bash /home/{username}/pi-ware/func/settings/options/{app}/enable '{app}' 'Changing setting for {app}'"""
