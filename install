@@ -12,7 +12,7 @@ echo $(git rev-parse main) > "$PW_PREFIX/share/pi-ware/version"
 echo "Creating a desktop entry for Pi-Ware..."
 mkdir -p $HOME/.local/share/applications
 #Make firstrun desktop if program has not been used before.
-if [ "$" == "" ]; then
+if [ "$cat '$PW_PREFIX/share/pi-ware/firstrun'" == "True" ]; then
   echo "[Desktop Entry]
 Name=Pi-Ware
 Comment=Raspberry Pi app store
