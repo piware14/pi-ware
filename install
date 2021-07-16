@@ -2,6 +2,8 @@
 
 #load functions
 source "$HOME/pi-ware/func/api" || echo "failed to source $HOME/pi-ware/func/api"
+echo "Installing dependecy libraries" 
+pip3 install pyqt5 || echo "Failed to install PyQt5. Check if pip3 and Python 3 are installed"
 
 #Main
 echo "Installing pi-ware..."

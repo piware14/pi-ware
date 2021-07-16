@@ -1,7 +1,7 @@
 name: pi-ware
-summary: A appstore for the raspberry pi.
+summary: A appstore for the Raspberry Pi.
 description: |
-    A appstore for the raspberry pi.
+    A appstore for the Raspberry Pi.
 version: 1.0
 icon: icons/logo.png
 base: core18
