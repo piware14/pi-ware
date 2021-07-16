@@ -6,6 +6,24 @@
 source "$HOME/pi-ware/func/api" || echo "failed to source $HOME/pi-ware/func/api"
 
 #Main
-echo "Sending telementry file..."
-cd ..
-curl -F "fileToUpload=@data.json" http://pi-ware-telementry.ml/uploader.php
+#Check if connected to internet
+wget -q --spider http://google.com
+
+if [ $? -eq 0 ]; then
+    #User online
+    internet="1"
+else
+    #User offline
+    internet="0"
+fi
+if [ "$internet" == "1" ]; then
+  echo "Checking for telementry file..."
+  if [ -f "$HOME/.local/share/pi-ware/telementry/data-1.json" ]; then
+    echo "Sending file..."
+    curl -F "fileToUpload=@$HOME/.local/share/pi-ware/telementry/data-1.json" http://pi-ware-telementry.ml/uploader.php | echo "ERROR: I was unable to send the telementry file."
+  else
+    error "ERROR: Unable to find '$HOME/.local/share/pi-ware/telementry/data.json'\nA log has been generated in: '$HOME/pi-ware/logs/$logname'"
+  fi
+else
+  error "ERROR: You are not connected to the internet,\nI am unable to send a telementry file to http://pi-ware-telementry.ml\nA log has been created in: '$HOME/pi-ware/logs/$logfile'"
+fi
