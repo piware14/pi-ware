@@ -34,16 +34,21 @@ def retrieve_input():
     inputValue=textBox.get("1.0", "end-1c")
     #StoreData(inputValue, "$HOME/.local/share/pi-ware/passwd")
 
-Thankforinstall = tk.Label(window, text="""Thanks for installing pi-ware! \nLet's set some things up.""", font="Arial 12")
+Thankforinstall = tk.Label(window, text="""Thanks for installing pi-ware!\nLet's set some things up.""", font="Arial 12")
 Thankforinstall.pack()
 
-description = tk.Label(window, text="""First enter your password:""", font="Arial 12")
+description = tk.Label(window, text="""Do you want Pi-Ware to upload erros, logs and app info to the pi-ware team?\nPlease note, the pi-ware-team can not use this data to:\ntrack, monitor, or be used to identify you.""", font="Arial 12")
 description.pack()
 
-textBox=tk.Text(window, height=1, width=10)
-textBox.pack()
+#textBox=tk.Text(window, height=1, width=10)
+#textBox.pack()
 
-buttonCommit=tk.Button(window, height=1, width=10, text="Enter", command=lambda: retrieve_input())
-buttonCommit.pack()
+#Define buttons
+YesButton=tk.Button(window, height=1, width=10, text="Yes", command=lambda: StoreData("True", ""))
+NoButton=tk.Button(window, height=1, width=10, text="No", command=lambda: retrieve_input())
+
+#Pack buttons
+YesButton.pack()
+NoButton.pack()
 
 window.mainloop()
