@@ -10,8 +10,10 @@ echo "Update pi-ware.desktop"
 echo "[Desktop Entry]
 Name=Pi-Ware
 Comment=Raspberry Pi app store
-Exec=python3 $HOME/pi-ware/store.py
+Exec=python3 $HOME/pi-ware/store/main.py
 Icon=$HOME/pi-ware/icons/logo.png
 Categories=Utility;
 Type=Application
 Terminal=false" > $HOME/.local/share/applications/pi-ware.desktop
+#Copy to desktop
+cp -r $HOME/.local/share/applications/pi-ware.desktop $HOME/Desktop/pi-ware.desktop
