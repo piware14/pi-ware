@@ -44,8 +44,8 @@ description.pack()
 #textBox.pack()
 
 #Define buttons
-YesButton=tk.Button(window, height=1, width=10, text="Yes", command=lambda: StoreData("True", ""))
-NoButton=tk.Button(window, height=1, width=10, text="No", command=lambda: retrieve_input())
+YesButton=tk.Button(window, height=1, width=10, text="Yes", command=lambda: StoreData("True", "$HOME/.local/share/pi-ware/telementry"))
+NoButton=tk.Button(window, height=1, width=10, text="No", command=lambda: StoreData("False", "$HOME/.local/share/pi-ware/telementry"))
 
 #Pack buttons
 YesButton.pack()
