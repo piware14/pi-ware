@@ -18,3 +18,13 @@ function warning {
   echo -e "\e[91m$2\e[39m"
   sleep "$1"
 }
+
+function packmang {
+  if [ "$1" == "install" ]; then
+    echo "Mode: install"
+  elif [ "$1" == "uninstall" ]; then
+    echo "Mode: uninstall"
+  else
+    error "Unkown input recived: 'packmang $1' it should be 'packmang install packagename' or 'packmang uninstall packagename'"
+  fi
+}
