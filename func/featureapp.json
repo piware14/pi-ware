@@ -1,5 +1,5 @@
 [
-    
+    {
         "name": "DisWeb",
         "author": "@oxmc",
         "logourl": "https://www.videogameschronicle.com/files/2021/05/discord-new-logo-1280x720.jpg",
@@ -11,5 +11,5 @@
         "author": "@chunky-milk",
         "logourl": "https://mdbootstrap.com/img/new/standard/nature/184.jpg",
         "appdesc": "Firefox"
-    
+    }
 ]
