@@ -10,5 +10,11 @@
         "author": "@chunky-milk",
         "logourl": "https://i.gadgets360cdn.com/large/Firefox_update_1605682015070.jpg?downsize=950:*&output-quality=80&output-format=webp",
         "appdesc": "The latest version of the FireFox browser for the Raspberry Pi."
+    },
+    {
+        "name": "Lunar Client",
+        "author": "@gl91306",
+        "logourl": "https://staticg.sportskeeda.com/editor/2021/06/448d0-16249475462223-800.jpg",
+        "appdesc": "An amazing Minecraft launcher for Windows ported to the Raspberry Pi."
     }
 ]
