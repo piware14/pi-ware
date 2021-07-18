@@ -1,5 +1,5 @@
 A simple teleporter for MCPI Modded,
-A Sodfard creation
+A Sofard creation
 
 Join the official
 Sofard discord server:
