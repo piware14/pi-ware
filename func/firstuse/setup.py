@@ -20,11 +20,9 @@ window.iconphoto(False, p1)
 
 #Set window title, size, and location
 window.title("Setup Pi-Ware")
-window.geometry("300x200")
+window.geometry("800x500")
 window.eval('tk::PlaceWindow . center')
 
-heading = tk.Label(window, text="""Setup Pi-Ware""", font="Arial 15 bold")
-heading.pack()
 
 def StoreData(Data, Location):
     os.system(f"echo '{Data}' > {Location}")
@@ -32,22 +30,21 @@ def StoreData(Data, Location):
 
 def retrieve_input():
     inputValue=textBox.get("1.0", "end-1c")
-    #StoreData(inputValue, "$HOME/.local/share/pi-ware/passwd")
 
+#Define labels
+heading = tk.Label(window, text="""Setup Pi-Ware""", font="Arial 15 bold")
 Thankforinstall = tk.Label(window, text="""Thanks for installing pi-ware!\nLet's set some things up.""", font="Arial 12")
-Thankforinstall.pack()
-
 description = tk.Label(window, text="""Do you want Pi-Ware to upload erros, logs and app info to the pi-ware team?\nPlease note, the pi-ware-team can not use this data to:\ntrack, monitor, or be used to identify you.""", font="Arial 12")
-description.pack()
 
-#textBox=tk.Text(window, height=1, width=10)
-#textBox.pack()
 
 #Define buttons
 YesButton=tk.Button(window, height=1, width=10, text="Yes", command=lambda: StoreData("True", "$HOME/.local/share/pi-ware/telementry"))
 NoButton=tk.Button(window, height=1, width=10, text="No", command=lambda: StoreData("False", "$HOME/.local/share/pi-ware/telementry"))
 
-#Pack buttons
+#Pack objects
+heading.pack()
+Thankforinstall.pack()
+description.pack()
 YesButton.pack()
 NoButton.pack()
 
