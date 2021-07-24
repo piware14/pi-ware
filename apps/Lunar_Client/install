@@ -96,21 +96,24 @@ rm -rf libopenal.so
 cd
 cp lwjgl3arm32/libopenal.so $HOME/lwjgl2arm32
 
+./lunarclient-2.7.3b-armv7l.AppImage --appimage-extract
+sudo mv squashfs-root lunarclient
+
 #Then make menu button & desktop icon
 echo "Creating a desktop entry for Lunar-Client..."
 echo "[Desktop Entry]
 Name=Lunar Client
 Comment=Minecraft Lunar Client for RPI made by PiKATchu on Discord.
-Exec=$HOME/lunarclient-2.7.3b-armv7l.AppImage
+Exec=$HOME/lunarclient/AppRun
 Icon=$HOME/pi-ware/apps/Lunar_Client/icon.png
 Categories=Game;
 Type=Application
-Terminal=false" > "$HOME/.local/share/applications/Lunar-Client.desktop"
+Terminal=false" > "$HOME/.local/share/applications/Lunar Client.desktop"
 
 echo "[Desktop Entry]
 Name=Lunar Client
 Comment=Minecraft Lunar Client for RPI made by PiKATchu on Discord.
-Exec=$HOME/lunarclient-2.7.3b-armv7l.AppImage
+Exec=$HOME/lunarclient/AppRun
 Icon=$HOME/pi-ware/apps/Lunar_Client/icon.png
 Categories=Game;
 Type=Application
