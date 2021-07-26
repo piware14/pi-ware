@@ -11,6 +11,8 @@ tar -xzvf sip-4.19.24.tar.gz
 cd sip-4.19.24
 python configure.py
 make
+sudo rm sip-4.19.24
+sudo rm sip-4.19.24.tar.gz
 sudo pip3 install pyqt5
 echo "Installing pi-ware..."
 mkdir -p $HOME/pi-ware/logs
