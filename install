@@ -4,14 +4,6 @@
 source "$HOME/pi-ware/func/api" || echo "failed to source $HOME/pi-ware/func/api"
 
 #Main
-echo "Installing GUI dependencies..."
-sudo apt-get install qt5-default pyqt5-dev pyqt5-dev-tools
-wget https://www.riverbankcomputing.com/static/Downloads/sip/4.19.24/sip-4.19.24.tar.gz
-tar -xzvf sip-4.19.24.tar.gz
-cd sip-4.19.24
-python configure.py
-make
-sudo pip3 install pyqt5
 echo "Installing pi-ware..."
 mkdir -p $HOME/pi-ware/logs
 #Make required directory for updater
