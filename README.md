@@ -25,7 +25,7 @@ To learn more vist our <a href="https://github.com/piware14/pi-ware/wiki/new-stu
 
 **Current app list**
 
-<a href="https://pi-ware.ml/apps/current/" alt="App list">App list</a>
+<a href="https://pi-ware.ml/current-apps/" alt="App list">App list</a>
 
 </div>
   
