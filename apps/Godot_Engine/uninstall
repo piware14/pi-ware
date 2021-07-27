@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cd $HOME
+echo "Uninstalling Godot Engine..."
+sleep 2s
+rm -r godot
+clear
+echo "Successfully uninstalled Godot Engine."
+echo "Closing in 5 seconds."
+sleep 5s
