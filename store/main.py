@@ -29,8 +29,11 @@ def error(mode,message,contact):
     ErrorWindow = tk.Toplevel(window)
     #Set window icon based on arg 1
     icon = PhotoImage(file = f'/home/{username}/pi-ware/icons/error-{mode}.png')
-    # Icon set for error window
     ErrorWindow.iconphoto(False, icon)
+    if mode == "critical":
+        ErrorWindow.title(f"{mode} Error!")
+    else:
+        ErrorWindow.title("Error!")
     errorimage = tk.Label(ErrorWindow,image=icon)
     errorhappened = tk.Label(ErrorWindow, text = "An error occurred!")
     #error message
