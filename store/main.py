@@ -26,7 +26,7 @@ window = tk.Tk()
 #Functions
 def error(mode,message,contact):
     #Create window
-    ErrorWindow = tk.Toplevel(app)
+    ErrorWindow = tk.Toplevel(window)
     #Set window icon based on arg 1
     icon = PhotoImage(file = f'/home/{username}/pi-ware/icons/error-{mode}.png')
     # Icon set for error window
