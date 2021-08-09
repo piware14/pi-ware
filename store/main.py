@@ -31,6 +31,7 @@ def error(mode,message,contact):
     icon = PhotoImage(file = f'/home/{username}/pi-ware/icons/error-{mode}.png')
     # Icon set for error window
     ErrorWindow.iconphoto(False, icon)
+    errorimage = tk.Label(ErrorWindow,image=icon)
     errorhappened = tk.Label(ErrorWindow, text = "An error occurred!")
     #error message
     errormessage = tk.Label(ErrorWindow, text = message)
@@ -44,9 +45,9 @@ def error(mode,message,contact):
                 with open('error.txt', 'w') as json_file:
                     json.dump(error_message, json_file)
     #Ok button
-    okbutton = tk.Button(ErrorWindow, text = "ok")
+    okbutton = tk.Button(ErrorWindow, text = "ok",command=quit)
     #Pack all items
-    Label(ErrorWindow,image=icon).pack()
+    errorimage.pack()
     errorhappened.pack()
     errormessage.pack()
     okbutton.pack()
