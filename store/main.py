@@ -46,6 +46,7 @@ def error(mode,message,contact):
     #Ok button
     okbutton = tk.Button(ErrorWindow, text = "ok")
     #Pack all items
+    Label(ErrorWindow,image=icon).pack()
     errorhappened.pack()
     errormessage.pack()
     okbutton.pack()
@@ -62,7 +63,7 @@ def show_desc(apt,*args):
     desc_win.iconphoto(False, p2)
     window.resizable(0, 0)
     desc_win.title(f"{app}")
-    print("320x500+" + mainwinx + "+" + mainwiny)
+    #print("320x500+" + mainwinx + "+" + mainwiny)
     desc_win.geometry("320x500+" + mainwinx + "+" + mainwiny)
     window.withdraw()
     desc = open(f"/home/{username}/pi-ware/apps/{app}/description.txt", "r")
