@@ -34,7 +34,7 @@ def error(mode,message,contact):
         ErrorWindow.title(f"{mode} Error!")
     else:
         ErrorWindow.title("Error!")
-    errorimage = tk.Label(ErrorWindow,image=icon)
+    errorimage = Label(ErrorWindow,image=icon)
     errorhappened = tk.Label(ErrorWindow, text = "An error occurred!")
     #error message
     errormessage = tk.Label(ErrorWindow, text = message)
@@ -44,9 +44,7 @@ def error(mode,message,contact):
         with open('error.txt', 'w') as json_file:
             json.dump(error_message, json_file)
             if telemetry == "True":
-                error_message = {"error": "fatal", "action": "imedient"}
-                with open('error.txt', 'w') as json_file:
-                    json.dump(error_message, json_file)
+                print("Sending log to pi-wareHQ")
     #Ok button
     okbutton = tk.Button(ErrorWindow, text = "ok",command=quit)
     #Pack all items
