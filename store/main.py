@@ -24,6 +24,32 @@ import classes
 window = tk.Tk()
 
 #Functions
+def error(mode,message,contact):
+    #Create window
+    ErrorWindow = tk.Toplevel(app)
+    #Set window icon based on arg 1
+    icon = PhotoImage(file = f'/home/{username}/pi-ware/icons/error-{mode}.png')
+    # Icon set for error window
+    ErrorWindow.iconphoto(False, icon)
+    errorhappened = tk.Label(ErrorWindow, text = "An error occurred!")
+    #error message
+    errormessage = tk.Label(ErrorWindow, text = message)
+    #If contact is set to true, and telemetry is enabled, send us an error message.
+    if contact == "True":
+        error_message = {"error": "fatal", "action": "imedient"}
+        with open('error.txt', 'w') as json_file:
+            json.dump(error_message, json_file)
+            if telemetry == "True":
+                error_message = {"error": "fatal", "action": "imedient"}
+                with open('error.txt', 'w') as json_file:
+                    json.dump(error_message, json_file)
+    #Ok button
+    okbutton = tk.Button(newWindow, text = "ok")
+    #Pack all items
+    errorhappened.pack()
+    errormessage.pack()
+    okbutton.pack()
+
 def show_desc(apt,*args):
     mainwinx = str(window.winfo_x())
     mainwiny = str(window.winfo_y())
@@ -45,21 +71,17 @@ def show_desc(apt,*args):
     text_box.pack()
     text_box.insert('end', desc_contents)
     text_box.config(state='disabled')
-    #Disabled for now.
+    #Old description box:
     #app_desc = tk.Label(desc_win, text=desc_contents, font="Arial 9")
     #app_desc.pack()
-    #Check if website file exist
-    filepath = f"/home/{username}/pi-ware/apps/{app}/website"
+    #Check if website file exists
     try:
-            file_tst = open(filepath)
-            file_tst.close()
-
+        file_tst = open(f"/home/{username}/pi-ware/apps/{app}/website")
+        file_tst.close()
     except FileNotFoundError:
-            Web = "False"
-
+        Web = "False"
     else:
-            Web = "True"
-
+        Web = "True"
     #Add website from file
     if Web == "True":
             websiteurlfile = open(f'/home/{username}/pi-ware/apps/{app}/website', 'r')
@@ -69,16 +91,18 @@ def show_desc(apt,*args):
                 #print("{}".format(line.strip()))
                 Website = classes.HyperLink(desc_win, f"""{line}""");
                 Website.pack()
-
+    #Buttons
     install = tk.Button(desc_win, text="INSTALL", font="Arial 11 bold", width=200, bg="darkblue", fg="white", command=install_app)
-    install.pack()
     uninstall = tk.Button(desc_win, text="UNINSTALL", font="Arial 11 bold", width=200, bg="red", fg="white", command=uninstall_app)
-    uninstall.pack()
+    back_to_menu_button = tk.Button(desc_win, text="BACK", font="Arial 11 bold", width=200, height=2, bg="green", fg="white", command=back_to_menu)
+    #Commands
     ucommand = f"""bash /home/{username}/pi-ware/func/term/uninst '{app}' 'Uninstalling {app}'"""
     command = f"""bash /home/{username}/pi-ware/func/term/inst '{app}' 'Installing {app}'"""
     install_script = "'%s'" % command
     uninstall_script = "'%s'" % ucommand
-    back_to_menu_button = tk.Button(desc_win, text="BACK", font="Arial 11 bold", width=200, height=2, bg="green", fg="white", command=back_to_menu)
+    #Pack all buttons
+    install.pack()
+    uninstall.pack()
     back_to_menu_button.pack(side = "bottom")
     desc_win.protocol("WM_DELETE_WINDOW",back_to_menu)
 
@@ -102,24 +126,28 @@ def back_to_menu():
     window.deiconify()
     desc_win.destroy()
     window.title("Pi-Ware")
-    #window.eval('tk::PlaceWindow . center')
 
 def quit():
     window.destroy()
 
-#Read apps.json
-with open(f"/home/{username}/pi-ware/apps/apps.json") as f:
-  data = json.load(f)
+#Check for certain files
+#Check if apps.json exists
+try:
+    file_tst = open(f"/home/{username}/pi-ware/apps/apps.json")
+    file_tst.close()
+except FileNotFoundError:
+    error("critical", "Apps.json not found!", True)
+else:
+     #Read apps.json
+     with open(f"/home/{username}/pi-ware/apps/apps.json") as f:
+       archdata = json.load(f)
 
 #Check if dev files exist
-filepath = f"/home/{username}/pi-ware/.dev"
 try:
-    file_tst = open(filepath)
+    file_tst = open(f"/home/{username}/pi-ware/.dev")
     file_tst.close()
-
 except FileNotFoundError:
     IsDev = "False"
-
 else:
      IsDev = "True"
 
@@ -142,11 +170,11 @@ DEV_tab = Frame(tab_control)
 tab_control.add(apps_tab, text="Apps")
 tab_control.add(news_tab, text="News")
 tab_control.add(credits_tab, text="Credits")
-#Show dev tab if dev files are found
+#Show dev stuff if dev files are found
 if IsDev == "True":
     tab_control.add(DEV_tab, text="Dev")
-    # Output info from file:
-    print(data)
+    print("App arcitectures:")
+    print(archdata)
 tab_control.pack(expand=0, fill="both")
 
 #Show DEV stuff
@@ -215,4 +243,3 @@ quitbutton = tk.Button(window, text="Quit", font="Arial 11 bold", width=200, bg=
 quitbutton.pack(side="bottom")
 
 window.mainloop()
-
