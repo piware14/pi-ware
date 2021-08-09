@@ -44,7 +44,7 @@ def error(mode,message,contact):
                 with open('error.txt', 'w') as json_file:
                     json.dump(error_message, json_file)
     #Ok button
-    okbutton = tk.Button(newWindow, text = "ok")
+    okbutton = tk.Button(ErrorWindow, text = "ok")
     #Pack all items
     errorhappened.pack()
     errormessage.pack()
