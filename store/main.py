@@ -7,6 +7,7 @@ import os
 import webbrowser
 from functools import partial
 import getpass
+import json
 
 #Set global var username
 global username
@@ -106,6 +107,10 @@ def back_to_menu():
 def quit():
     window.destroy()
 
+#Read apps.json
+with open(f"/home/{username}/pi-ware/apps/apps.json") as f:
+  data = json.load(f)
+
 #Check if dev files exist
 filepath = f"/home/{username}/pi-ware/.dev"
 try:
@@ -140,6 +145,8 @@ tab_control.add(credits_tab, text="Credits")
 #Show dev tab if dev files are found
 if IsDev == "True":
     tab_control.add(DEV_tab, text="Dev")
+    # Output info from file:
+    print(data)
 tab_control.pack(expand=0, fill="both")
 
 #Show DEV stuff
