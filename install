@@ -20,7 +20,7 @@ Exec=bash $HOME/pi-ware/func/firstuse/setup
 Icon=$HOME/pi-ware/icons/logo.png
 Categories=Utility;
 Type=Application
-Terminal=false" > $HOME/.local/share/applications/pi-ware.desktopp
+Terminal=false" > $HOME/.local/share/applications/pi-ware.desktop
 else
   echo "[Desktop Entry]
 Name=Pi-Ware
