@@ -12,7 +12,7 @@ echo $(git rev-parse main) > "$PW_PREFIX/share/pi-ware/version"
 echo "Creating a desktop entry for Pi-Ware..."
 mkdir -p $HOME/.local/share/applications
 #Make firstrun desktop if program has not been used before.
-if [ "$cat '$PW_PREFIX/share/pi-ware/firstrun'" == "True" ]; then
+if [ -f "$PW_PREFIX/share/pi-ware/firstrun" ]; then
   echo "[Desktop Entry]
 Name=Pi-Ware
 Comment=Raspberry Pi app store
@@ -79,9 +79,9 @@ elif [ -f /usr/bin/pacman ];then
 else
   error "Failed to find any package manager."
 fi
-echo "Fixing script format..."
-sed -i -e 's/\r$//' $HOME/pi-ware/apps/MCPI_Modded/install
-sed -i -e 's/\r$//' $HOME/pi-ware/apps/MCPI_Modded/uninstall
+#echo "Fixing script format..."
+#sed -i -e 's/\r$//' $HOME/pi-ware/apps/MCPI_Modded/install
+#sed -i -e 's/\r$//' $HOME/pi-ware/apps/MCPI_Modded/uninstall
 #Finished
 echo "Done!"
 echo "You can find Pi-Ware in Menu > Accessories > Pi-Ware."
