@@ -3,7 +3,23 @@
 export PW_PREFIX="$HOME/.local/share/pi-ware"
 PACKMANG="$(cat $PW_PREFIX/inst-pref)"
 
+# Wait for apt lock to be released
+i=0
+while sudo fuser /var/{lib/{dpkg,apt/lists},cache/apt/archives}/lock > /dev/null 2>&1
+do
+  case $(($i % 4)) in
+    0) j="-";;
+    1) j="\\";;
+    2) j="|";;
+    3) j="/";;
+  esac
+  printf "\r[$j] Waiting for other package managers to finish..."
+  sleep 0.5
+  ((i+=1))
+done
+[[ $i -gt 0 ]] && printf "Done.\n"
 
 sudo apt-get remove -y minecraft-pi-reborn-client || true
 sudo apt-get remove -y gmcpil || true
 sudo apt-get remove -y jmcpil || true
+sudo rm -f /etc/apt/{sources.list,trusted.gpg}.d/mcpi-revival.{list,gpg}
