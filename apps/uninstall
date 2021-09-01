@@ -1,3 +1,0 @@
-sudo rm $HOME/.local/share/applications/doom.desktop
-sudo apt uninstall chocolate-doom
-sudo rm -d $HOME/doom/doom1
