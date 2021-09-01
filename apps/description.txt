@@ -1,7 +1,0 @@
-Doom, Published by ID software.
-The invasion from hell has begun, you, the doom slayer, are tasked with killing off the demons that have appeared.
-*supports x86 ubuntu or debian
-
-@ZaydTheCoder @donnerkebab1730
-https://github.com/ZaydTheCoder
-https://github.com/donnerkebab1730
