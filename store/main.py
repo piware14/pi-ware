@@ -20,7 +20,7 @@ global uninstall_script
 #Import custom  pi-ware functions
 #import function
 import classes
-
+from function import istherefile
 window = tk.Tk()
 
 #Functions
@@ -78,15 +78,7 @@ def show_desc(apt,*args):
     #app_desc = tk.Label(desc_win, text=desc_contents, font="Arial 9")
     #app_desc.pack()
     #Check if website file exists
-    try:
-        file_tst = open(f"/home/{username}/pi-ware/apps/{app}/website")
-        file_tst.close()
-    except FileNotFoundError:
-        Web = "False"
-    else:
-        Web = "True"
-    #Add website from file
-    if Web == "True":
+    if istherefile(f"/home/{username}/pi-ware/apps/{app}/website"):
             websiteurlfile = open(f'/home/{username}/pi-ware/apps/{app}/website', 'r')
             websiteurl = websiteurlfile.readlines()
             # Strips the newline character
@@ -135,10 +127,7 @@ def quit():
 
 #Check for certain files
 #Check if apps.json exists
-try:
-    file_tst = open(f"/home/{username}/pi-ware/apps/apps.json")
-    file_tst.close()
-except FileNotFoundError:
+if not istherefile(f"/home/{username}/pi-ware/apps/apps.json"):
     error("critical", "Apps.json not found!", True)
 else:
      #Read apps.json
@@ -146,10 +135,7 @@ else:
        archdata = json.load(f)
 
 #Check if dev files exist
-try:
-    file_tst = open(f"/home/{username}/pi-ware/.dev")
-    file_tst.close()
-except FileNotFoundError:
+if not istherefile(f"/home/{username}/pi-ware/.dev"):
     IsDev = "False"
 else:
      IsDev = "True"
