@@ -43,7 +43,7 @@ Pi-Ware will automatically fetch and install updates, and tell you to restart it
 
 If you want to force update pi-ware, run
 ```sh
-bash $HOME/pi-ware/updater
+pi-ware --update
 ```
 
 ## Uninstall Pi-Ware
