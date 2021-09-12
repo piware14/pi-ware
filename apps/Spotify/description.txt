@@ -1,4 +1,0 @@
-A Spotify webapp for
-the raspberry pi!
-
-Made by: oxmc

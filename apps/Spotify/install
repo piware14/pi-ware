@@ -1,1 +1,0 @@
-wget -qO- https://raw.githubusercontent.com/oxmc/electron-Spotify-webapp/dev-stable/src/rpi/install.sh | bash
