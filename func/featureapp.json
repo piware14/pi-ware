@@ -16,11 +16,5 @@
         "author": "@gl91306",
         "logourl": "https://staticg.sportskeeda.com/editor/2021/06/448d0-16249475462223-800.jpg",
         "appdesc": "An amazing Minecraft launcher for Windows ported to the Raspberry Pi."
-    },
-    {
-        "name": "Spotify",
-        "author": "@oxmc",
-        "logourl": "https://marketingland.com/wp-content/ml-loads/2017/09/spotify-logo-1920x1080.jpg",
-        "appdesc": "The Spotify website transformed into a desktop application for the Raspberry Pi."
     }
 ]
