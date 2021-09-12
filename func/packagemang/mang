@@ -12,26 +12,27 @@ reduceapt() { #remove unwanted lines from apt output
 
 #Main
 #Get OS name
-sed '2!d' /etc/os-release | tail -c 20 | head -c 18 > $HOME/pi-ware/.logs/$todaydate-install.log
+OSNAME="$(sed '2!d' /etc/os-release | tail -c 20 | head -c 18)"
+echo "OS name: $OSNAME"
 
 #$1 is the mode i.e install uninstall etc.
 if [ -z "$1" ]; then
-  error "No mode given! Exiting..."
+  error "No mode given! Exiting..." exit
 else
   if [ "$1" == "install" ]; then
     Mode="install"
   elif [ "$1" == "uninstall" ]; then
     Mode="remove"
   else
-    error "Unkown mode: '$1'"   
+    error "Unkown mode: '$1', Exiting..." exit
   fi
   if [ -z "$2" ]; then
-    error "No packages given! Exiting..."
+    error "No packages given! Exiting..." exit
   else
-    echo "PackMang: apt"
-    echo "Mode: $Mode"
-    echo "Packages to $Mode: $2"
-    echo "Waiting for apt-locks..."
+    echo "PackMang: apt
+    Mode: $Mode
+    Packages to $Mode: $2
+    Waiting for apt-locks..."
     while true
     do
       if [ -z "$(lsof /var/lib/dpkg/lock)" ]; then
