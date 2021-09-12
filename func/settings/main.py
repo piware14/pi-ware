@@ -12,11 +12,11 @@ import getpass
 global username
 username = getpass.getuser()
 
-#Set global inable/disable scripts
+#Set global enable/disable scripts
 global enable
 global disable
 
-#Import custom  pi-ware functions
+#Import custom pi-ware classes
 import classes
 
 window = tk.Tk()
@@ -76,7 +76,6 @@ def back_to_menu():
     window.deiconify()
     desc_win.destroy()
     window.title("Pi-Ware Settings")
-    #window.eval('tk::PlaceWindow . center')
 
 def quit():
     window.destroy()
