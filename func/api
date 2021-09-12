@@ -1,5 +1,6 @@
 #Variables
-PW_PREFIX="$HOME/.local"
+PW_PREFIX="$HOME/.local/"
+LAST_COMMIT="$(git ls-remote "$PW_REPO" | grep refs/heads/main | cut -f 1)"
 fwe="0"
 ers=""
 
