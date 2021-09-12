@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#Credit to Rpinews for suggetsing this script
+
 #$1 is the command to be run.
 #$2 is the title.
 
