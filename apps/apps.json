@@ -1,14 +1,14 @@
 {
-  "MCPI (Modded)" : "all",
-  "Spotify" : "armhf",
+  "APTCleaner" : "all",
+  "CryApp" : "armhf",
+  "Deltarune" : "armhf",
+  "Discord" : "armhf",
+  "Doom" : "armhf" ,
+  "Firefox" : "all" ,
   "Godot Engine" : "armhf",
   "Lunar Client" : "armhf",
-  "Orthobot" : "armhf",
+  "MCPI (Modded)" : "all",
   "Mari0" : "armhf",
+  "Orthobot" : "armhf",
   "PyEncrypter" : "all",
-  "CryApp" : "armhf",
-  "APTCleaner" : "all",
-  "Discord" : "armhf",
-  "Deltarune" : "armhf",
-  "Firefox" : "all" 
 }
