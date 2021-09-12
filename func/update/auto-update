@@ -14,9 +14,8 @@ else
 fi
 
 #Variables
-PW_PREFIX="$HOME/.local/share"
+PW_PREFIX="$PW_PREFIX/share"
 PW_REPO="https://github.com/piware14/pi-ware.git"
-LAST_COMMIT="$(git ls-remote "$PW_REPO" | grep refs/heads/main | cut -f 1)"
 
 #Main
 if [ "$internet" == "1" ]; then
