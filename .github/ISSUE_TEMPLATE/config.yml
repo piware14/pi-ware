@@ -1,7 +1,7 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Pi-ware website
-    url: https://github.com/pi-ware-team/pi-ware/issues/new?title=Add%20this%20to%20the%20website
+  - name: Pi-Ware website
+    url: https://github.com/piware14/piware14.github.io/issues/new?title=Add%20this%20to%20the%20website
     about: Suggest/submit a change to the website.
   - name: Pi-ware Wiki
     url: https://github.com/piware14/pi-ware/wiki
