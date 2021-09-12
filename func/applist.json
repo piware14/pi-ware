@@ -1,42 +1,50 @@
 [
     {
-        "name": "FireFox",
-        "author": "@chunky-milk"
-    },
-    {
-        "name": "Lunar Client",
-        "author": "@gl91306 and @oxmc"
-    },
-    {
-        "name": "Godot Engine",
-        "author": "@gl91306"
-    },
-    {
-        "name": "Deltarune",
-        "author": "@gl91306"
-    },
-    {
-        "name": "Mari0",
-        "author": "@IsaacMvmv"
+        "name": "APT Cleaner",
+        "author": "@GabeTheCoder"
     },
     {
         "name": "CryApp",
         "author": "@RP400"
     },
     {
-        "name": "PyEnCrypter",
-        "author": "@White Lizard"
-    },
-    {
-        "name": "APT Cleaner",
-        "author": "@GabeTheCoder"
+        "name": "Deltarune",
+        "author": "@gl91306"
     },
     {
         "name": "Discord",
         "author": "@oxmc"
     },
     {
+        "name": "Doom",
+        "author": "@Homer's Rebuttal"
+    },
+    {
+        "name": "FireFox",
+        "author": "@chunky-milk"
+    },
+    {
+        "name": "Godot Engine",
+        "author": "@gl91306"
+    },
+    {
+        "name": "Lunar Client",
+        "author": "@gl91306 and @oxmc"
+    },
+    {
+        "name": "MCPI_Modded",
+        "author": "@mobilegmYT"
+    },
+    {
+        "name": "Mari0",
+        "author": "@IsaacMvmv"
+    },
+    {
         "name": "Orthobot",
         "author": "@IsaacMvmv"
+    },
+    {
+        "name": "PyEnCrypter",
+        "author": "@White Lizard"
     }
 ]
