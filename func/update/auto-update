@@ -1,33 +1,18 @@
 #!/bin/bash
 
-sleep 10 #Wait for internet
-
 #Check if connected to internet
-wget -q --spider http://google.com
-
-if [ $? -eq 0 ]; then
-    #User online
-    internet="1"
-else
-    #User offline
-    internet="0"
-fi
-
-#Variables
-PW_PREFIX="$PW_PREFIX/share"
-PW_REPO="https://github.com/piware14/pi-ware.git"
-
-#Main
-if [ "$internet" == "1" ]; then
-  if [ "$(cat "$PW_PREFIX/pi-ware/version")" != "$LAST_COMMIT" ]; then
-    python3 $HOME/pi-ware/func/update.py
-    exit 0
-  else
-    echo "Pi-ware is currently Up-To-Date"
-    exit 1
-  fi
-else
-  echo "I couldn't detect an internet connection! Please re-connect and try again."
+while [ "$(wget -q --spider http://google.com)" -eq 0 ]
+do
+  echo "I couldn't detect an internet connection! Trying again..."
   sleep 2
+done
+
+#If loop ends, User online
+#Main
+if [ "$(cat "$PW_PREFIX/share/pi-ware/version")" != "$LAST_COMMIT" ]; then
+  python3 $HOME/pi-ware/func/update/update.py
+  exit 0
+else
+  echo "Pi-ware is currently Up-To-Date"
   exit 1
 fi
