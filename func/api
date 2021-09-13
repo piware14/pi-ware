@@ -1,6 +1,7 @@
 #Variables
 PW_PREFIX="$HOME/.local/"
 LAST_COMMIT="$(git ls-remote "$PW_REPO" | grep refs/heads/main | cut -f 1)"
+PW_REPO="https://github.com/piware14/pi-ware.git"
 fwe="0"
 ers=""
 
