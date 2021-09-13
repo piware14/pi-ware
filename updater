@@ -3,41 +3,36 @@
 #load functions and variables
 source "$HOME/pi-ware/func/api" || echo "failed to source $HOME/pi-ware/func/api"
 
-#Local variables
-PW_REPO="https://github.com/piware14/pi-ware.git"
-
 #Check if connected to internet
-wget -q --spider http://google.com
+while [[ "$(wget -q --spider http://google.com)" -eq 1 ]]
+do
+  echo "I couldn't detect an internet connection! Trying again..."
+  sleep 2
+done
 
-if [ $? -eq 0 ]; then
-  #User online, check for updates
-  if [ "$(cat "$PW_PREFIX/share/pi-ware/version")" != "$LAST_COMMIT" ] || [ "$1" == force ]; then
-    if [ "$1" == force ]; then
-      echo "Force updating pi-ware"
-    else
-      echo "Updating Pi-Ware..."
-    fi
-    cd $HOME
-    rm -rf $HOME/pi-ware/
-    git clone "$PW_REPO" $HOME/pi-ware
-    rm -rf $PW_PREFIX/pi-ware/version
-    cd $HOME/pi-ware
-    echo $(git rev-parse main) > "$PW_PREFIX/share/pi-ware/version"
-    bash install
-    cd $HOME
-    #sed -i -e 's/\r$//' $HOME/pi-ware/apps/MCPI_Modded/install
-    #sed -i -e 's/\r$//' $HOME/pi-ware/apps/MCPI_Modded/uninstall
-    echo "Update complete, Closing in 5 seconds..."
-    sleep 5
-    exit 0
+#If loop ends, User online
+#Check for updates
+if [ "$(cat "$PW_PREFIX/share/pi-ware/version")" != "$LAST_COMMIT" ] || [ "$1" == force ]; then
+  if [ "$1" == force ]; then
+    echo "Force updating pi-ware"
   else
-    echo "Pi-Ware is currently up-to-date."
-    sleep 2
-    exit 1
+    echo "Updating Pi-Ware..."
   fi
+  cd $HOME
+  rm -rf $HOME/pi-ware/
+  git clone "$PW_REPO" $HOME/pi-ware
+  rm -rf $PW_PREFIX/pi-ware/version
+  cd $HOME/pi-ware
+  echo $(git rev-parse main) > "$PW_PREFIX/share/pi-ware/version"
+  bash install
+  cd $HOME
+  #sed -i -e 's/\r$//' $HOME/pi-ware/apps/MCPI_Modded/install
+  #sed -i -e 's/\r$//' $HOME/pi-ware/apps/MCPI_Modded/uninstall
+  echo "Update complete, Closing in 5 seconds..."
+  sleep 5
+  exit 0
 else
-  #User offline
-  error "I couldn't detect an internet connection! Please re-connect and try again."
+  echo "Pi-Ware is currently up-to-date."
   sleep 2
   exit 1
 fi
