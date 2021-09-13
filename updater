@@ -12,8 +12,8 @@ done
 
 #If loop ends, User online
 #Check for updates
-if [ "$(cat "$PW_PREFIX/share/pi-ware/version")" != "$LAST_COMMIT" ] || [ "$1" == force ]; then
-  if [ "$1" == force ]; then
+if [ "$(cat '$PW_PREFIX/share/pi-ware/version')" != "$LAST_COMMIT" ] || [ "$1" == "--force" ]; then
+  if [ "$1" == "--force" ]; then
     echo "Force updating pi-ware"
   else
     echo "Updating Pi-Ware..."
@@ -21,7 +21,7 @@ if [ "$(cat "$PW_PREFIX/share/pi-ware/version")" != "$LAST_COMMIT" ] || [ "$1" =
   cd $HOME
   rm -rf $HOME/pi-ware/
   git clone "$PW_REPO" $HOME/pi-ware
-  rm -rf $PW_PREFIX/pi-ware/version
+  rm -rf $PW_PREFIX/share/pi-ware/version
   cd $HOME/pi-ware
   echo $(git rev-parse main) > "$PW_PREFIX/share/pi-ware/version"
   bash install
