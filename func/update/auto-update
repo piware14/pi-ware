@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#load functions and variables
+source "$HOME/pi-ware/func/api" || echo "failed to source $HOME/pi-ware/func/api"
+
 #Check if connected to internet
 while [ "$(wget -q --spider http://google.com)" -eq 0 ]
 do
