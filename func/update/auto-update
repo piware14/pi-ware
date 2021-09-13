@@ -4,7 +4,7 @@
 source "$HOME/pi-ware/func/api" || echo "failed to source $HOME/pi-ware/func/api"
 
 #Check if connected to internet
-while [ "$(wget -q --spider http://google.com)" -eq 0 ]
+while [[ "$(wget -q --spider http://google.com)" -eq 1 ]]
 do
   echo "I couldn't detect an internet connection! Trying again..."
   sleep 2
