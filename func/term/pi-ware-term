@@ -15,7 +15,7 @@ VER="1.4"
 AppName="Pi-Ware-Term"
 
 #load functions
-source "$HOME/pi-ware/func/api" || error "failed to source $HOME/pi-ware/func/api"
+source "$HOME/pi-ware/func/api" || echo "failed to source $HOME/pi-ware/func/api"
 
 #Main
 #Check if OG_Year and Year are the same.
@@ -32,7 +32,7 @@ if [ ! -d "$HOME/pi-ware" ]; then
   error "Pi-Ware needs to be installed to use this." exit
 fi
 
-# flags. default is to launch app.
+#flags. default is to launch app.
 if [[ "$1" == "--version" ]] || [[ "$1" == "-v" ]]; then
   echo -e "
   $(tput setaf 9)###############################################################
@@ -40,14 +40,14 @@ if [[ "$1" == "--version" ]] || [[ "$1" == "-v" ]]; then
   $(tput setaf 9)###############################################################$(tput sgr 0)
   "
   exit 0
-elif [[ "$1" == "--help" ]] || [[ "$1" == "-h" ]]; then
+elif [[ "$1" == "--help" ]]; then
   echo -e "
     $(tput setaf 6)$(tput bold)USAGE:$(tput sgr 0)
     $(tput bold)intended usage:$(tput sgr 0)
     --install [AppName] | Install an app from pi-ware. 'pi-ware --install CryApp' installs CryApp to your system.
     --uninstall [AppName] | Uninstalls an app from pi-ware. 'pi-ware --uninstall CryApp' uninstalls CryApp from your system.
     --uninstall-all | Uninstalls pi-ware from your system completly.
-    --update | Checks if pi-ware is up-to-date, if you want to force update pi-ware run 'pi-ware --update force'.
+    --update | Checks if pi-ware is up-to-date, if you want to force update pi-ware run 'pi-ware --update --force'.
     --apps | List all availible apps in pi-ware.
     $(tput setaf 6)$(tput bold)Extra commands that have no use:$(tput sgr 0)
     --version or -v | print version and exit.
@@ -58,6 +58,12 @@ elif [[ "$1" == "--help" ]] || [[ "$1" == "-h" ]]; then
 elif [[ "$1" == "--author" ]]; then
   echo -e "$(tput setaf 6)$(tput bold)Author of $AppName:$(tput sgr 0) $OG_Creator"
   echo -e "$(tput setaf 6)$(tput bold)Author of Pi-Ware:$(tput sgr 0) ZachTheCoder14"
+  exit 0
+elif [[ "$1" == "--apps" ]]; then
+  cd $HOME/pi-ware/apps
+  echo "Here are all the current apps"
+  ls
+  ls > $HOME/pi-ware/logs/current-apps
   exit 0
 elif [[ "$1" == "--install" ]]; then
   if [[ "$2" != "" ]]; then
