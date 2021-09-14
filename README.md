@@ -53,3 +53,4 @@ bash uninstall
 ```
 
 Thanks to https://www.logodesign.net/ for providing our logo!
+Enjoy Pi-Ware
