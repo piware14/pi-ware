@@ -10,7 +10,7 @@ window.geometry("510x500")
 
 #Functions
 def update():
-    os.system("lxterminal -e 'bash $HOME/pi-ware/updater'")
+    os.system("bash $HOME/pi-ware/func/term/term-run 'bash $HOME/pi-ware/updater' 'Updating pi-ware'")
     window.destroy()
 
 #Heading
