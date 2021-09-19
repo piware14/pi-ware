@@ -1,0 +1,6 @@
+
+POOL, a arcade style first person shooter made by YelloAfterlife.
+
+Website: https://yellowafterlife.itch.io/pool-of-doom
+
+Credit to YelloAfterlife for making this. Also thanks to @gl91306 for adding this to pi ware.

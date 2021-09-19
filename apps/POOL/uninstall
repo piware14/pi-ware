@@ -1,0 +1,3 @@
+rm -rf $HOME/POOL
+rm -rf $HOME/.local/share/applications/POOL.desktop
+echo POOL has been uninstalled!

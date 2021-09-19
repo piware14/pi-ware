@@ -1,0 +1,24 @@
+echo Installing Legend of Xenia...
+cd
+git clone https://github.com/gl91306/randompigames.git
+cd randompigames
+cp -r 'Legend of Xenia 1.1' ~/
+cd
+cd 'Legend of Xenia 1.1'
+chmod +x 'Legend of Xenia'
+touch $HOME/.local/share/applications/'Legend of Xenia'.desktop
+echo "[Desktop Entry]
+Name=Legend of Xenia
+Comment=A arcade style first person shooter!
+Exec=$HOME/'Legend of Xenia 1.1'/'Legend of Xenia'
+Icon=$HOME/pi-ware/apps/Legend_of_Xenia/icon.png
+Categories=Game;
+Type=Application
+Terminal=false" > $HOME/.local/share/applications/'Legend of Xenia'.desktop
+
+echo cleanup.
+sleep 1
+echo cleanup..
+cd
+rm -rf randompigames
+echo fin

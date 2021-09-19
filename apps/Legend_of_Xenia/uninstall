@@ -1,0 +1,3 @@
+rm -rf $HOME/'Legend of Xenia 1.1'
+rm -rf $HOME/.local/share/applications/'Legend of Xenia'.desktop
+echo Legend of Xenia has been uninstalled!

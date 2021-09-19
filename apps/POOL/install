@@ -1,0 +1,24 @@
+echo Installing POOL...
+cd
+git clone https://github.com/gl91306/randompigames.git
+cd randompigames
+cp -r POOL ~/
+cd
+cd POOL
+chmod +x runner
+touch $HOME/.local/share/applications/POOL.desktop
+echo "[Desktop Entry]
+Name=POOL
+Comment=A arcade style first person shooter!
+Exec=$HOME/POOL/runner
+Icon=$HOME/pi-ware/apps/POOL/icon.png
+Categories=Game;
+Type=Application
+Terminal=false" > $HOME/.local/share/applications/POOL.desktop
+
+echo cleanup.
+sleep 1
+echo cleanup..
+cd
+rm -rf randompigames
+echo fin
