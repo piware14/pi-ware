@@ -1,4 +1,5 @@
 #Variables
+todaydate="$(date +"%A,%B,%d,%Y")"
 PW_PREFIX="$HOME/.local/"
 PW_REPO="https://github.com/piware14/pi-ware.git"
 LAST_COMMIT="$(git ls-remote "$PW_REPO" | grep refs/heads/main | cut -f 1)"
