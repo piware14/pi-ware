@@ -210,6 +210,8 @@ tree.pack(expand=YES, fill=BOTH)
 tree.column("#0", minwidth=0, width=330, stretch=NO)
 s = Style()
 s.configure('Treeview', rowheight=35)
+s.map('Treeview', foreground = [('active', '!disabled', 'green')],
+                     background = [('active', 'black')])
 ap = next(os.walk(f"/home/{username}/pi-ware/apps"))[1]
 applist = sorted(ap)
 print("Current apps:\n")
@@ -225,6 +227,9 @@ for app in applist:
     exec(appb + """_button =  PhotoImage(file=f'/home/{username}/pi-ware/apps/{app}/icon.png')""")
     exec("""tree.insert('', 'end', text=f"{app}",image=""" + appb + """_button)""")
 
+vsb =Scrollbar(window, orient="vertical", command=tree.yview)
+vsb.place(x=310, y=45, height=400)
+tree.configure(yscrollcommand=vsb.set)
 ScrollForMore = tk.Label(apps_tab, text="Scroll down for more apps.", font="Arial 11 bold")
 ScrollForMore.pack()
 
