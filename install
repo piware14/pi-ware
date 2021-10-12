@@ -5,6 +5,8 @@ source "$HOME/pi-ware/func/api" || echo "failed to source $HOME/pi-ware/func/api
 
 #Main
 echo "Installing pi-ware..."
+#Install tkinter
+pip install tkinter || echo "failed to install tkinter"
 mkdir -p $HOME/pi-ware/logs
 #Make required directory for updater
 mkdir -p "$PW_PREFIX/share/pi-ware"
