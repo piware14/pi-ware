@@ -8,6 +8,7 @@ import webbrowser
 from functools import partial
 import getpass
 import json
+from screeninfo import get_monitors
 
 #Set global var username
 global username
@@ -16,6 +17,7 @@ username = getpass.getuser()
 #Set global install/uninstall scripts
 global install_script
 global uninstall_script
+telemetry = None
 
 #Import custom  pi-ware functions
 #import function
@@ -54,10 +56,11 @@ def error(mode,message,contact):
     okbutton.pack()
 
 def show_desc(apt,*args):
-    mainwinx = str(window.winfo_x())
-    mainwiny = str(window.winfo_y())
+    # Gets the size of the mainwindow
+    wingeo = window.geometry()
     item = tree.selection()[0]
     app = tree.item(item,"text")
+    #print(app)
     global install_script, uninstall_script, desc_win
     desc_win = tk.Toplevel(window)
     p2 = PhotoImage(file = f'/home/{username}/pi-ware/apps/{app}/icon.png')
@@ -66,7 +69,8 @@ def show_desc(apt,*args):
     window.resizable(0, 0)
     desc_win.title(f"{app}")
     #print("320x500+" + mainwinx + "+" + mainwiny)
-    desc_win.geometry("320x500+" + mainwinx + "+" + mainwiny)
+    # Makes sure the new window is the same size as the old one
+    desc_win.geometry(wingeo)
     window.withdraw()
     desc = open(f"/home/{username}/pi-ware/apps/{app}/description.txt", "r")
     desc_contents = desc.read()
@@ -145,9 +149,17 @@ p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
 window.iconphoto(False, p1)
 
 #Main
+width = None
+height = None
+for m in get_monitors():
+    width = (m.width/2)-165
+    height = m.height/2-250
+    print(height)
+    print(width)
+
 window.resizable(0, 0)
-window.geometry("330x500")
-window.eval('tk::PlaceWindow . center')
+window.geometry("330x500+" + str(int(width)) + "+" + str(int(height)))
+#window.eval('tk::PlaceWindow . center')
 window.title("Pi-Ware")
 
 # Window tabs
@@ -223,7 +235,8 @@ for app in applist:
             appb += "_"
         else:
             appb += a
-    tree.bind("<<TreeviewSelect>>", partial(show_desc,app))
+    #tree.bind("<Button-1>", print(app))
+    tree.bind("<ButtonRelease-1>", partial(show_desc,app))
     exec(appb + """_button =  PhotoImage(file=f'/home/{username}/pi-ware/apps/{app}/icon.png')""")
     exec("""tree.insert('', 'end', text=f"{app}",image=""" + appb + """_button)""")
 
