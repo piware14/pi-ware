@@ -27,7 +27,7 @@ telemetry = None
 #import function
 import classes
 from function import istherefile
-window = tk.Tk()
+window = Tk()
 
 s = Style()
 
@@ -37,7 +37,7 @@ def callback(url):
 
 def error(mode,message,contact):
     #Create window
-    ErrorWindow = tk.Toplevel(window)
+    ErrorWindow = Toplevel(window)
     #Set window icon based on arg 1
     icon = PhotoImage(file = f'/home/{username}/pi-ware/icons/error-{mode}.png')
     ErrorWindow.iconphoto(False, icon)
@@ -46,9 +46,9 @@ def error(mode,message,contact):
     else:
         ErrorWindow.title("Error!")
     errorimage = Label(ErrorWindow,image=icon)
-    errorhappened = tk.Label(ErrorWindow, text = "An error occurred!")
+    errorhappened = Label(ErrorWindow, text = "An error occurred!")
     #error message
-    errormessage = tk.Label(ErrorWindow, text = message)
+    errormessage = Label(ErrorWindow, text = message)
     #If contact is set to true, and telemetry is enabled, send us an error message.
     if contact == "True":
         error_message = {"error": "fatal", "action": "imedient"}
@@ -57,7 +57,7 @@ def error(mode,message,contact):
             if telemetry == "True":
                 print("Sending log to pi-wareHQ")
     #Ok button
-    okbutton = tk.Button(ErrorWindow, text = "ok",command=quit)
+    okbutton = Button(ErrorWindow, text = "ok",command=quit)
     #Pack all items
     errorimage.pack()
     errorhappened.pack()
@@ -71,7 +71,7 @@ def show_desc(apt,*args):
     app = tree.item(item,"text")
     #print(app)
     global install_script, uninstall_script, desc_win
-    desc_win = tk.Toplevel(window)
+    desc_win = Toplevel(window)
     p2 = PhotoImage(file = f'/home/{username}/pi-ware/apps/{app}/icon.png')
     # Icon set for program window
     desc_win.iconphoto(False, p2)
@@ -80,8 +80,9 @@ def show_desc(apt,*args):
     #print("320x500+" + mainwinx + "+" + mainwiny)
     # Makes sure the new window is the same size as the old one
     desc_win.geometry(wingeo)
+    #style = ThemedStyle(desc_win)
+    #style.set_theme("arc")
     window.withdraw()
-    ThemedStyle(window).set_theme("arc")
     desc = open(f"/home/{username}/pi-ware/apps/{app}/description.txt", "r")
     desc_contents = desc.read()
     text_box = Text(desc_win, height=12, width=40)
@@ -189,7 +190,7 @@ def addscroll(event):
     if (tabtext != "Apps"):
         vsb.place_forget()
     elif (tabtext  == "Apps"):
-        vsb.place(x=310, y=60, height=388)
+        vsb.place(x=310, y=60, height=380)
     print(tabtext)
 
 # Window tabs
@@ -221,7 +222,7 @@ for _, dirnames, filenames in os.walk(f"/home/{username}/pi-ware/apps"):
     InstallibleApps = "{:,} installible Apps".format(folders)
 
 PiWareVersion = Label(DEV_tab, text=f"Pi-Ware Version:\n{PiWareVersioncontent}", font="Arial 11 bold")
-PiWareInstallableApps = tk.Label(DEV_tab, text=f"{InstallibleApps}", font="Arial 11 bold")
+PiWareInstallableApps = Label(DEV_tab, text=f"{InstallibleApps}", font="Arial 11 bold")
 PiWareInstallableApps.configure(anchor="center")
 PiWareVersion.pack()
 PiWareInstallableApps.pack()
@@ -284,13 +285,14 @@ for app in applist:
     exec("""tree.insert('', 'end', text=f"{app}",image=""" + appb + """_button)""")
 
 vsb =Scrollbar(window, orient="vertical", command=tree.yview)
-vsb.place(x=310, y=60, height=388)
+vsb.place(x=310, y=60, height=380)
 tree.configure(yscrollcommand=vsb.set)
 if (tabtext != "Apps"):
     vsb.place_forget()
 ScrollForMore = Label(apps_tab, text="Scroll down for more apps.", font="Arial 11 bold")
 ScrollForMore.pack()
-quitbutton = tk.Button(window, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command=quit)
+quitbutton = Button(window, text="Quit", width=200, style="goback.TButton", command=quit)
+s.configure("goback.TButton", foreground='grey', background='grey', font=("Arial", 11))
 quitbutton.pack(side="bottom")
 
 window.mainloop()
