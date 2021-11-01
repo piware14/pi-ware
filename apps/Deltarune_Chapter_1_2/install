@@ -1,0 +1,15 @@
+echo Installing Deltarune Chapter 1 + 2...
+cd
+git clone https://github.com/gl91306/deltarune_ch_1_2.git
+cd deltarune_ch_1_2
+chmod +x runner
+touch $HOME/.local/share/applications/Deltarune_1+2.desktop
+echo "[Desktop Entry]
+Name=Deltarune Chapter 1+2
+Comment=The sequel to Toby Fox's Undertale, now with the second chapter!
+Exec=$HOME/deltarune_ch_1_2/runner
+Icon=$HOME/deltarune_ch_1_2/deltarune.png
+Categories=Game;
+Type=Application
+Terminal=false" > $HOME/.local/share/applications/Deltarune_1+2.desktop
+cp $HOME/.local/share/applications/Deltarune_1+2.desktop $HOME/Desktop/

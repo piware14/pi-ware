@@ -1,3 +1,0 @@
-rm -rf $HOME/deltarune
-rm -rf $HOME/.local/share/applications/Deltarune.desktop
-echo Deltarune has been uninstalled!
