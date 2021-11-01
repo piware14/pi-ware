@@ -4,3 +4,4 @@ Deltarune, natively ported for the Raspberry Pi\
 Website: https://www.deltarune.com/
 
 Credit to @gl91306 for obtaining the game and porting it :DD
+Also credit to @theofficialgman for controller support :D
