@@ -8,6 +8,7 @@ echo "Installing pi-ware..."
 #Install tkinter
 sudo pip3 install tkinter || echo "failed to install tkinter"
 sudo pip3 install screeninfo || echo "failed to install screeninfo"
+sudo pip3 install ttkthemes || echo "failed to install ttkthemes"
 mkdir -p $HOME/pi-ware/logs
 #Make required directory for updater
 mkdir -p "$PW_PREFIX/share/pi-ware"

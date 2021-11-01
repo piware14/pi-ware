@@ -11,7 +11,7 @@ class HyperLink(tk.Label):
             cursor=(cursor or "hand2"),
             font="Arial 9",
         *args, **kwargs)
-		self.bind("<Button-1>", self.web_open);
+		self.bind("<Button-1>", self.web_open)
 
 	def web_open(self, event):
 		return webbrowser.open(self.url);

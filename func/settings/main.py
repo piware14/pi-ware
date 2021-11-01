@@ -114,6 +114,7 @@ tab_control.add(prefrence_tab, text="Prefrence")
 if IsDev == "True":
     tab_control.add(DEV_tab, text="Dev")
 tab_control.pack(expand=0, fill="both")
+print(tab_control.index("current"))
 
 #Show DEV stuff
 PiWareVersionFile = open(f"/home/{username}/.local/share/pi-ware/version", "r")

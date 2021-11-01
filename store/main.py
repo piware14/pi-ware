@@ -2,6 +2,7 @@
 # Pi-Ware main UI
 from tkinter import *
 from tkinter.ttk import *
+from ttkthemes import ThemedStyle
 import tkinter as tk
 import os
 import webbrowser
@@ -14,6 +15,9 @@ from screeninfo import get_monitors
 global username
 username = getpass.getuser()
 
+#set global vsb to make scrollbar perfect
+vsb = None
+
 #Set global install/uninstall scripts
 global install_script
 global uninstall_script
@@ -25,7 +29,12 @@ import classes
 from function import istherefile
 window = tk.Tk()
 
+s = Style()
+
 #Functions
+def callback(url):
+   webbrowser.open_new_tab(url)
+
 def error(mode,message,contact):
     #Create window
     ErrorWindow = tk.Toplevel(window)
@@ -72,6 +81,7 @@ def show_desc(apt,*args):
     # Makes sure the new window is the same size as the old one
     desc_win.geometry(wingeo)
     window.withdraw()
+    ThemedStyle(window).set_theme("arc")
     desc = open(f"/home/{username}/pi-ware/apps/{app}/description.txt", "r")
     desc_contents = desc.read()
     text_box = Text(desc_win, height=12, width=40)
@@ -88,8 +98,14 @@ def show_desc(apt,*args):
             # Strips the newline character
             for line in websiteurl:
                 #print("{}".format(line.strip()))
-                Website = classes.HyperLink(desc_win, f"""{line}""");
+                #Website = classes.HyperLink(desc_win, f"""{line}""");
+                #Website.pack()
+
+                Website = Label(desc_win, text="{line}",font=('Arial', 9), cursor="hand2")
+                s.configure(Website, foreground='blue')
                 Website.pack()
+                Website.bind("<Button-1>", lambda e:
+                callback("{line}"))
     #Buttons
     install = tk.Button(desc_win, text="INSTALL", font="Arial 11 bold", width=200, bg="darkblue", fg="white", command=install_app)
     uninstall = tk.Button(desc_win, text="UNINSTALL", font="Arial 11 bold", width=200, bg="red", fg="white", command=uninstall_app)
@@ -161,6 +177,17 @@ window.resizable(0, 0)
 window.geometry("330x500+" + str(int(width)) + "+" + str(int(height)))
 #window.eval('tk::PlaceWindow . center')
 window.title("Pi-Ware")
+style = ThemedStyle(window)
+style.set_theme("arc")
+tabtext = "Apps"
+def addscroll(event):
+    selected = event.widget.select()
+    tabtext = event.widget.tab(selected, "text")
+    if (tabtext != "Apps"):
+        vsb.place_forget()
+    elif (tabtext  == "Apps"):
+        vsb.place(x=310, y=60, height=388)
+    print(tabtext)
 
 # Window tabs
 tab_control = Notebook(window)
@@ -168,9 +195,11 @@ apps_tab = Frame(tab_control)
 news_tab = Frame(tab_control)
 credits_tab = Frame(tab_control)
 DEV_tab = Frame(tab_control)
+tab_control.bind("<<NotebookTabChanged>>", addscroll)
 tab_control.add(apps_tab, text="Apps")
 tab_control.add(news_tab, text="News")
 tab_control.add(credits_tab, text="Credits")
+
 #Show dev stuff if dev files are found
 if IsDev == "True":
     tab_control.add(DEV_tab, text="Dev")
@@ -188,39 +217,50 @@ for _, dirnames, filenames in os.walk(f"/home/{username}/pi-ware/apps"):
     folders += len(dirnames)
     InstallibleApps = "{:,} installible Apps".format(folders)
 
-PiWareVersion = tk.Label(DEV_tab, text=f"Pi-Ware Version:\n{PiWareVersioncontent}", font="Arial 11 bold")
+PiWareVersion = Label(DEV_tab, text=f"Pi-Ware Version:\n{PiWareVersioncontent}", font="Arial 11 bold")
 PiWareInstallableApps = tk.Label(DEV_tab, text=f"{InstallibleApps}", font="Arial 11 bold")
+PiWareInstallableApps.configure(anchor="center")
 PiWareVersion.pack()
 PiWareInstallableApps.pack()
 
 #Show latest news message
 NewsMessagefile = open(f"/home/{username}/pi-ware/func/info/latestnewsmessage", "r")
 NewsMessagecontent = NewsMessagefile.read()
-NewsMessage = tk.Label(news_tab, text=f"Latest news:\n{NewsMessagecontent}", font="Arial 11 bold")
+NewsMessage = Label(news_tab, text=f"Latest news:\n{NewsMessagecontent}", font="Arial 11 bold")
+NewsMessage.config(justify=tk.CENTER)
 NewsMessage.pack()
 
 #Show info message
 InfoMessagefile = open(f"/home/{username}/pi-ware/func/info/infomessage", "r")
 InfoMessagecontent = InfoMessagefile.read()
-InfoMessage = tk.Label(credits_tab, text=f"{InfoMessagecontent}", font="Arial 11 bold")
+InfoMessage = Label(credits_tab, text=f"{InfoMessagecontent}", font="Arial 11 bold")
+InfoMessage.config(justify=tk.CENTER)
 InfoMessage.pack()
 
 #Show commit links
-commitmessage = tk.Label(credits_tab, text=f"To see commits, please go to the link below.", font="Arial 11 bold")
+commitmessage = Label(credits_tab, text=f"To see commits, please go to the link below.", font="Arial 11 bold")
+commitmessage.config(justify=tk.CENTER)
 commitmessage.pack()
-commit = classes.HyperLink(credits_tab, f"""https://github.com/piware14/pi-ware/graphs/contributors""");
+
+commit = Label(credits_tab, text="https://github.com/piware14/pi-ware/graphs/contributors",font=('Arial', 9), cursor="hand2")
+s.configure(commit, foreground='blue')
 commit.pack()
+commit.bind("<Button-1>", lambda e:
+callback("https://github.com/piware14/pi-ware/graphs/contributors"))
 
 #Add pi-ware website
-piwarewebsite = tk.Label(credits_tab, text=f"To vist the pi-ware website, click the link below.", font="Arial 11 bold")
+piwarewebsite = Label(credits_tab, text=f"To vist the pi-ware website, click the link below.", font="Arial 11 bold")
+piwarewebsite.config(justify=tk.CENTER)
 piwarewebsite.pack()
-Website = classes.HyperLink(credits_tab, f"""https://pi-ware.ml""");
+Website = Label(credits_tab, text="https://pi-ware.ml",font=('Arial', 9), cursor="hand2")
+s.configure(Website, foreground='blue')
 Website.pack()
+Website.bind("<Button-1>", lambda e:
+callback("https://pi-ware.ml"))
 
 tree = Treeview(apps_tab)
 tree.pack(expand=YES, fill=BOTH)
 tree.column("#0", minwidth=0, width=330, stretch=NO)
-s = Style()
 s.configure('Treeview', rowheight=35)
 s.map('Treeview', foreground = [('active', '!disabled', 'green')],
                      background = [('active', 'black')])
@@ -241,11 +281,12 @@ for app in applist:
     exec("""tree.insert('', 'end', text=f"{app}",image=""" + appb + """_button)""")
 
 vsb =Scrollbar(window, orient="vertical", command=tree.yview)
-vsb.place(x=310, y=45, height=400)
+vsb.place(x=310, y=60, height=388)
 tree.configure(yscrollcommand=vsb.set)
-ScrollForMore = tk.Label(apps_tab, text="Scroll down for more apps.", font="Arial 11 bold")
+if (tabtext != "Apps"):
+    vsb.place_forget()
+ScrollForMore = Label(apps_tab, text="Scroll down for more apps.", font="Arial 11 bold")
 ScrollForMore.pack()
-
 quitbutton = tk.Button(window, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command=quit)
 quitbutton.pack(side="bottom")
 
