@@ -101,15 +101,18 @@ def show_desc(apt,*args):
                 #Website = classes.HyperLink(desc_win, f"""{line}""");
                 #Website.pack()
 
-                Website = Label(desc_win, text="{line}",font=('Arial', 9), cursor="hand2")
+                Website = Label(desc_win, text=line,font=('Arial', 11), cursor="hand2")
                 s.configure(Website, foreground='blue')
                 Website.pack()
                 Website.bind("<Button-1>", lambda e:
-                callback("{line}"))
+                callback(line))
     #Buttons
-    install = tk.Button(desc_win, text="INSTALL", font="Arial 11 bold", width=200, bg="darkblue", fg="white", command=install_app)
-    uninstall = tk.Button(desc_win, text="UNINSTALL", font="Arial 11 bold", width=200, bg="red", fg="white", command=uninstall_app)
-    back_to_menu_button = tk.Button(desc_win, text="BACK", font="Arial 11 bold", width=200, height=2, bg="green", fg="white", command=back_to_menu)
+    install = Button(desc_win, text="INSTALL", width=200, command=install_app, style="install.TButton")
+    uninstall = Button(desc_win, text="UNINSTALL", width=200, command=uninstall_app, style="uninstall.TButton")
+    back_to_menu_button = Button(desc_win, text="BACK", width=200, command=back_to_menu, style="back.TButton")
+    s.configure("install.TButton", foreground='blue', background='blue', font=("Arial", 11))
+    s.configure("uninstall.TButton", foreground='red', background='red', font=("Arial", 11))
+    s.configure("back.TButton", foreground='green', background='green', font=("Arial", 11))
     #Commands
     ucommand = f"""bash /home/{username}/pi-ware/func/term/uninst '{app}' 'Uninstalling {app}'"""
     command = f"""bash /home/{username}/pi-ware/func/term/inst '{app}' 'Installing {app}'"""
