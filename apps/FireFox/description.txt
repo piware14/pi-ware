@@ -3,6 +3,7 @@ An updated FireFox browser for the Raspberry Pi.
 
 Website: https://mozilla.org/firefox
 
-Thanks to @chunky-milk for providing the scripts!
-https://github.com/chunky-milk
+Thanks to @ryanfortner for providing the scripts,
+https://github.com/ryanfortner
 
+Based on the method from https://www.youtube.com/watch?v=Rs-C_omLlqs
