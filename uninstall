@@ -11,6 +11,9 @@ rm -rf $HOME/.local/bin/pi-ware || error "Unable to remove $HOME/.local/bin/pi-w
 #Remove pi-ware desktop entry
 echo "Removing Pi-Ware from applications"
 rm -rf $HOME/.local/share/applications/pi-ware.desktop || error "Unable to remove $HOME/.local/share/applications/pi-ware.desktop"
+#Remove pi-ware desktop entry, on the desktop
+echo "Removing Pi-Ware from applications"
+rm -rf $HOME/Desktop/pi-ware.desktop || error "Unable to remove $HOME/Desktop/pi-ware.desktop"
 #Remove pi-ware settings desktop entry
 echo "Removing Pi-Ware Settings from applications"
 rm -rf $HOME/.local/share/applications/pi-ware-settings.desktop || error "Unable to remove $HOME/.local/share/applications/pi-ware-settings.desktop"
