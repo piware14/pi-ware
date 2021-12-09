@@ -22,9 +22,9 @@ if current_time.month == "12":
     if current_time.day == "25":
         print("Merry Christmas from the pi-ware team!")
         p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo-christmas.png')
-    else
+    else:
       p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
-else
+else:
   p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
 
 #Create window
