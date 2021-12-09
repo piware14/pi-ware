@@ -13,13 +13,25 @@ mkdir -p "$PW_PREFIX/share/pi-ware"
 echo $(git rev-parse main) > "$PW_PREFIX/share/pi-ware/version"
 echo "Creating a desktop entry for Pi-Ware..."
 mkdir -p $HOME/.local/share/applications
+#Define logo
+month = "$(date +%m )"
+day = "$(date +%d )"
+if [ "$month" -eq "12" ]; then
+  if [ "$day" -eq "25" ]; then
+    logo = "$HOME/pi-ware/icons/logo-full-chrstmas.png"
+  else
+    logo = "$HOME/pi-ware/icons/logo.png"
+  fi
+else
+  logo = "$HOME/pi-ware/icons/logo.png"
+fi
 #Make firstrun desktop if program has not been used before.
 if [[ ! -f "$PW_PREFIX/share/pi-ware/firstrun" ]]; then
   echo "[Desktop Entry]
 Name=Pi-Ware
 Comment=Raspberry Pi app store
 Exec=bash $HOME/pi-ware/func/firstuse/setup
-Icon=$HOME/pi-ware/icons/logo.png
+Icon=$logo
 Categories=Utility;
 Type=Application
 Terminal=false" > $HOME/.local/share/applications/pi-ware.desktop
@@ -28,7 +40,7 @@ else
 Name=Pi-Ware
 Comment=Raspberry Pi app store
 Exec=python3 $HOME/pi-ware/store/main.py
-Icon=$HOME/pi-ware/icons/logo.png
+Icon=$logo
 Categories=Utility;
 Type=Application
 Terminal=false" > $HOME/.local/share/applications/pi-ware.desktop
