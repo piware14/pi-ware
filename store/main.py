@@ -165,7 +165,7 @@ else:
      IsDev = "True"
 
 #Set window icon
-p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
+p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo-full-christmas.png')
 window.iconphoto(False, p1)
 
 #Main
