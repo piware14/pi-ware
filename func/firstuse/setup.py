@@ -17,7 +17,8 @@ p1 = ""
 #Date calc
 current_time = datetime.datetime.now()
 
-print(current_time)
+print(current_time.month)
+print(current_time.day)
 
 if current_time.month == "12":
     if current_time.day == "25":
