@@ -20,13 +20,12 @@ print(current_time)
 if current_time.month == "12":
     if current_time.day == "25":
         print("Merry Christmas from the pi-ware team!")
+        p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo-christmas.png')
 
 #Create window
 window = tk.Tk()
 
 #Set window icon
-if date.month
-p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
 window.iconphoto(False, p1)
 
 #Set window title, size, and location
