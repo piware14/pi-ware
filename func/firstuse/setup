@@ -10,9 +10,9 @@ echo "Update pi-ware.desktop"
 echo "False" > "$PW_PREFIX/share/pi-ware/firstrun"
 echo "[Desktop Entry]
 Name=Pi-Ware
-Comment=Raspberry Pi app store
+Comment=Raspberry Pi app store (Happy Holidays!)
 Exec=python3 $HOME/pi-ware/store/main.py
-Icon=$HOME/pi-ware/icons/logo.png
+Icon=$HOME/pi-ware/icons/logo-full-christmas.png
 Categories=Utility;
 Type=Application
 Terminal=false" > $HOME/.local/share/applications/pi-ware.desktop
