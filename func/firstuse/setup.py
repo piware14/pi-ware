@@ -12,6 +12,8 @@ import datetime
 global username
 username = getpass.getuser()
 
+p1 = ""
+
 #Date calc
 current_time = datetime.datetime.now()
 
