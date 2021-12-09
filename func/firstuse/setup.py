@@ -12,8 +12,6 @@ import datetime
 global username
 username = getpass.getuser()
 
-p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
-
 #Date calc
 current_time = datetime.datetime.now()
 
@@ -24,6 +22,10 @@ if current_time.month == "12":
     if current_time.day == "25":
         print("Merry Christmas from the pi-ware team!")
         p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo-christmas.png')
+    else
+      p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
+else
+  p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
 
 #Create window
 window = tk.Tk()
