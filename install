@@ -33,6 +33,17 @@ Categories=Utility;
 Type=Application
 Terminal=false" > $HOME/.local/share/applications/pi-ware.desktop
 fi
+#christmas time.
+if [[ ! -f "$PW_PREFIX/share/pi-ware/firstrun-c" ]]; then
+  echo "[Desktop Entry]
+Name=Pi-Ware
+Comment=Raspberry Pi app store (Happy holidays!)
+Exec=bash $HOME/pi-ware/func/firstuse/setup
+Icon=$HOME/pi-ware/icons/logo-full-christmas.png
+Categories=Utility;
+Type=Application
+Terminal=false" > $HOME/.local/share/applications/pi-ware.desktop
+fi
 #Copy to desktop
 cp -r $HOME/.local/share/applications/pi-ware.desktop $HOME/Desktop/pi-ware.desktop
 #Remove settings button
