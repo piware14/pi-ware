@@ -13,11 +13,6 @@ done
 #If loop ends, User online
 #Check for updates
 if [ "$(cat $PW_PREFIX/share/pi-ware/version)" != "$LAST_COMMIT" ] || [ "$1" == "--force" ]; then
-  if [ "$1" == "--force" ]; then
-    echo "Force updating pi-ware"
-  else
-    echo "Updating Pi-Ware..."
-  fi
   cd $HOME
   rm -rf $HOME/pi-ware/
   git clone "$PW_REPO" $HOME/pi-ware
