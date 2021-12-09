@@ -101,7 +101,7 @@ elif [[ "$1" == "--update" ]]; then
   "
   if [[ "$2" == "--force" ]]; then
     echo "Force updating Pi-Ware..."
-    bash "$HOME/pi-ware/updater '--force'"
+    bash "$HOME/pi-ware/updater --force"
   else
     echo "Checking for updates..."
     bash "$HOME/pi-ware/updater"
