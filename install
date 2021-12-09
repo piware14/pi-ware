@@ -6,7 +6,6 @@ source "$HOME/pi-ware/func/api" || echo "failed to source $HOME/pi-ware/func/api
 #Main
 echo "Installing pi-ware..."
 #Install tkinter
-sudo apt-get install python-tk
 sudo pip3 install -r packages.txt || echo "failed to install required packages"
 mkdir -p $HOME/pi-ware/logs
 #Make required directory for updater
