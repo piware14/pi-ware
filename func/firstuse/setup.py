@@ -13,7 +13,10 @@ global username
 username = getpass.getuser()
 
 #Date calc
-current_time = datetime.datetime.now() 
+current_time = datetime.datetime.now()
+
+print(current_time)
+
 if current_time.month == "12":
     if current_time.day == "25":
         print("Merry Christmas from the pi-ware team!")
