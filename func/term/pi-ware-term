@@ -63,7 +63,7 @@ elif [[ "$1" == "--apps" ]]; then
   cd $HOME/pi-ware/apps
   echo "Here are all the current apps"
   ls
-  ls > $HOME/pi-ware/logs/current-apps
+  ls >> $HOME/pi-ware/logs/current-apps
   exit 0
 elif [[ "$1" == "--install" ]]; then
   if [[ "$2" != "" ]]; then
