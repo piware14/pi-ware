@@ -8,16 +8,17 @@ from functools import partial
 import getpass
 import datetime
 
+#Date calc
+current_time = datetime.datetime.now()
+
 #Set global var username
 global username
 username = getpass.getuser()
 
-#Date calc
-current_time = datetime.datetime.now()
+#Create window
+window = tk.Tk()
 
-print(current_time.month)
-print(current_time.day)
-
+#Set window icon
 if current_time.month == "12":
     if current_time.day == "25":
         print("Merry Christmas from the pi-ware team!")
@@ -26,11 +27,6 @@ if current_time.month == "12":
       p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
 else:
   p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
-
-#Create window
-window = tk.Tk()
-
-#Set window icon
 window.iconphoto(False, p1)
 
 #Set window title, size, and location
