@@ -12,7 +12,7 @@ import datetime
 global username
 username = getpass.getuser()
 
-p1 = ""
+p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
 
 #Date calc
 current_time = datetime.datetime.now()
