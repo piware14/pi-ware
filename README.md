@@ -1,5 +1,5 @@
 <div align='center'>
-<img src='./icons/logo-full-christmas.png' width='128px'> 
+<img src='./icons/logo-full.png' width='128px'> 
 <h1>Pi-Ware</h1>
 Pi-Ware is an app store inspired by Botspots <a href="https://github.com/Botspot/pi-apps">pi-apps</a> for the Raspberry Pi that allows you to install apps that you generally can't get from the official repos and/or without an extra amount of work.
   
