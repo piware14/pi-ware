@@ -12,7 +12,7 @@ done
 
 #If loop ends, User online
 #Check for updates
-if [ "$(cat $PW_DATA/version)" != "$LATEST_COMMIT" ] || [ "$1" == "--force" ]; then
+if [ "$CURRENT_COMMIT" != "$LATEST_COMMIT" ] || [ "$1" == "--force" ]; then
   cd $HOME
   rm -rf "$HOME/pi-ware/"
   git clone "$PW_REPO" "$HOME/pi-ware"
