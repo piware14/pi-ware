@@ -4,12 +4,13 @@
 source "$HOME/pi-ware/func/api" || echo "failed to source $HOME/pi-ware/func/api"
 
 #Local Variables
-version="2.2.0"
+version="3.1.2"
+serverurl="http://piwaretelemetry.ml/uploaded/webcord-3.1.2-armv7l.App-2.appimage"
 
 #Main
 cd $HOME
-echo "Downloading: https://github.com/SpacingBat3/WebCord/releases/download/v$version/webcord-$version-$aarch.AppImage"
-curl "https://github.com/SpacingBat3/WebCord/releases/download/v$version/webcord-$version-$aarch.AppImage" --output "webcord-$version-$arch.AppImage"
+echo "Downloading: Webcord $version"
+curl "$serverurl" --output "webcord-$version-$aarch.AppImage"
 echo "[Desktop Entry]
 Name=Webcord
 Comment=A Discord client for arm devices
@@ -17,4 +18,4 @@ Exec="./$HOME/webcord-$version-$aarch.AppImage"
 Icon="$HOME/pi-ware/apps/webcord/icon.png"
 Categories=Utility;
 Type=Application
-Terminal=false" > "$PW_APPS/webcord-$version-$arch.desktop"
+Terminal=false" > "$PW_APPS/webcord-$version-$aarch.desktop"
