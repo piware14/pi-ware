@@ -64,10 +64,9 @@ elif [[ "$1" == "--author" ]]; then
 elif [[ "$1" == "--apps" ]]; then
   cd $HOME/pi-ware/apps
   echo "Here are all the current apps"
-  $applist = "${ls | sed 's/apps.json//' > $HOME/pi-ware/logs/current-apps}"
-  echo $applist
-  echo $applist > $HOME/pi-ware/logs/current-apps
-  log "$applist"
+  ls | sed 's/^apps.json//;s/$//'
+  ls | sed 's/^apps.json//;s/$//' > $HOME/pi-ware/logs/current-apps
+  log ls | sed 's/^apps.json//;s/$//'
   exit 0
 elif [[ "$1" == "--install" ]]; then
   if [[ "$2" != "" ]]; then
