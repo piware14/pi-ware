@@ -12,17 +12,15 @@ done
 
 #If loop ends, User online
 #Check for updates
-if [ "$(cat $PW_PREFIX/share/pi-ware/version)" != "$LAST_COMMIT" ] || [ "$1" == "--force" ]; then
+if [ "$(cat $PW_DATA/version)" != "$LATEST_COMMIT" ] || [ "$1" == "--force" ]; then
   cd $HOME
-  rm -rf $HOME/pi-ware/
-  git clone "$PW_REPO" $HOME/pi-ware
-  rm -rf $PW_PREFIX/share/pi-ware/version
-  cd $HOME/pi-ware
-  echo $(git rev-parse main) > "$PW_PREFIX/share/pi-ware/version"
+  rm -rf "$HOME/pi-ware/"
+  git clone "$PW_REPO" "$HOME/pi-ware"
+  rm -rf $PW_DATA/version
+  cd "$HOME/pi-ware"
+  echo $(git rev-parse main) > "$PW_DATA/version"
   bash install
   cd $HOME
-  #sed -i -e 's/\r$//' $HOME/pi-ware/apps/MCPI_Modded/install
-  #sed -i -e 's/\r$//' $HOME/pi-ware/apps/MCPI_Modded/uninstall
   echo "Update complete, Closing in 5 seconds..."
   sleep 5
   exit 0

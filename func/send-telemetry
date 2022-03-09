@@ -14,14 +14,16 @@ done
 
 #If loop ends, User online
 #Check if user allowed telemetry
-if [ "$(cat '$HOME/.local/share/pi-ware/telemetry')" == "True" ]; then
+if [ "$(cat $PW_DATA/telemetry)" == "True" ]; then
   echo "Telemetry allowed"
   echo "Checking for telemetry file..."
-  if [ -f "$HOME/.local/share/pi-ware/telemetry/data-1.json" ]; then
+  if [ -f "$PW_DATA/telemetry/data-1.json" ]; then
     echo "Sending file..."
-    curl -F "fileToUpload=@$HOME/.local/share/pi-ware/telemetry/data-1.json" http://pi-ware-telemetry.ml/uploader.php | echo "ERROR: I was unable to send the telemetry file."
+    curl -F "fileToUpload=@$PW_DATA/telemetry/data-1.json" http://pi-ware-telemetry.ml/uploader.php | echo "ERROR: I was unable to send the telemetry file."
   else
-    error "ERROR: Unable to find '$HOME/.local/share/pi-ware/telemetry/data.json'\nA log has been generated in: '$HOME/pi-ware/logs/$logname'"
+    logname="$todaydate-$currenttime-telemetry.log"
+    echo "ERROR: Unable to find '$PW_DATA/telemetry/data.json'" > "$PW_LOGS/$logname"
+    error "ERROR: Unable to find '$PW_DATA/telemetry/data.json'\nA log has been generated in: '$HOME/pi-ware/logs/$logname'"
   fi
 else
   echo "Telemetry not allowed"

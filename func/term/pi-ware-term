@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Variabels
+#Local Variabels
 #Keep the line below if you modify or change any part of this code!
 OG_Creator="oxmc"
 #Year this program was made.
@@ -29,7 +29,9 @@ fi
 
 #Check if pi-ware is installed
 if [ ! -d "$HOME/pi-ware" ]; then
-  error "Pi-Ware needs to be installed to use this." exit
+  echo "echo -e "\e[91mPi-Ware needs to be installed to use this.\e[39m"
+  sleep 2
+  exit 1
 fi
 
 #flags. default is to launch app.

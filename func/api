@@ -1,27 +1,80 @@
 #Variables
 todaydate="$(date +"%A,%B,%d,%Y")"
-PW_PREFIX="$HOME/.local/"
+currenttime="$(date +"%r")"
+month="$(date +%m )"
+day="$(date +%d )"
+year="$(date +'%Y')"
+PW_DATA="$HOME/.local/share/pi-ware"
 PW_REPO="https://github.com/piware14/pi-ware.git"
-LAST_COMMIT="$(git ls-remote "$PW_REPO" | grep refs/heads/main | cut -f 1)"
+PW_APPS="$HOME/.local/share/applications/pi-ware"
+PW_LOGS="$HOME/pi-ware/logs"
+CURRENT_COMMIT="$(cd $HOME/pi-ware | git rev-parse main)"
+LATEST_COMMIT="$(git ls-remote "$PW_REPO" | grep refs/heads/main | cut -f 1)"
+aarch="$(cat $PW_DATA/aarch)"
 fwe="0"
 ers=""
 
 #Functions
 function error {
-  echo -e "\e[91m$1\e[39m"
-  if [ "$2" == "exit" ]; then
-    exit 1
+  if [[ -z "$1" ]]; then
+    warn "2" "No error message to show, input arg was empty."
+    if [ "$2" == "exit" ]; then
+      exit 1
+    else
+      fwe="1"
+      ers+="$1"
+    fi
   else
-    fwe="1"
-    ers+="$1"
+    echo -e "\e[91m$1\e[39m"
+    if [ "$2" == "exit" ]; then
+      exit 1
+    else
+      fwe="1"
+      ers+="$1"
+    fi
   fi
 }
 
 function warning {
-  echo -e "\e[91m$2\e[39m"
-  sleep "$1"
+  if [[ -z "$1" ]]; then
+    err="No time set to show warning for, input arg 1 was empty"
+    echo -e "\e[91m$err\e[39m"
+  elif [[ -z "$2" ]]; then
+    err="o warning message set, input arg 2 was empty"
+    echo -e "\e[91m$err\e[39m"
+  else
+    echo -e "\e[91m$2\e[39m"
+    sleep "$1"
+  fi
+}
+
+function warn {
+  warning "$1" "$2"
+}
+
+function log {
+  if [[ -z "$1" ]]; then
+    warn "2" "No item sent to log, input arg 1 was empty."
+  else
+    echo "$1" > "$PW_DATA/logs/$todaydate-$currenttime.log"
+  fi
 }
 
 function packmang {
-  bash "$HOME/pi-ware/func/packagemang/mang $1 $2" > $HOME/pi-ware/logs/$todaydate-install.log
+  bash "$HOME/pi-ware/func/packagemang/mang $1 $2" > "$PW_DATA/logs/$todaysdate-$todaydate-$currenttime-install.log"
+}
+
+function term-text {
+  if [[ -z "$1" ]]; then
+    warn "2" "No command to run, input arg 1 was empty."
+  else
+    if [[ -z "$2" ]]; then
+      warn "2" "No title set, using default: Pi-Ware App"
+      echo "Running:'$1' in terminal titled: 'Pi-Ware App'"
+      bash "$HOME/pi-ware/func/term/term-run" "$1" "Pi-Ware App"
+    else
+      echo "Running:'$1' in terminal titled: '$2'"
+      bash "$HOME/pi-ware/func/term/term-run" "$1" "$2"
+    fi
+  fi
 }

@@ -1,2 +1,0 @@
-A Discord webapp for raspberry pi's
-Made by: oxmc

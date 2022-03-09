@@ -5,79 +5,70 @@ source "$HOME/pi-ware/func/api" || echo "failed to source $HOME/pi-ware/func/api
 
 #Main
 echo "Installing pi-ware..."
-#Install tkinter
+#Install python packages
 sudo pip3 install -r packages.txt || echo "failed to install required packages"
-mkdir -p $HOME/pi-ware/logs
+mkdir -p "$PW_LOGS"
 #Make required directory for updater
-mkdir -p "$PW_PREFIX/share/pi-ware"
-echo $(git rev-parse main) > "$PW_PREFIX/share/pi-ware/version"
+mkdir -p "$PW_DATA"
+cd "$HOME/pi-ware"
+echo $(git rev-parse main) > "$PW_DATA/version"
 echo "Creating a desktop entry for Pi-Ware..."
-mkdir -p $HOME/.local/share/applications
+mkdir -p "$PW_APPS"
+mkdir -p "$HOME/.config/autostart/pi-ware/"
 #Define logo
-month = "$(date +%m )"
-day = "$(date +%d )"
 if [ "$month" -eq "12" ]; then
-  if [ "$day" -eq "25" ]; then
-    logo = "$HOME/pi-ware/icons/logo-full-chrstmas.png"
-  else
-    logo = "$HOME/pi-ware/icons/logo.png"
-  fi
+  #if [ "$day" -eq "25" ]; then
+    logo="$HOME/pi-ware/icons/logo-full-christmas.png"
+    comment="Raspberry Pi app store (Happy holidays!)"
+  #else
+  #  logo="$HOME/pi-ware/icons/logo.png"
+  #fi
 else
-  logo = "$HOME/pi-ware/icons/logo.png"
+  logo="$HOME/pi-ware/icons/logo.png"
+  comment="Raspberry Pi app store"
 fi
 #Make firstrun desktop if program has not been used before.
-if [[ ! -f "$PW_PREFIX/share/pi-ware/firstrun" ]]; then
+if [[ ! -f "$PW_DATA/firstrun" ]]; then
   echo "[Desktop Entry]
 Name=Pi-Ware
-Comment=Raspberry Pi app store
-Exec=bash $HOME/pi-ware/func/firstuse/setup
+Comment="$comment"
+Exec="bash $HOME/pi-ware/func/firstuse/setup"
 Icon=$logo
 Categories=Utility;
 Type=Application
-Terminal=false" > $HOME/.local/share/applications/pi-ware.desktop
+Terminal=false" > "$PW_APPS/pi-ware.desktop"
 else
   echo "[Desktop Entry]
 Name=Pi-Ware
-Comment=Raspberry Pi app store
-Exec=python3 $HOME/pi-ware/store/main.py
+Comment="$comment"
+Exec="python3 $HOME/pi-ware/store/main.py"
 Icon=$logo
 Categories=Utility;
 Type=Application
-Terminal=false" > $HOME/.local/share/applications/pi-ware.desktop
-fi
-#christmas time.
-if [[ ! -f "$PW_PREFIX/share/pi-ware/firstrun-c" ]]; then
-  echo "[Desktop Entry]
-Name=Pi-Ware
-Comment=Raspberry Pi app store (Happy holidays!)
-Exec=bash $HOME/pi-ware/func/firstuse/setup
-Icon=$HOME/pi-ware/icons/logo-full-christmas.png
-Categories=Utility;
-Type=Application
-Terminal=false" > $HOME/.local/share/applications/pi-ware.desktop
+Terminal=false" > "$PW_APPS/pi-ware.desktop"
 fi
 #Copy to desktop
-cp -r $HOME/.local/share/applications/pi-ware.desktop $HOME/Desktop/pi-ware.desktop
+cp -r "$PW_APPS/pi-ware.desktop" "$HOME/Desktop/pi-ware.desktop"
 #Remove settings button
 #echo "Creating a settings desktop entry for Pi-Ware..."
 #echo "[Desktop Entry]
 #Name=Pi-Ware Settings
 #Comment=Change some of pi-ware's settings
-#Exec=python3 $HOME/pi-ware/func/settings/settings.py
+#Exec=python3 "$HOME/pi-ware/func/settings/settings.py"
 #Icon=$HOME/pi-ware/icons/logo.png
 #Categories=Utility;
 #Type=Application
-#Terminal=false" > $HOME/.local/share/applications/pi-ware-settings.desktop
+#Terminal=false" > "$PW_APPS/pi-ware-settings.desktop"
 echo "Creating an auto updater for Pi-Ware..."
-mkdir -p $HOME/.config/autostart/
+mkdir -p "$HOME/.config/autostart/"
 echo "[Desktop Entry]
 Name=Pi-Ware-Auto-Updater
 Comment=Auto updater for pi-ware
-Exec=bash $HOME/pi-ware/func/update/auto-update
+Exec=bash "$HOME/pi-ware/func/update/auto-update"
 Icon=$HOME/pi-ware/icons/logo.png
 Categories=Utility;
 Type=Application
-Terminal=false" > $HOME/.config/autostart/update-pi-ware.desktop
+Terminal=false" > "$HOME/.config/autostart/pi-ware/update-pi-ware.desktop"
 #Create pi-ware utility
 cd $HOME
 sudo mkdir -p "/usr/local/bin"
@@ -88,25 +79,22 @@ echo "Please restart terminal to apply changes."
 #Set aarch
 echo "Your aarch type is: $(uname -m)"
 if [ "$(uname -m)" == "armv7l" ]; then
-  echo "armv7l" > $HOME/.local/share/pi-ware/arch
+  echo "armv7l" > "$PW_DATA/aarch"
 elif [ "$(uname -m)" == "aarch64" ]; then
-  echo "aarch64" > $HOME/.local/share/pi-ware/arch
+  echo "aarch64" > "$PW_DATA/aarch"
 else
-  warning "2" "Unable to detect arch type! Continuing install..."
+  warning 2 "Unable to detect arch type! Continuing install..."
 fi
 #Set package manager
 if [ -f /usr/bin/apt ];then
   echo "Package manager is: apt"
-  echo "apt-get -y" > "$PW_PREFIX/share/pi-ware/inst-pref"
+  echo "apt-get -y" > "$PW_DATA/inst-pref"
 elif [ -f /usr/bin/pacman ];then
   echo "Package manager is: pacman"
-  echo "pacman -S" > "$PW_PREFIX/share/pi-ware/inst-pref"
+  echo "pacman -S" > "$PW_DATA/inst-pref"
 else
-  error "Failed to find any package manager."
+  error "Failed to find any package manager." "exit"
 fi
-#echo "Fixing script format..."
-#sed -i -e 's/\r$//' $HOME/pi-ware/apps/MCPI_Modded/install
-#sed -i -e 's/\r$//' $HOME/pi-ware/apps/MCPI_Modded/uninstall
 #Finished
 echo "Done!"
 echo "You can find Pi-Ware in Menu > Accessories > Pi-Ware."
