@@ -66,7 +66,6 @@ elif [[ "$1" == "--apps" ]]; then
   echo "Here are all the current apps"
   ls | sed 's/^apps.json//;s/$//'
   ls | sed 's/^apps.json//;s/$//' > $HOME/pi-ware/logs/current-apps
-  log "ls | sed 's/^apps.json//;s/$//'"
   exit 0
 elif [[ "$1" == "--install" ]]; then
   if [[ "$2" != "" ]]; then
