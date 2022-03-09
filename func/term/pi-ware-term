@@ -29,7 +29,7 @@ fi
 
 #Check if pi-ware is installed
 if [ ! -d "$HOME/pi-ware" ]; then
-  echo "echo -e "\e[91mPi-Ware needs to be installed to use this.\e[39m"
+  echo -e "\e[91mPi-Ware needs to be installed to use this.\e[39m"
   sleep 2
   exit 1
 fi
