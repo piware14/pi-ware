@@ -10,12 +10,12 @@ serverurl="http://pi-ware-telemetry.ml/uploaded/webcord-3.1.2-armv7l.App-2.appim
 #Main
 cd $HOME
 echo "Downloading: Webcord $version"
-curl "$serverurl" --output "webcord-$version-$aarch.AppImage"
+curl "$serverurl" --output "webcord-$version.AppImage"
 echo "[Desktop Entry]
 Name=Webcord
 Comment=A Discord client for arm devices
-Exec="./$HOME/webcord-$version-$aarch.AppImage"
+Exec=".$HOME/webcord-$version.AppImage"
 Icon="$HOME/pi-ware/apps/webcord/icon.png"
 Categories=Utility;
 Type=Application
-Terminal=false" > "$PW_APPS/webcord-$version-$aarch.desktop"
+Terminal=false" > "$PW_APPS/webcord-$version.desktop"
