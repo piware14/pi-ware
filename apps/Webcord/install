@@ -6,8 +6,8 @@ source "$HOME/pi-ware/func/api" || echo "failed to source $HOME/pi-ware/func/api
 #Local Variables
 AppName="Webcord"
 version="3.1.2"
-serverurl="http://pi-ware-telemetry.ml/uploaded/webcord-3.1.2-armv7l.App-2.appimage"
-AppLocation="Menu > Accessories > webcord-$version"
+serverurl="http://pi-ware-telemetry.ml/uploaded/webcord-3.1.2-armv7l.appimage"
+AppLocation="Menu > Accessories > Webcord"
 
 #Main
 cd $HOME
