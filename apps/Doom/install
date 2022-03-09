@@ -1,7 +1,13 @@
+#!/bin/bash
+
+#load functions
+source "$HOME/pi-ware/func/api" || echo "failed to source $HOME/pi-ware/func/api"
+
+#Main
 mkdir $HOME/doom
 cd $HOME/doom/doom1
 sudo apt install chocolate-doom
-sudo wget https://gitlab.com/Nunya-9018/doom-wad/-/raw/main/DOOM.WAD
+sudo curl "https://gitlab.com/Nunya-9018/doom-wad/-/raw/main/DOOM.WAD" --output "DOOM.WAD"
 chocolate-doom-setup
 echo "[Desktop Entry]
 Name=Doom
@@ -10,8 +16,16 @@ Exec=chocolate-doom -iwad $HOME/doom/DOOM.WAD
 Icon=$HOME/pi-ware/apps/doom/icon.png
 Categories=Game;
 Type=Application
-Terminal=false" > $HOME/.local/share/applications/doom.desktop
-echo "Install finished..."
-sleep 1
-echo "Closing in five seconds"
-sleep 5
+Terminal=false" > $PW_APPS/doom.desktop
+#Inform user that the install has finished
+#Check if finished with errors
+if [ "${fwe}" == "1" ]; then
+  echo "This script finished with errors, Here are the errors: ${ers}"
+  sleep 1
+  exit 1
+elif [ "${fwe}" == "0" ]; then
+  echo "Successfully installed $AppName. You can find it in $AppLocation."
+  echo "Closing in 5 seconds."
+  sleep 5s
+  exit 0
+fi
