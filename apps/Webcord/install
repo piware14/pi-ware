@@ -11,7 +11,7 @@ AppLocation="Menu > Accessories > webcord-$version"
 #Main
 cd $HOME
 echo "Downloading: Webcord $version"
-curl "$serverurl" --output "webcord-$version.AppImage"
+curl "$serverurl" --output "$HOME/webcord-$version.AppImage"
 echo "[Desktop Entry]
 Name=Webcord
 Comment=A Discord client for arm devices
