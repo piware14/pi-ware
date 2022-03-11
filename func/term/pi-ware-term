@@ -40,6 +40,10 @@ if [[ "$1" == "--version" ]] || [[ "$1" == "-v" ]]; then
   $(tput setaf 9)###############################################################
   $(tput setaf 9)# $(tput setaf 4)$(tput bold)$AppName version $VER by $OG_Creator & The Pi-Ware-Team | $CopyYear $(tput sgr 0)$(tput setaf 9) #
   $(tput setaf 9)###############################################################$(tput sgr 0)
+  
+  $(tput setaf 9)###############################################################
+  $(tput setaf 9)# $(tput setaf 4)$(tput bold)Pi-Ware version $CURRENT_COMMIT  #
+  $(tput setaf 9)###############################################################$(tput sgr 0)
   "
   exit 0
 elif [[ "$1" == "--help" ]]; then
