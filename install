@@ -17,12 +17,9 @@ mkdir -p "$PW_APPS"
 mkdir -p "$HOME/.config/autostart/pi-ware/"
 #Define logo
 if [ "$month" -eq "12" ]; then
-  #if [ "$day" -eq "25" ]; then
-    logo="$HOME/pi-ware/icons/logo-full-christmas.png"
-    comment="Raspberry Pi app store (Happy holidays!)"
-  #else
-  #  logo="$HOME/pi-ware/icons/logo.png"
-  #fi
+  echo "christmas logo"
+  logo="$HOME/pi-ware/icons/logo-full-christmas.png"
+  comment="Raspberry Pi app store (Happy holidays!)"
 else
   logo="$HOME/pi-ware/icons/logo.png"
   comment="Raspberry Pi app store"

@@ -8,11 +8,19 @@ echo "Starting first use..."
 python3 $HOME/pi-ware/func/firstuse/setup.py
 echo "Update pi-ware.desktop"
 echo "False" > "$PW_PREFIX/share/pi-ware/firstrun"
+if [ "$month" -eq "12" ]; then
+  echo "christmas logo"
+  logo="$HOME/pi-ware/icons/logo-full-christmas.png"
+  comment="Raspberry Pi app store (Happy holidays!)"
+else
+  logo="$HOME/pi-ware/icons/logo.png"
+  comment="Raspberry Pi app store"
+fi
 echo "[Desktop Entry]
 Name=Pi-Ware
-Comment=Raspberry Pi app store (Happy Holidays!)
+Comment="$comment"
 Exec=python3 $HOME/pi-ware/store/main.py
-Icon=$HOME/pi-ware/icons/logo-full-christmas.png
+Icon=$logo
 Categories=Utility;
 Type=Application
 Terminal=false" > $HOME/.local/share/applications/pi-ware.desktop
