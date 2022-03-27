@@ -12,7 +12,7 @@ echo "Uninstalling Pi-Apps:"
 cd ~/pi-apps
 bash uninstall
 sudo rm -rf "$PW_APPS/pi-apps/pi-apps.desktop"
-#Inform user that the install has finished
+#Inform user that the uninstall has finished
 #Check if finished with errors
 if [ "${fwe}" == "1" ]; then
   echo "This script finished with errors, Here are the errors: ${ers}"
