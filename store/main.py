@@ -291,7 +291,7 @@ for app in applist:
       ficon = f'/home/{username}/pi-ware/apps/{app}/icon.png'
     else:
       ficon = f'/home/{username}/pi-ware/icons/app-no-icon.png'
-    print(appb + """_button =  PhotoImage(file='""" + ficon + """')""")
+    print(appb + """_button =  PhotoImage(file=f"{ficon}")""")
     exec(appb + """_button =  PhotoImage(file='""" + ficon + """')""")
     exec("""tree.insert('', 'end', text=f"{app}",image=""" + appb + """_button)""")
 
