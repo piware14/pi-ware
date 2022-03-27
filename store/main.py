@@ -52,10 +52,11 @@ def error(mode,message,contact):
     #If contact is set to true, and telemetry is enabled, send us an error message.
     if contact == "True":
         error_message = {"error": "fatal", "action": "imedient"}
-        with open('error.txt', 'w') as json_file:
+        with open('error.json', 'w') as json_file:
             json.dump(error_message, json_file)
             if telemetry == "True":
                 print("Sending log to pi-wareHQ")
+                
     #Ok button
     okbutton = Button(ErrorWindow, text = "ok",command=quit)
     #Pack all items
@@ -70,9 +71,13 @@ def show_desc(apt,*args):
     item = tree.selection()[0]
     app = tree.item(item,"text")
     #print(app)
-    global install_script, uninstall_script, desc_win
+    global install_script, uninstall_script, desc_win, ficon
     desc_win = Toplevel(window)
-    p2 = PhotoImage(file = f'/home/{username}/pi-ware/apps/{app}/icon.png')
+    if istherefile(f'/home/{username}/pi-ware/apps/{app}/icon.png'):
+      ficon = f'/home/{username}/pi-ware/apps/{app}/icon.png'
+    else:
+      ficon = f'/home/{username}/pi-ware/icons/app-no-icon.png'
+    p2 = PhotoImage(file = ficon)
     # Icon set for program window
     desc_win.iconphoto(False, p2)
     window.resizable(0, 0)
