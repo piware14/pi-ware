@@ -9,3 +9,16 @@ AppLocation="Menu > Accessories > $AppName"
 
 #Main
 wget -qO- https://raw.githubusercontent.com/Botspot/pi-apps/master/install | bash
+
+#Inform user that the install has finished
+#Check if finished with errors
+if [ "${fwe}" == "1" ]; then
+  echo "This script finished with errors, Here are the errors: ${ers}"
+  sleep 1
+  exit 1
+elif [ "${fwe}" == "0" ]; then
+  echo "Successfully installed $AppName. You can find it in $AppLocation."
+  echo "Closing in 5 seconds."
+  sleep 5s
+  exit 0
+fi
