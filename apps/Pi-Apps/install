@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#load functions
+source "$HOME/pi-ware/func/api" || echo "failed to source $HOME/pi-ware/func/api"
+
+#Local Variables
+AppName="Pi-Apps"
+AppLocation="Menu > Accessories > $AppName"
+
+#Main
+wget -qO- https://raw.githubusercontent.com/Botspot/pi-apps/master/install | bash
