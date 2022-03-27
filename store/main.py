@@ -291,9 +291,9 @@ for app in applist:
       ficon = f'/home/{username}/pi-ware/apps/{app}/icon.png'
     else:
       ficon = f'/home/{username}/pi-ware/icons/app-no-icon.png'
-    print(appb + """_button =  PhotoImage(file='""" + ficon + """')""")
-    appb + "_button" + " =  PhotoImage(file=f'{ficon}')"
-    tree.insert('', 'end', text=f"{app}",image=appb + "_button")
+    print(appb + """_button =  PhotoImage(file=f"{ficon}")""")
+    exec(f"""{appb}_button =  PhotoImage(file=f'{ficon}')""")
+    exec(f"""tree.insert('', 'end', text=f"{app}",image=f"{appb}_button)""")
 
 vsb =Scrollbar(window, orient="vertical", command=tree.yview)
 vsb.place(x=310, y=60, height=380)
