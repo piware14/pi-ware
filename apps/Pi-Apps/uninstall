@@ -8,10 +8,10 @@ AppName="Pi-Apps"
 AppLocation="Menu > Accessories > $AppName"
 
 #Main
-echo "Uninstalling Pi-Apps:"
-cd ~/pi-apps
-bash uninstall
-sudo rm -rf "$PW_APPS/pi-apps/pi-apps.desktop"
+warning 5 "Warning: Uninstall $AppName will remove any saved data associated with $AppName. /n To cancel press CTRL + C in the next 5 seconds."
+echo "Uninstalling $AppName:"
+cd ~/pi-apps || error "Unable to cd to ~/pi-apps, does it exist?" exit
+bash uninstall || error "Unable to execute ~/pi-apps/uninstall, does it exist?" exit
 #Inform user that the uninstall has finished
 #Check if finished with errors
 if [ "${fwe}" == "1" ]; then
