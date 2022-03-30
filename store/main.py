@@ -277,6 +277,7 @@ ap = next(os.walk(f"/home/{username}/pi-ware/apps"))[1]
 applist = sorted(ap)
 print("Current apps:\n")
 for app in applist:
+   global ficon2
     print(app)
     appb = ""
     for a in app:
@@ -288,11 +289,11 @@ for app in applist:
     tree.bind("<ButtonRelease-1>", partial(show_desc,app))
     global ficon
     if istherefile(f'/home/{username}/pi-ware/apps/{app}/icon.png'):
-      ficon = f'/home/{username}/pi-ware/apps/{app}/icon.png'
+      ficon2 = f'/home/{username}/pi-ware/apps/{app}/icon.png'
     else:
-      ficon = f'/home/{username}/pi-ware/icons/app-no-icon.png'
-    exec(f"""{appb}_button =  PhotoImage(file=f'{ficon}')""")
-    exec(f"""tree.insert('', 'end', text=f"{app}",image=f"{ficon}")""")
+      ficon2 = f'/home/{username}/pi-ware/icons/app-no-icon.png'
+    exec(appb + """_button =  PhotoImage(file=f'{ficon2}')""")
+    exec("""tree.insert('', 'end', text=f"{app}",image=""" + appb + """_button)""")
 
 vsb =Scrollbar(window, orient="vertical", command=tree.yview)
 vsb.place(x=310, y=60, height=380)
