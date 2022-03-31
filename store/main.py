@@ -277,7 +277,6 @@ ap = next(os.walk(f"/home/{username}/pi-ware/apps"))[1]
 applist = sorted(ap)
 print("Current apps:\n")
 for app in applist:
-   global ficon2
     print(app)
     appb = ""
     for a in app:
