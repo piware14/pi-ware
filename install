@@ -85,7 +85,7 @@ fi
 #Set package manager
 if [ -f /usr/bin/apt ];then
   echo "Package manager is: apt"
-  echo "apt-get -y" > "$PW_DATA/inst-pref"
+  echo "sudo apt-get -y" > "$PW_DATA/inst-pref"
 elif [ -f /usr/bin/pacman ];then
   echo "Package manager is: pacman"
   echo "pacman -S" > "$PW_DATA/inst-pref"
