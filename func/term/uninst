@@ -3,6 +3,8 @@
 #load functions
 source "$HOME/pi-ware/func/api" || echo "failed to source $HOME/pi-ware/func/api"
 
+rm -rf "$PW_DATA/inst/$1"
+
 echo "Your package manager is: $PackMang"
 echo "Uninstalling $1"
 bash $HOME/pi-ware/apps/$1/uninstall

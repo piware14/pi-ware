@@ -127,3 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#Pi-Ware
+.dev
+.pw*
+.pw-*

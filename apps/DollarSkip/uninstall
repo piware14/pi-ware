@@ -6,22 +6,21 @@ source "$HOME/pi-ware/func/api" || echo "failed to source $HOME/pi-ware/func/api
 #Local Variables
 AppName="DollarSkip"
 version="3.1.3"
-serverurl="https://github.com/CleanMachine1/DollarSkip"
-AppLocation="Terminal"
 
 #Main
 cd $HOME
-echo "Downloading $AppName"
-git clone "$serverurl"
-bash "$HOME/$AppName/install.sh" || error "Failed to run '$HOME/$AppName/install.sh'" exit
-#Inform user that the install has finished
+cd ~/DollarSkip || error "Failed to run 'cd ~/DollarSkip" exit
+sudo make uninstall || error "Failed to run 'make uninstall'"
+cd .. 
+rm -rf ./DollarSkip || error "Failed to run 'rm -rf ./DollarSkip'"
+#Inform user that the uninstall has finished
 #Check if finished with errors
 if [ "${fwe}" == "1" ]; then
   echo "This script finished with errors, Here are the errors: ${ers}"
   sleep 1
   exit 1
 elif [ "${fwe}" == "0" ]; then
-  echo "Successfully installed $AppName. You can find it in $AppLocation."
+  echo "Successfully uninstalled $AppName."
   echo "Closing in 5 seconds."
   sleep 5s
   exit 0

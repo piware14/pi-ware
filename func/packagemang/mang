@@ -13,15 +13,11 @@ reduceapt() { #remove unwanted lines from apt output | taken from pi-apps
 #Main
 #Get OS name
 OSNAME="$(sed '2!d' /etc/os-release | tail -c 20 | head -c 18)"
-if [ "$OSNAME" -eq "Pi-Ware OS" ]; then
-  echo "Thanks for using Pi-Ware OS!"
-elif [ "$OSNAME" -eq "Snorain OS" ]; then
+#if [ "$OSNAME" -eq "Pi-Ware OS" ]; then
+#
+#else
   echo "OS name: $OSNAME"
-elif [ "$OSNAME" -eq "Snorain/Rainbow OS" ]; then
-  echo "OS name: $OSNAME"
-else
-  echo "OS name: $OSNAME"
-fi
+#fi
 
 #$1 is the mode i.e install uninstall etc.
 if [ -z "$1" ]; then
@@ -37,45 +33,49 @@ else
   if [ -z "$2" ]; then
     error "No packages given! Exiting..." exit
   else
-    echo "PackMang: apt
-    Mode: $Mode
-    Packages to $Mode: $2
-    Waiting for apt-locks..."
-    while true
-    do
-      # Check for lock | taken from pi-apps
-      if [ -z "$(lsof /var/lib/dpkg/lock)" ]; then
-        break
-      fi
-    done
-    #update | taken from pi-apps
-    echo -e "Running \e[4msudo a\e[0mp\e[4mt u\e[0mp\e[4mdate\e[0m..."
-    output="$(sudo LANG=C LC_ALL=C apt update 2>&1)"
-    exitcode=$?
+    if [ "$pmang" -eq "sudo apt-get -y" ]; then
+      echo "PackMang: apt
+      Mode: $Mode
+      Packages to $Mode: $2
+      Waiting for apt-locks..."
+      while true
+      do
+        # Check for lock | taken from pi-apps
+        if [ -z "$(lsof /var/lib/dpkg/lock)" ]; then
+          break
+        fi
+      done
+      #update | taken from pi-apps
+      echo -e "Running \e[4msudo a\e[0mp\e[4mt u\e[0mp\e[4mdate\e[0m..."
+      output="$(sudo LANG=C LC_ALL=C apt update 2>&1)"
+      exitcode=$?
 
-    #inform user about autoremovable packages | taken from pi-apps
-    if [ ! -z "$(echo "$output" | grep 'autoremove to remove them' )" ];then
-      echo -e "\e[33mSome packages are unnecessary.\e[39m Please consider running \e[4msudo apt autoremove\e[0m."
+      #inform user about autoremovable packages | taken from pi-apps
+      if [ ! -z "$(echo "$output" | grep 'autoremove to remove them' )" ];then
+        echo -e "\e[33mSome packages are unnecessary.\e[39m Please consider running \e[4msudo apt autoremove\e[0m."
+      fi
+    
+      #inform user packages are upgradeable | taken from pi-apps
+      if [ ! -z "$(echo "$output" | grep 'packages can be upgraded' )" ];then
+        echo -e "\e[33mSome packages can be upgraded.\e[39m Please consider running \e[4msudo apt full-upgrade\e[0m."
+      fi
+    
+      #exit on apt error | taken from pi-apps
+      errors="$(echo "$output" | grep '^[(W)|(E)|(Err]:')"
+      if [ $exitcode != 0 ] || [ ! -z "$errors" ];then
+        echo -e "\e[91mpkg-install failed to run \e[4msudo apt update\e[0m\e[39m!"
+        echo -e "APT reported these errors:\n\e[91m$errors\e[39m"
+        exit 1
+      fi
+    
+      #format PKG_LIST - remove double spaces, preceding spaces, and trailing spaces. | taken from pi-apps
+      PKG_LIST="$(echo "$PKG_LIST" | sed 's/  / /g' | sed 's/^ //g' | sed 's/ $//g')"
+    
+      echo "Installing packages..."
+      sudo apt $Mode -y $2 | reduceapt # taken from pi-apps
+      echo "Done"
+    elif [ "$pmang" -eq "pacman -S" ]; then
+      echo "Package manager is pacman, we currently don't support this package manager!"
     fi
-    
-    #inform user packages are upgradeable | taken from pi-apps
-    if [ ! -z "$(echo "$output" | grep 'packages can be upgraded' )" ];then
-      echo -e "\e[33mSome packages can be upgraded.\e[39m Please consider running \e[4msudo apt full-upgrade\e[0m."
-    fi
-    
-    #exit on apt error | taken from pi-apps
-    errors="$(echo "$output" | grep '^[(W)|(E)|(Err]:')"
-    if [ $exitcode != 0 ] || [ ! -z "$errors" ];then
-      echo -e "\e[91mpkg-install failed to run \e[4msudo apt update\e[0m\e[39m!"
-      echo -e "APT reported these errors:\n\e[91m$errors\e[39m"
-      exit 1
-    fi
-    
-    #format PKG_LIST - remove double spaces, preceding spaces, and trailing spaces. | taken from pi-apps
-    PKG_LIST="$(echo "$PKG_LIST" | sed 's/  / /g' | sed 's/^ //g' | sed 's/ $//g')"
-    
-    echo "Installing packages..."
-    sudo apt $Mode -y $2 | reduceapt # taken from pi-apps
-    echo "Done"
   fi
 fi

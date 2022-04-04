@@ -11,6 +11,7 @@ PW_LOGS="$HOME/pi-ware/logs"
 CURRENT_COMMIT="$(cat $PW_DATA/version)"
 LATEST_COMMIT="$(git ls-remote "$PW_REPO" | grep refs/heads/main | cut -f 1)"
 aarch="$(cat $PW_DATA/aarch)"
+pmang="$(cat $PW_DATA/inst-pref)"
 fwe="0"
 ers=""
 

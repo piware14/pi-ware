@@ -9,7 +9,7 @@ echo "Installing pi-ware..."
 sudo pip3 install -r packages.txt || echo "failed to install required packages"
 mkdir -p "$PW_LOGS"
 #Make required directory for updater
-mkdir -p "$PW_DATA"
+mkdir -p "$PW_DATA/inst"
 cd "$HOME/pi-ware"
 echo $(git rev-parse main) > "$PW_DATA/version"
 echo "Creating a desktop entry for Pi-Ware..."

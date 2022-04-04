@@ -10,13 +10,16 @@ from functools import partial
 import getpass
 import json
 from screeninfo import get_monitors
+from datetime import date
 
 #Set global var username
 global username
 username = getpass.getuser()
 
 #set global vsb to make scrollbar perfect
-vsb = None
+global vsb
+
+todays_date = date.today()
 
 #Set global install/uninstall scripts
 global install_script
@@ -27,8 +30,8 @@ telemetry = None
 #import function
 import classes
 from function import istherefile
-window = Tk()
 
+window = Tk()
 s = Style()
 
 #Functions
@@ -88,7 +91,10 @@ def show_desc(apt,*args):
     #style = ThemedStyle(desc_win)
     #style.set_theme("arc")
     window.withdraw()
-    desc = open(f"/home/{username}/pi-ware/apps/{app}/description.txt", "r")
+    if istherefile(f"/home/{username}/pi-ware/apps/{app}/website"):
+        desc = open(f"/home/{username}/pi-ware/apps/{app}/description.txt", "r")
+    else:
+        desc = open(f"/home/{username}/pi-ware/func/info/def-description.txt", "r")
     desc_contents = desc.read()
     text_box = Text(desc_win, height=12, width=40)
     text_box.pack()
@@ -125,8 +131,10 @@ def show_desc(apt,*args):
     install_script = "'%s'" % command
     uninstall_script = "'%s'" % ucommand
     #Pack all buttons
-    install.pack()
-    uninstall.pack()
+    if istherefile(f"/home/{username}/.local/share/pi-ware/inst/{app}"):
+        uninstall.pack()
+    else:
+        install.pack()
     back_to_menu_button.pack(side = "bottom")
     desc_win.protocol("WM_DELETE_WINDOW",back_to_menu)
 
@@ -170,7 +178,11 @@ else:
      IsDev = "True"
 
 #Set window icon
-p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo-full-christmas.png')
+if todays_date.month == "12":
+    wico = f'/home/{username}/pi-ware/icons/logo-full-christmas.png'
+else:
+    wico = f'/home/{username}/pi-ware/icons/logo-full.png'
+p1 = PhotoImage(file = f'{wico}')
 window.iconphoto(False, p1)
 
 #Main
@@ -228,9 +240,11 @@ for _, dirnames, filenames in os.walk(f"/home/{username}/pi-ware/apps"):
 
 PiWareVersion = Label(DEV_tab, text=f"Pi-Ware Version:\n{PiWareVersioncontent}", font="Arial 11 bold")
 PiWareInstallableApps = Label(DEV_tab, text=f"{InstallibleApps}", font="Arial 11 bold")
+PiWareAppAARCH = Label(DEV_tab, text=f"{archdata}", font="Arial 11 bold")
 PiWareInstallableApps.configure(anchor="center")
 PiWareVersion.pack()
 PiWareInstallableApps.pack()
+#PiWareAppAARCH.pack()
 
 #Show latest news message
 NewsMessagefile = open(f"/home/{username}/pi-ware/func/info/latestnewsmessage", "r")
@@ -268,6 +282,7 @@ Website.bind("<Button-1>", lambda e:
 callback("https://pi-ware.ml"))
 
 tree = Treeview(apps_tab)
+vsb = Scrollbar(window, orient="vertical", command=tree.yview)
 tree.pack(expand=YES, fill=BOTH)
 tree.column("#0", minwidth=0, width=330, stretch=NO)
 s.configure('Treeview', rowheight=35)
@@ -287,12 +302,13 @@ for app in applist:
     #tree.bind("<Button-1>", print(app))
     tree.bind("<ButtonRelease-1>", partial(show_desc,app))
     if istherefile(f'/home/{username}/pi-ware/apps/{app}/icon.png'):
-      exec(appb + """_button =  PhotoImage(file=f'/home/{username}/pi-ware/apps/{app}/icon.png')""")
+        aico = f'/home/{username}/pi-ware/apps/{app}/icon.png'
     else:
-      exec(appb + """_button =  PhotoImage(file=f'/home/{username}/pi-ware/icons/app-no-icon.png')""")
+        aico = f'/home/{username}/pi-ware/icons/app-no-icon.png'
+    print(f"{appb}_button =  PhotoImage(file=f'{aico}')")
+    exec(f"{appb}_button =  PhotoImage(file=f'{aico}')")
     exec("""tree.insert('', 'end', text=f"{app}",image=""" + appb + """_button)""")
 
-vsb =Scrollbar(window, orient="vertical", command=tree.yview)
 vsb.place(x=310, y=60, height=380)
 tree.configure(yscrollcommand=vsb.set)
 if (tabtext != "Apps"):
