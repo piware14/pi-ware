@@ -194,6 +194,16 @@ for m in get_monitors():
     print(height)
     print(width)
 
+#Create an instance of tkinter frame
+#splash_win = Tk()
+#Set the title of the window
+#splash_win.title("Pi-Ware")
+#Define the size of the window or frame
+#splash_win.geometry("330x500+" + str(int(width)) + "+" + str(int(height)))
+#Remove border of the splash Window
+#splash_win.overrideredirect(True)
+#Define the label of the window
+#splash_label= Label(splash_win, text= "Hello World!", foreground= "green", font= ('Times New Roman', 40)).pack(pady=20)
 window.resizable(0, 0)
 window.geometry("330x500+" + str(int(width)) + "+" + str(int(height)))
 #window.eval('tk::PlaceWindow . center')
