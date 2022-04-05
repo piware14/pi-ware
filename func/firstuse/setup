@@ -7,9 +7,8 @@ source "$HOME/pi-ware/func/api" || error "failed to source $HOME/pi-ware/func/ap
 echo "Starting first use..."
 python3 $HOME/pi-ware/func/firstuse/setup.py
 echo "Update pi-ware.desktop"
-echo "False" > "$PW_PREFIX/share/pi-ware/firstrun"
+echo "False" > "$PW_DATA/firstrun"
 if [ "$month" -eq "12" ]; then
-  echo "christmas logo"
   logo="$HOME/pi-ware/icons/logo-full-christmas.png"
   comment="Raspberry Pi app store (Happy holidays!)"
 else

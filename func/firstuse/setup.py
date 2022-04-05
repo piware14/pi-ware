@@ -36,7 +36,9 @@ window.eval('tk::PlaceWindow . center')
 
 #Functions
 def StoreData(Data, Location):
+    print(f"echo '{Data}' > {Location}")
     os.system(f"echo '{Data}' > {Location}")
+    os.system("echo 'False' > $HOME/.local/share/pi-ware/firstrun")
     window.destroy()
 
 #Define labels
