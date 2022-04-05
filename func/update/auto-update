@@ -12,7 +12,7 @@ done
 
 #If loop ends, User online
 #Main
-if [ "$(cat '$PW_DATA/version')" != "$LAST_COMMIT" ]; then
+if [ "$(cat $PW_DATA/version)" != "$LATEST_COMMIT" ]; then
   python3 $HOME/pi-ware/func/update/update.py
   exit 0
 else
