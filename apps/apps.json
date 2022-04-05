@@ -1,15 +1,18 @@
 {
   "CryApp" : "armhf",
   "Deltarune Chapter 1+2" : "armhf",
-  "Discord" : "armhf",
-  "Doom" : "armhf" ,
+  "DollarSkip": "all",
+  "Doom" : "armhf",
   "Firefox" : "all" ,
   "Godot Engine" : "armhf",
+  "Legend of Xenia" : "armhf",
   "Lunar Client" : "armhf",
-  "MCPI (Modded)" : "all",
   "Mari0" : "armhf",
+  "MCPI (Modded)" : "all",
   "Orthobot" : "armhf",
-  "PyEncrypter" : "all",
+  "Pi-Apps": "armhf",
   "POOL" : "armhf",
-  "Legend of Xenia" : "armhf"
+  "PyEncrypter" : "all",
+  "WebAppMaker": "all",
+  "Webcord": "armhf"
 }

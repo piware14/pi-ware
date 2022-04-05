@@ -1,4 +1,3 @@
-
 #Functions
 def istherefile(file): # This Function check whether a file existes
     try:

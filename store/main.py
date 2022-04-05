@@ -27,14 +27,21 @@ global uninstall_script
 telemetry = None
 
 #Import custom  pi-ware functions
-#import function
 import classes
-from function import istherefile
 
 window = Tk()
 s = Style()
 
 #Functions
+def istherefile(file):
+    try:
+        file_tst = open(file)
+        file_tst.close()
+    except FileNotFoundError:
+        return False
+    else:
+        return True
+
 def callback(url):
    webbrowser.open_new_tab(url)
 
@@ -43,30 +50,33 @@ def error(mode,message,contact):
     ErrorWindow = Toplevel(window)
     #Set window icon based on arg 1
     icon = PhotoImage(file = f'/home/{username}/pi-ware/icons/error-{mode}.png')
+    #print(f'/home/{username}/pi-ware/icons/error-{mode}.png')
     ErrorWindow.iconphoto(False, icon)
-    if mode == "critical":
-        ErrorWindow.title(f"{mode} Error!")
-    else:
-        ErrorWindow.title("Error!")
-    errorimage = Label(ErrorWindow,image=icon)
+    ErrorWindow.title("Error!")
+    canvas = Canvas(ErrorWindow, width = 35,  height = 35)
+    canvas.pack()
+    canvas.create_image(10,10, anchor=NW, image=icon)
     errorhappened = Label(ErrorWindow, text = "An error occurred!")
     #error message
     errormessage = Label(ErrorWindow, text = message)
     #If contact is set to true, and telemetry is enabled, send us an error message.
     if contact == "True":
-        error_message = {"error": "fatal", "action": "imedient"}
+        error_message = {"error": "fatal", "action": "imedient", "reason": f"{message}"}
+        #print(error_message)
         with open('error.json', 'w') as json_file:
             json.dump(error_message, json_file)
             if telemetry == "True":
-                print("Sending log to pi-wareHQ")
+                print("Sending log to pi-ware HQ")
+            else:
+                print(f"Error saved at: '/home/{username}/pi-ware/store/error.json'")
                 
     #Ok button
     okbutton = Button(ErrorWindow, text = "ok",command=quit)
     #Pack all items
-    errorimage.pack()
     errorhappened.pack()
     errormessage.pack()
     okbutton.pack()
+    ErrorWindow.mainloop()
 
 def show_desc(apt,*args):
     # Gets the size of the mainwindow
@@ -91,7 +101,7 @@ def show_desc(apt,*args):
     #style = ThemedStyle(desc_win)
     #style.set_theme("arc")
     window.withdraw()
-    if istherefile(f"/home/{username}/pi-ware/apps/{app}/website"):
+    if istherefile(f"/home/{username}/pi-ware/apps/{app}/description.txt"):
         desc = open(f"/home/{username}/pi-ware/apps/{app}/description.txt", "r")
     else:
         desc = open(f"/home/{username}/pi-ware/func/info/def-description.txt", "r")
@@ -167,15 +177,15 @@ def quit():
 if not istherefile(f"/home/{username}/pi-ware/apps/apps.json"):
     error("critical", "Apps.json not found!", True)
 else:
-     #Read apps.json
-     with open(f"/home/{username}/pi-ware/apps/apps.json") as f:
-       archdata = json.load(f)
+    #Read apps.json
+    with open(f"/home/{username}/pi-ware/apps/apps.json") as f:
+        archdata = json.load(f)
 
 #Check if dev files exist
 if not istherefile(f"/home/{username}/pi-ware/.dev"):
     IsDev = "False"
 else:
-     IsDev = "True"
+    IsDev = "True"
 
 #Set window icon
 if todays_date.month == "12":
@@ -191,8 +201,8 @@ height = None
 for m in get_monitors():
     width = (m.width/2)-165
     height = m.height/2-250
-    print(height)
-    print(width)
+    #print(height)
+    #print(width)
 
 #Create an instance of tkinter frame
 #splash_win = Tk()
@@ -209,8 +219,15 @@ window.geometry("330x500+" + str(int(width)) + "+" + str(int(height)))
 #window.eval('tk::PlaceWindow . center')
 window.title("Pi-Ware")
 style = ThemedStyle(window)
-style.set_theme("arc")
+global systheme
+if istherefile(f"/home/{username}/.local/share/pi-ware/theme"):
+    PiWareTheme = open(f"/home/{username}/.local/share/pi-ware/theme", "r")
+    systheme = PiWareTheme.read()
+else:
+    systheme = "arc"
+style.set_theme(systheme)
 tabtext = "Apps"
+
 def addscroll(event):
     selected = event.widget.select()
     tabtext = event.widget.tab(selected, "text")
@@ -218,7 +235,7 @@ def addscroll(event):
         vsb.place_forget()
     elif (tabtext  == "Apps"):
         vsb.place(x=310, y=60, height=380)
-    print(tabtext)
+    #print(tabtext)
 
 # Window tabs
 tab_control = Notebook(window)
@@ -315,7 +332,7 @@ for app in applist:
         aico = f'/home/{username}/pi-ware/apps/{app}/icon.png'
     else:
         aico = f'/home/{username}/pi-ware/icons/app-no-icon.png'
-    print(f"{appb}_button =  PhotoImage(file=f'{aico}')")
+    #print(f"{appb}_button =  PhotoImage(file=f'{aico}')")
     exec(f"{appb}_button =  PhotoImage(file=f'{aico}')")
     exec("""tree.insert('', 'end', text=f"{app}",image=""" + appb + """_button)""")
 
