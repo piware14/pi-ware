@@ -5,7 +5,7 @@ source "$HOME/pi-ware/func/api" || echo "failed to source $HOME/pi-ware/func/api
 
 touch "$PW_DATA/inst/$1"
 
-echo "Your package manager is: $PackMang"
+echo "Your package manager is: $pmang"
 echo "Installing $1"
 bash $HOME/pi-ware/apps/$1/install
 sleep 2
