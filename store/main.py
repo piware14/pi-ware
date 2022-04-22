@@ -129,8 +129,8 @@ def show_desc(apt,*args):
                 Website.bind("<Button-1>", lambda e:
                 callback(line))
     #Buttons
-    install = Button(desc_win, text="INSTALL", width=200, command=install_app, style="install.TButton")
-    uninstall = Button(desc_win, text="UNINSTALL", width=200, command=uninstall_app, style="uninstall.TButton")
+    install = Button(desc_win, text="INSTALL", width=200, command=lambda:install_app(app), style="install.TButton")
+    uninstall = Button(desc_win, text="UNINSTALL", width=200, command=lambda:uninstall_app(app), style="uninstall.TButton")
     back_to_menu_button = Button(desc_win, text="BACK", width=200, command=back_to_menu, style="back.TButton")
     s.configure("install.TButton", foreground='blue', background='blue', font=("Arial", 11))
     s.configure("uninstall.TButton", foreground='red', background='red', font=("Arial", 11))
@@ -152,17 +152,41 @@ def back_to_menu(window, parent, app=None):
     parent.destroy()
     window.deiconify()
 
-def install_app():
+def install_app(app):
     global install_script
     if IsDev == "True":
         print(f"bash /home/{username}/pi-ware/func/term/term-run {install_script}")
     os.system(f"bash /home/{username}/pi-ware/func/term/term-run {install_script}")
+    os.system(f"touch /home/{username}/.local/share/pi-ware/installedapps.json")
+    print(app)
+    print(username)
+    os.chdir(r'/home/'+username+'/.local/share/pi-ware')
+    os.listdir()
+    prechange = open('installedapps.json', 'r')
+    data = json.load(prechange)
+    print(data)
+    data[app] = "Installed"
+    prechange.close()
+    with open('/home/'+username+'/.local/share/pi-ware/installedapps.json', 'w') as json_file:
+        json.dump(data, json_file)
+    
 
-def uninstall_app():
+def uninstall_app(app):
     global uninstall_script
     if IsDev == "True":
         print(f"bash /home/{username}/pi-ware/func/term/term-run {uninstall_script}")
     os.system(f"bash /home/{username}/pi-ware/func/term/term-run {uninstall_script}")
+    print(app)
+    print(username)
+    os.chdir(r'/home/'+username+'/.local/share/pi-ware')
+    os.listdir()
+    prechange = open('installedapps.json', 'r')
+    data = json.load(prechange)
+    print(data)
+    data[app] = "Uninstalled"
+    prechange.close()
+    with open('/home/'+username+'/.local/share/pi-ware/installedapps.json', 'w') as json_file:
+        json.dump(data, json_file)
 
 def back_to_menu():
     window.deiconify()
@@ -318,8 +342,21 @@ s.map('Treeview', foreground = [('active', '!disabled', 'green')],
 ap = next(os.walk(f"/home/{username}/pi-ware/apps"))[1]
 applist = sorted(ap)
 print("Current apps:\n")
+
+os.chdir(r'/home/'+username+'/.local/share/pi-ware')
+prechangedata = open('installedapps.json', 'r')
+installdata = json.load(prechangedata)
+
 for app in applist:
     print(app)
+    installed = False
+    if app in installdata:
+        if installdata[app] == "Installed":
+            installed = True
+    print(installed)
+    check = ""
+    if installed:
+        check = " ✔"
     appb = ""
     for a in app:
         if(a == " "):
@@ -334,7 +371,7 @@ for app in applist:
         aico = f'/home/{username}/pi-ware/icons/app-no-icon.png'
     #print(f"{appb}_button =  PhotoImage(file=f'{aico}')")
     exec(f"{appb}_button =  PhotoImage(file=f'{aico}')")
-    exec("""tree.insert('', 'end', text=f"{app}",image=""" + appb + """_button)""")
+    exec("""tree.insert('', 'end', text=f"{app}{check}",image=""" + appb + """_button)""")
 
 vsb.place(x=310, y=60, height=380)
 tree.configure(yscrollcommand=vsb.set)

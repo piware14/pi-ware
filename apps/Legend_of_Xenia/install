@@ -17,7 +17,6 @@ Type=Application
 Terminal=false" > $HOME/.local/share/applications/'Legend of Xenia'.desktop
 
 echo cleanup.
-sleep 1
 echo cleanup..
 cd
 rm -rf randompigames

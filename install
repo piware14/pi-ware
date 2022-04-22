@@ -23,6 +23,8 @@ else
   logo="$HOME/pi-ware/icons/logo.png"
   comment="Raspberry Pi app store"
 fi
+#Make app checking thingy
+echo "{}" > $HOME/.local/share/pi-ware/installedapps.json
 #Make firstrun desktop if program has not been used before.
 if [[ ! -f "$PW_DATA/firstrun" ]]; then
   echo "[Desktop Entry]
