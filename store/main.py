@@ -98,6 +98,7 @@ def show_desc(apt,*args):
     #print("320x500+" + mainwinx + "+" + mainwiny)
     # Makes sure the new window is the same size as the old one
     desc_win.geometry(wingeo)
+    desc_win.configure(background=s.lookup('TFrame', 'background'))
     #style = ThemedStyle(desc_win)
     #style.set_theme("arc")
     window.withdraw()
