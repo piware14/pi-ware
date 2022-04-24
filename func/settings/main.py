@@ -37,21 +37,48 @@ def show_desc(apt,*args):
         print("320x500+" + mainwinx + "+" + mainwiny)
     desc_win.geometry("320x500+" + mainwinx + "+" + mainwiny)
     window.withdraw()
-    desc = open(f"/home/{username}/pi-ware/func/settings/options/{app}/description", "r")
-    desc_contents = desc.read()
-    text_box = Text(desc_win, height=12, width=40)
-    text_box.pack()
-    text_box.insert('end', desc_contents)
-    text_box.config(state='disabled')
 
-    enablebutton = tk.Button(desc_win, text="Enable", font="Arial 11 bold", width=200, bg="darkblue", fg="white", command=enable_setting)
-    enablebutton.pack()
-    disablebutton = tk.Button(desc_win, text="Disable", font="Arial 11 bold", width=200, bg="red", fg="white", command=disable_setting)
-    disablebutton.pack()
-    ucommand = f"""bash /home/{username}/pi-ware/func/settings/options/{app}/disable '{app}' 'Changing setting for {app}'"""
-    command = f"""bash /home/{username}/pi-ware/func/settings/options/{app}/enable '{app}' 'Changing setting for {app}'"""
-    enable = "'%s'" % command
-    disable = "'%s'" % ucommand
+    ap = os.walk(f"/home/{username}/pi-ware/func/settings/options/{app}")
+    for root, dirs, files in ap:
+        #print(files)
+        def buttonfunc():
+            return
+        variableq = StringVar(desc_win)
+        variable = variableq.get()
+        for name in files:
+            print(name)
+            if "text" in name:
+                print("meh")
+            elif "button" in name:
+                buttonfile = open(f"/home/{username}/pi-ware/func/settings/options/{app}/" + name, "r")
+                buttonprops = buttonfile.read()
+                print(buttonprops)
+                buttonfiletext = open(f"/home/{username}/pi-ware/func/settings/options/{app}/" + name + "text", "r")
+                buttonpropstexte = buttonfiletext.read()
+                buttonpropstext = buttonpropstexte.splitlines( )
+                print(buttonpropstext[0])
+                buttonfunc = eval(buttonprops)
+                def myfunc(variable):
+                    print(variableq.get())
+                    buttonfunc(variableq.get())
+                button = tk.Button(desc_win, text=buttonpropstext[0], font="Arial 11 bold", width=200, bg=buttonpropstext[1], fg="white", command=lambda:myfunc(variable))
+                button.pack()
+            elif "desc" in name:
+                desc = open(f"/home/{username}/pi-ware/func/settings/options/{app}/description", "r")
+                desc_contents = desc.read()
+                text_box = Text(desc_win, height=12, width=40)
+                text_box.pack()
+                text_box.insert('end', desc_contents)
+                text_box.config(state='disabled')
+            elif "list" in name:
+                listfile = open(f"/home/{username}/pi-ware/func/settings/options/{app}/themelist", "r")
+                listfiledata = listfile.read()
+                listfiledataarray = listfiledata.splitlines( )
+                variableq.set(listfiledataarray[0]) # default value
+                w = OptionMenu(desc_win, variableq, *listfiledataarray)
+                w.pack()
+                
+
     back_to_menu_button = tk.Button(desc_win, text="BACK", font="Arial 11 bold", width=200, height=2, bg="green", fg="white", command=back_to_menu)
     back_to_menu_button.pack(side = "bottom")
     desc_win.protocol("WM_DELETE_WINDOW",back_to_menu)
@@ -142,19 +169,16 @@ tree.pack(expand=YES, fill=BOTH)
 tree.column("#0", minwidth=0, width=330, stretch=NO)
 s = Style()
 s.configure('Treeview', rowheight=35)
-ap = next(os.walk(f"/home/{username}/pi-ware/func/settings/options"))[1]
-applist = sorted(ap)
+ap = os.walk(f"/home/{username}/pi-ware/func/settings/settingslist")
 print("Current settings:\n")
-for app in applist:
-    print(app)
-    appb = ""
-    for a in app:
-        if(a == " "):
-            appb += "_"
-        else:
-            appb += a
-    tree.bind("<<TreeviewSelect>>", partial(show_desc,app))
-    exec("""tree.insert('', 'end', text=f"{app}")""")
+for root, dirs, files in ap:
+    #print(files)
+    for name in files:
+        print(name)
+        tree.bind("<<TreeviewSelect>>", partial(show_desc,name))
+        exec("""tree.insert('', 'end', text=f"{name}")""")
+#print(ap)
+    
 
 ScrollForMore = tk.Label(prefrence_tab, text="Scroll down for more settings.", font="Arial 11 bold")
 ScrollForMore.pack()

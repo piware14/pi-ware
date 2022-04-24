@@ -23,6 +23,9 @@ else
   logo="$HOME/pi-ware/icons/logo.png"
   comment="Raspberry Pi app store"
 fi
+#Theme (default)
+touch $HOME/.local/share/pi-ware/theme
+echo "arc" > $HOME/.local/share/pi-ware/theme
 #Make app checking thingy
 echo "{}" > $HOME/.local/share/pi-ware/installedapps.json
 #Make firstrun desktop if program has not been used before.

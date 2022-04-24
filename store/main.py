@@ -247,9 +247,11 @@ global systheme
 if istherefile(f"/home/{username}/.local/share/pi-ware/theme"):
     PiWareTheme = open(f"/home/{username}/.local/share/pi-ware/theme", "r")
     systheme = PiWareTheme.read()
+    print(systheme)
+    
+    style.set_theme(systheme.strip())
 else:
     systheme = "arc"
-style.set_theme(systheme)
 tabtext = "Apps"
 
 def addscroll(event):
@@ -335,7 +337,7 @@ callback("https://pi-ware.ml"))
 tree = Treeview(apps_tab)
 vsb = Scrollbar(window, orient="vertical", command=tree.yview)
 tree.pack(expand=YES, fill=BOTH)
-tree.column("#0", minwidth=0, width=330, stretch=NO)
+tree.column("#0", minwidth=0, width=350, stretch=True)
 s.configure('Treeview', rowheight=35)
 s.map('Treeview', foreground = [('active', '!disabled', 'green')],
                      background = [('active', 'black')])
@@ -369,6 +371,7 @@ for app in applist:
         aico = f'/home/{username}/pi-ware/apps/{app}/icon.png'
     else:
         aico = f'/home/{username}/pi-ware/icons/app-no-icon.png'
+        print("/////////////////////////")
     #print(f"{appb}_button =  PhotoImage(file=f'{aico}')")
     exec(f"{appb}_button =  PhotoImage(file=f'{aico}')")
     exec("""tree.insert('', 'end', text=f"{app}{check}",image=""" + appb + """_button)""")

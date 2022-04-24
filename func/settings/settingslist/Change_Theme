@@ -1,0 +1,2 @@
+theme=$1
+echo "$1" > $HOME/.local/share/pi-ware/theme
