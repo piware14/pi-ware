@@ -2,6 +2,7 @@
 # Pi-Ware Settings UI
 from tkinter import *
 from tkinter.ttk import *
+from ttkthemes import ThemedStyle
 import tkinter as tk
 import os
 import webbrowser
@@ -19,16 +20,26 @@ global disable
 #Import custom pi-ware classes
 import classes
 
-window = tk.Tk()
+window = Tk()
+s = Style()
 
 #Functions
+def istherefile(file):
+    try:
+        file_tst = open(file)
+        file_tst.close()
+    except FileNotFoundError:
+        return False
+    else:
+        return True
+
 def show_desc(apt,*args):
     mainwinx = str(window.winfo_x())
     mainwiny = str(window.winfo_y())
     item = tree.selection()[0]
     app = tree.item(item,"text")
     global enable, disable, desc_win
-    desc_win = tk.Toplevel(window)
+    desc_win = Toplevel(window)
     # Icon set for program window
     desc_win.iconphoto(False, p1)
     window.resizable(0, 0)
@@ -36,6 +47,7 @@ def show_desc(apt,*args):
     if IsDev == "True":
         print("320x500+" + mainwinx + "+" + mainwiny)
     desc_win.geometry("320x500+" + mainwinx + "+" + mainwiny)
+    desc_win.configure(background=s.lookup('TFrame', 'background'))
     window.withdraw()
 
     ap = os.walk(f"/home/{username}/pi-ware/func/settings/options/{app}")
@@ -61,7 +73,9 @@ def show_desc(apt,*args):
                 def myfunc(variable):
                     print(variableq.get())
                     buttonfunc(variableq.get())
-                button = tk.Button(desc_win, text=buttonpropstext[0], font="Arial 11 bold", width=200, bg=buttonpropstext[1], fg="white", command=lambda:myfunc(variable))
+                namelistthing = str(files.index(name))
+                button = Button(desc_win, text=buttonpropstext[0], width=200, command=lambda:myfunc(variable), style=namelistthing + ".TButton")
+                s.configure(namelistthing + ".TButton", foreground=buttonpropstext[1], background='white', font=("Arial", 11, "bold"))
                 button.pack()
             elif "desc" in name:
                 desc = open(f"/home/{username}/pi-ware/func/settings/options/{app}/description", "r")
@@ -79,7 +93,8 @@ def show_desc(apt,*args):
                 w.pack()
                 
 
-    back_to_menu_button = tk.Button(desc_win, text="BACK", font="Arial 11 bold", width=200, height=2, bg="green", fg="white", command=back_to_menu)
+    back_to_menu_button = Button(desc_win, text="BACK", width=200, command=back_to_menu, style="back.TButton")
+    s.configure("back.TButton", foreground='green', background='white', font=("Arial", 11, "bold"))
     back_to_menu_button.pack(side = "bottom")
     desc_win.protocol("WM_DELETE_WINDOW",back_to_menu)
 
@@ -119,6 +134,17 @@ except FileNotFoundError:
 else:
      IsDev = "True"
 
+style = ThemedStyle(window)
+global systheme
+if istherefile(f"/home/{username}/.local/share/pi-ware/theme"):
+    PiWareTheme = open(f"/home/{username}/.local/share/pi-ware/theme", "r")
+    systheme = PiWareTheme.read()
+    print(systheme)
+    
+    style.set_theme(systheme.strip())
+else:
+    systheme = "arc"
+
 #Set window icon
 p1 = PhotoImage(file = f'/home/{username}/pi-ware/icons/logo.png')
 window.iconphoto(False, p1)
@@ -153,15 +179,15 @@ for _, dirnames, filenames in os.walk(f"/home/{username}/pi-ware/func/settings/o
     folders += len(dirnames)
     InstallibleApps = "{:,} avilible settings".format(folders)
 
-PiWareVersion = tk.Label(DEV_tab, text=f"Pi-Ware Version:\n{PiWareVersioncontent}", font="Arial 11 bold")
-PiWareInstallableApps = tk.Label(DEV_tab, text=f"{InstallibleApps}", font="Arial 11 bold")
+PiWareVersion = Label(DEV_tab, text=f"Pi-Ware Version:\n{PiWareVersioncontent}", font="Arial 11 bold")
+PiWareInstallableApps = Label(DEV_tab, text=f"{InstallibleApps}", font="Arial 11 bold")
 PiWareVersion.pack()
 PiWareInstallableApps.pack()
 
 #Show latest news message
 NewsMessagefile = open(f"/home/{username}/pi-ware/func/info/settingsmessage", "r")
 NewsMessagecontent = NewsMessagefile.read()
-NewsMessage = tk.Label(news_tab, text=f"Latest news:\n{NewsMessagecontent}", font="Arial 11 bold")
+NewsMessage = Label(news_tab, text=f"Latest news:\n{NewsMessagecontent}", font="Arial 11 bold")
 NewsMessage.pack()
 
 tree = Treeview(prefrence_tab)
@@ -180,10 +206,11 @@ for root, dirs, files in ap:
 #print(ap)
     
 
-ScrollForMore = tk.Label(prefrence_tab, text="Scroll down for more settings.", font="Arial 11 bold")
+ScrollForMore = Label(prefrence_tab, text="Scroll down for more settings.", font="Arial 11 bold")
 ScrollForMore.pack()
 
-quitbutton = tk.Button(window, text="Quit", font="Arial 11 bold", width=200, bg="grey", fg="white", command=quit)
+quitbutton = Button(window, text="Quit", width=200, command=quit, style="quit.TButton")
+s.configure("quit.TButton", foreground='grey', background='white', font=("Arial", 11, "bold"))
 quitbutton.pack(side="bottom")
 
 window.mainloop()
