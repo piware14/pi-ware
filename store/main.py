@@ -82,7 +82,7 @@ def show_desc(apt,*args):
     # Gets the size of the mainwindow
     wingeo = window.geometry()
     item = tree.selection()[0]
-    app = tree.item(item,"text")
+    app = tree.item(item,"text").replace(' ✔', '')
     #print(app)
     global install_script, uninstall_script, desc_win, ficon
     desc_win = Toplevel(window)
@@ -101,9 +101,10 @@ def show_desc(apt,*args):
     #style = ThemedStyle(desc_win)
     #style.set_theme("arc")
     window.withdraw()
-    if istherefile(f"/home/{username}/pi-ware/apps/{app}/description.txt"):
-        desc = open(f"/home/{username}/pi-ware/apps/{app}/description.txt", "r")
+    if istherefile(f"/home/"+username+"/pi-ware/apps/"+app+"/description.txt"):
+        desc = open(f"/home/"+username+"/pi-ware/apps/"+app+"/description.txt", "r")
     else:
+        print("/home/"+username+"/pi-ware/apps/"+app+"/description.txt")
         desc = open(f"/home/{username}/pi-ware/func/info/def-description.txt", "r")
     desc_contents = desc.read()
     text_box = Text(desc_win, height=12, width=40)
