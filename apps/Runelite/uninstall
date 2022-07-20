@@ -1,0 +1,3 @@
+rm -rf $HOME/Runelite
+rm -rf $HOME/.local/share/applications/Runelite.desktop
+echo Runelite have been uninstalled!
