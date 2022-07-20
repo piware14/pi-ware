@@ -1,0 +1,3 @@
+Runelite is an Old school runescape client. Runelite is an open source project and is not affiliated with jagex. 
+
+Credits: https://github.com/runelite | https://runelite.net
