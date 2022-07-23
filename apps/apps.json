@@ -14,5 +14,6 @@
   "POOL" : "armhf",
   "PyEncrypter" : "all",
   "WebAppMaker": "all",
+  "Runelite": "all",
   "Webcord": "armhf"
 }
